@@ -28,6 +28,11 @@ namespace TicketsBooking
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                //ToDO
+                //Create User Exception Page
+            }
 
             loggerFactory.AddConsole();
 
@@ -35,13 +40,11 @@ namespace TicketsBooking
 
             app.UseStaticFiles();
 
-            app.Run(async (context) =>
+            app.UseMvc(routes =>
             {
-                var logger = loggerFactory.CreateLogger("RequestInfoLogger");
-
-                logger.LogInformation("Processing request {0}", context.Request.Path);
-
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Ticket}/{action=Home}");
             });
         }
     }
