@@ -35,3 +35,4 @@ C:\Users\Oleg228\Desktop\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\R
 C:\Users\Oleg228\Desktop\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\TicketsBooking.RazorTargetAssemblyInfo.cs
 C:\Users\Oleg228\Desktop\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\TicketsBooking.Views.pdb
 C:\Users\Oleg228\Desktop\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\Razor\Views\Account\Register.g.cshtml.cs
+C:\Users\Oleg228\Desktop\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\TicketsBooking.csprojAssemblyReference.cache
