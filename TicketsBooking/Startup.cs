@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using TicketsBooking.Models;
 
 namespace TicketsBooking
 {
@@ -19,6 +22,10 @@ namespace TicketsBooking
         {
             services.AddMvc();
             services.AddRouting();
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
+                                                             .AddEntityFrameworkStores<IdentityDbContext>()
+                                                             .AddDefaultUI()
+                                                             .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,7 +45,9 @@ namespace TicketsBooking
 
             app.UseAuthentication();
 
+            app.UseStaticFiles(); app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
