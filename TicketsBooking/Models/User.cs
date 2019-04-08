@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace TicketsBooking.Models
 {
-    public class User : IdentityUser
+    public class User
     {
+        public int Id { get; set; }
+
         public string Email { get; set; }
 
         public DateTime Year { get; set; }
