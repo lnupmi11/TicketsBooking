@@ -24,5 +24,31 @@ namespace TicketsBooking.Controllers
             }
             return View();
         }
+
+        public void DeleteTicket(Ticket ticket)
+        {
+            using (Context db = new Context())
+            {
+                db.Tickets.Remove(ticket);
+            }
+        }
+
+        public List<Ticket> GetTicketsByFromTo(City from, City to)
+        {
+            var result = new List<Ticket>();
+
+            using (Context db = new Context())
+            {
+                foreach(Ticket ticket in db.Tickets)
+                {
+                    if ((ticket.From.Id == from.Id) && (ticket.To.Id == to.Id))
+                    {
+                        result.Add(ticket);
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }
