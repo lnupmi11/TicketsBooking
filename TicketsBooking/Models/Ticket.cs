@@ -7,6 +7,7 @@ namespace TicketsBooking.Models
 {
     public class Ticket
     {
+        public int Id { get; set; }
         public City From { get; set; }
         public City To { get; set; }
         public TicketType Type { get; set; }

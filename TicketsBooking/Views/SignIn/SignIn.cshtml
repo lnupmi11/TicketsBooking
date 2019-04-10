@@ -1,10 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "SignIn";
 }
+
+
 <link rel="stylesheet" href="css/main.css">
 <script src="~/js/main.min.js"></script>
-<title>Home</title>
-
+<title>Sign in</title>
 <header class="header">
     <div class="container">
         <a class="header_logotype active" href="/">
@@ -39,49 +40,59 @@
         </div>
     </div>
 </header>
-<div class="home-page">
-    <div class="container main_block">
-        <h1 class="main_block-header1">WeGo</h1>
-        <h2 class="main_block-header2">Unleash the traveler inside you</h2>
 
-        <form class="form_tickets-wrapper tickets">
-            <div class="form_tickets-block">
-                <div class="form_tickets-group">
-                    <input type="text"
-                           class="form_tickets-group-input"
-                           name="from"
-                           placeholder="From">
-                </div>
-                <button class="form_tickets-group-change">
-                    <img src="img/icon/repeat.svg"/>
-                </button>
-                <div class="form_tickets-group">
-                    <input type="text"
-                           class="form_tickets-group-input"
-                           name="to"
-                           placeholder="To">
-                </div>
-
-                <div class="form_tickets-group">
-                    <input type="date"
-                           class="form_tickets-group-input"
-                           name="date"
-                           placeholder="Date">
-                </div>
-
-                <div class="form_tickets-group validation ">
-                    <input type="number"
-                           class="form_tickets-group-input"
-                           name="count"
-                           placeholder="Tickets count">
-                </div>
-                <button class="form_tickets-group-button">Search now</button>
+<div class="login-page container">
+    <div class="form-wrapper ">
+        <div class="form-wrapper_title-block">
+            <span class="form-wrapper_title-text">Sign in</span>
+        </div>
+        <form class="form-block">
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="text"
+                       class="form-group-input"
+                       name="email"
+                       placeholder="example@gmai.com"
+                       value="">
             </div>
-
+            <div class="form-group">
+                <label class="control-label">Password</label>
+                <input type="password"
+                       class="form-group-input"
+                       name="password"
+                       placeholder="**********"
+                       value="">
+            </div>
+            <div class="form-group pass_settings">
+                <div class="form-group-show_pass">
+                    <input type="checkbox"
+                           id="squaredOne"
+                           name="check"
+                           value="on">
+                    <label class="checkbox_square" for="squaredOne"></label>
+                    <label class="checkbox_text" for="squaredOne">Show password</label>
+                </div>
+                <div class="form-group-forgot_pass">
+                    <a class="registration-page-alternative-simple-link"
+                       href="/forgot">
+                        Forgot password?
+                    </a>
+                </div>
+            </div>
+            <button class="form-group-button">Sign in →</button>
         </form>
-
+        <div class="registration-block">
+            <span class="registration-text">
+                Don`t have an account?
+            </span>
+            <a class="registration-link"
+               href="/registration">
+                Registration
+            </a>
+        </div>
     </div>
 </div>
+
 <footer class="footer">
     <div class="container footer-wrapper">
         <div class=" main_block-header1 footer-logotype">

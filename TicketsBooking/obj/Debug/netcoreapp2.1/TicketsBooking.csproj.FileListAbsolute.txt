@@ -58,3 +58,5 @@ D:\Навчання\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\Ticket
 D:\Навчання\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\TicketsBooking.dll
 D:\Навчання\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\TicketsBooking.pdb
 D:\Навчання\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\TicketsBooking.csproj.CopyComplete
+D:\Навчання\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\Razor\Views\SignIn\SignIn.g.cshtml.cs
+D:\Навчання\TicketsBooking\TicketsBooking\obj\Debug\netcoreapp2.1\Razor\Views\SignUp\SignUp.g.cshtml.cs
