@@ -80,10 +80,18 @@
   &_logotype {
     width: 100%;
     max-width: 140px;
-    font-size: 60px;
     color: white;
+    font-size: calc(112px / 2);
+    padding-bottom: 5px;
+    font-family: 'LogoFont', sans-serif;
 
-    font-family: 'Roboto-Medium', sans-serif;
+    span {
+      margin: 0;
+      transform: translate(-34px, 5px) scale(1, 1);
+      display: inline-block;
+      font-size: 53px;
+    }
+
     &_img {
       height: 50px;
     }
