@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FilmSearch.Models
+namespace TicketsBooking.Models
 {
     public static class FileManager
     {
