@@ -67,6 +67,24 @@ namespace TicketsBooking.Controllers
             }
             return result;
         }
+        
+          public List<Ticket> GetTicketsByType(TicketType  type)
+        {
+            var result = new List<Ticket>();
+
+            using (Context db = new Context())
+            {
+                foreach (Ticket ticket in db.Tickets)
+                {
+                    if(ticket.Type == type)
+                    {
+                        result.Add(ticket);
+                    }
+                }
+            }
+            return result;
+        }
+        
 
 
     }
