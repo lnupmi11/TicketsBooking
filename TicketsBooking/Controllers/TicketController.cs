@@ -47,8 +47,27 @@ namespace TicketsBooking.Controllers
                     }
                 }
             }
-
             return result;
         }
+
+
+        public List<Ticket> GetTicketsByDate(DateTime date)
+        {
+            var result = new List<Ticket>();
+
+            using (Context db = new Context())
+            {
+                foreach (Ticket ticket in db.Tickets)
+                {
+                    if(ticket.Depart == date)
+                    {
+                        result.Add(ticket);
+                    }
+                }
+            }
+            return result;
+        }
+
+
     }
 }
