@@ -42,8 +42,10 @@ namespace TicketsBooking
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //ToDo please fixe ref to Entity project
+            //services.AddIdentity<User, IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+           
 
         }
 
