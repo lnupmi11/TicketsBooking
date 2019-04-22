@@ -8,17 +8,14 @@ namespace TicketsBooking.DAL.Interfaces
     {
         // Create/Update/Delete:
         void Create(T item);
-        void Update(T item);
+        void Update(T item, T newItem);
         void Delete(T item);
         void Delete(string id);
 
 
         // Get:
         IEnumerable<T> GetAll();
-        IEnumerable<T> GetAllWhere(Func<T, bool> predicate);
+
         T Get(string id);
-        T Get(Func<T, bool> predicate);
-
-
     }
 }
