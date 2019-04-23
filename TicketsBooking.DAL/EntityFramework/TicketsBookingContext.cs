@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using TicketsBooking.DAL.Entities;
 
-namespace TicketsBooking.DAL.Entities
+namespace TicketsBooking.DAL.EntityFramework
 {
     public sealed class TicketsBookingContext : IdentityDbContext<User>
     {
