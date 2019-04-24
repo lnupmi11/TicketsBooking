@@ -8,7 +8,7 @@ namespace TicketsBooking.DAL.Interfaces
     {
         // Create/Update/Delete:
         void Create(T item);
-        void Update(T item, T newItem);
+        void Update(T item);
         void Delete(T item);
         void Delete(string id);
 

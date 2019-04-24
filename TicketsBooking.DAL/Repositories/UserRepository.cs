@@ -31,7 +31,7 @@ namespace TicketsBooking.DAL.Repositories
             dbContext.SaveChanges();
         }
         
-        public void Update(User item, User newItem)
+        public void Update(User item)
         {
             //TODO: 
         }

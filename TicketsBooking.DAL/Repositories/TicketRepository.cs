@@ -7,7 +7,7 @@ using TicketsBooking.DAL.EntityFramework;
 
 namespace TicketsBooking.DAL.Repositories
 {
-    class TicketRepository : IRepository<Ticket>
+    public class TicketRepository : IRepository<Ticket>
     {
         TicketsBookingContext dbContext = new TicketsBookingContext();
         public void Create(Ticket item)
@@ -39,7 +39,7 @@ namespace TicketsBooking.DAL.Repositories
             return dbContext.Tickets;
         }
 
-        public void Update(Ticket item, Ticket newItem)
+        public void Update(Ticket item)
         {
             //TODO: add update
         }
