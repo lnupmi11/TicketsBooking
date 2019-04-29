@@ -10,42 +10,42 @@ using System.Linq;
 
 namespace TicketsBooking.BLL.Services
 {
-    public class TicketService : IServiceTicket
-    {
-        public void Create(Ticket ticket)
-        {
-            TicketRepository ticketRepository = new TicketRepository();
-            ticketRepository.Create(ticket);
-        }
+    //public class TicketService : IServiceTicket
+    //{
+    //    public void Create(Ticket ticket)
+    //    {
+    //        TicketRepository ticketRepository = new TicketRepository();
+    //        ticketRepository.Create(ticket);
+    //    }
 
-        public void Delete(int id)
-        {
-            using (TicketsBookingContext db = new TicketsBookingContext())
-            {
-                TicketRepository ticketRepository = new TicketRepository();
-                var ticket = db.Tickets.Where(t => t.Id == id).First();
-                ticketRepository.Delete(ticket);
-            }
+    //    public void Delete(int id)
+    //    {
+    //        using (TicketsBookingContext db = new TicketsBookingContext())
+    //        {
+    //            TicketRepository ticketRepository = new TicketRepository();
+    //            var ticket = db.Tickets.Where(t => t.Id == id).First();
+    //            ticketRepository.Delete(ticket);
+    //        }
 
-        }
+    //    }
 
-        public Ticket Get(int id)
-        {
-            TicketRepository ticketRepository = new TicketRepository();
-            return ticketRepository.Get(id.ToString());
+    //    public Ticket Get(int id)
+    //    {
+    //        TicketRepository ticketRepository = new TicketRepository();
+    //        return ticketRepository.Get(id.ToString());
             
-        }
+    //    }
 
-        public IEnumerable<Ticket> GetAll()
-        {
-            TicketRepository ticketRepository = new TicketRepository();
-            return ticketRepository.GetAll();
-        }
+    //    public IEnumerable<Ticket> GetAll()
+    //    {
+    //        TicketRepository ticketRepository = new TicketRepository();
+    //        return ticketRepository.GetAll();
+    //    }
 
-        public void Update(Ticket ticket)
-        {
-            TicketRepository ticketRepository = new TicketRepository();
-            ticketRepository.Update(ticket);
-        }
-    }
+    //    public void Update(Ticket ticket)
+    //    {
+    //        TicketRepository ticketRepository = new TicketRepository();
+    //        ticketRepository.Update(ticket);
+    //    }
+    //}
 }
