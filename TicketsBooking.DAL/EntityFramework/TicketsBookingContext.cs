@@ -11,5 +11,10 @@ namespace TicketsBooking.DAL.EntityFramework
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+
+        public TicketsBookingContext(DbContextOptions<TicketsBookingContext> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
     }
 }
