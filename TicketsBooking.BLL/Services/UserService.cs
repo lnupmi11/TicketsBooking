@@ -5,54 +5,52 @@ using TicketsBooking.BLL.Interfaces;
 using TicketsBooking.DAL.Entities;
 using TicketsBooking.DAL.Repositories;
 using TicketsBooking.DAL.EntityFramework;
+using TicketsBooking.DAL.Interfaces;
+using System.Security.Claims;
+using System.Linq;
 
 namespace TicketsBooking.BLL.Services
 {
-    //public class UserService : IServiceUser
-    //{
-    //    public void ChangeFirstname(User user, string firstname)
-    //    {
-    //        using (TicketsBookingContext db = new TicketsBookingContext())
-    //        {
-    //            user.FirstName = firstname;
-    //            db.Update(user);
-    //        }
-    //    }
+    public class UserService : IServiceUser
+    {
+        private IUnitOfWork _unitOfWork;
 
-    //    public void ChangeLastname(User user, string lastname)
-    //    {
-    //        using (TicketsBookingContext db = new TicketsBookingContext())
-    //        {
-    //            user.LastName = lastname;
-    //            db.Update(user);
-    //        }
-    //    }
+        public UserService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
-    //    public void ChangeUsername(User user, string name)
-    //    {
-    //        using (TicketsBookingContext db = new TicketsBookingContext())
-    //        {
-    //            user.UserName = name;
-    //            db.Update(user);
-    //        }
-    //    }
+        public User GetUser(string id)
+        {
+            return _unitOfWork.UserRepository.Get(id);
+        }
 
-    //    public void Delete(User user)
-    //    {
-    //        UserRepository userRepository = new UserRepository();
-    //        userRepository.Delete(user.Id.ToString());
-    //    }
+        public IEnumerable<User> GetAll()
+        {
+            return _unitOfWork.UserRepository.GetAll();
+        }
 
-    //    public IEnumerable<User> GetAll()
-    //    {
-    //        UserRepository userRepository = new UserRepository();
-    //        return userRepository.GetAll();
-    //    }
+        public void ChangeUsername(User user, string name)
+        {
+            user.Username = name;
+            _unitOfWork.UserRepository.Update(user);
+        }
 
-    //    public User GetUser(string id)
-    //    {
-    //        UserRepository userRepository = new UserRepository();
-    //        return userRepository.Get(id);
-    //    }
-    //}
+        public void ChangeFirstname(User user, string firstname)
+        {
+            user.FirstName = firstname;
+            _unitOfWork.UserRepository.Update(user);
+        }
+
+        public void ChangeLastname(User user, string lastname)
+        {
+            user.LastName = lastname;
+            _unitOfWork.UserRepository.Update(user);
+        }
+
+        public void Delete(User user)
+        {
+            //_unitOfWork.UserRepository.Delete(user);
+        }
+    }
 }

@@ -10,6 +10,7 @@ using System.Linq;
 
 namespace TicketsBooking.BLL.Services
 {
+    //ToDo
     //public class TicketService : IServiceTicket
     //{
     //    public void Create(Ticket ticket)
@@ -33,7 +34,7 @@ namespace TicketsBooking.BLL.Services
     //    {
     //        TicketRepository ticketRepository = new TicketRepository();
     //        return ticketRepository.Get(id.ToString());
-            
+
     //    }
 
     //    public IEnumerable<Ticket> GetAll()
