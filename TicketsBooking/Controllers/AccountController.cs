@@ -74,7 +74,7 @@ namespace TicketsBooking.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+                    ModelState.AddModelError("", "Incorrect username and / or password");
                 }
             }
             return View(model);
@@ -130,7 +130,7 @@ namespace TicketsBooking.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Пользователь не найден");
+                    ModelState.AddModelError(string.Empty, "User is not found");
                 }
             }
             return View(model);
