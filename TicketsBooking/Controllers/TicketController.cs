@@ -8,7 +8,7 @@ namespace TicketsBooking.Controllers
 {
     public class TicketController : Controller
     {
-        public IActionResult Home()
+        public IActionResult Index()
         {
             return View();
         }

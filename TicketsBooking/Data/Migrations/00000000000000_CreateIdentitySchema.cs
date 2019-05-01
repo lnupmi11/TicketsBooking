@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TicketsBooking.Migrations
+namespace TicketsBooking.Data.Migrations
 {
-    public partial class Identity : Migration
+    public partial class CreateIdentitySchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
