@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace TicketsBooking.DAL.Entities
 {
     public class Ticket
     {
+        [Key]
         public int Id { get; set; }
         public City From { get; set; }
         public City To { get; set; }
