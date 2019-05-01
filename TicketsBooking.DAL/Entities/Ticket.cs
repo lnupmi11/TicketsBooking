@@ -15,5 +15,6 @@ namespace TicketsBooking.DAL.Entities
         public double Price { get; set; }
         public DateTime Depart { get; set; }
         public DateTime Arrive { get; set; }
+        public virtual ICollection<BasketItem> Baskets { get; set; }
     }
 }
