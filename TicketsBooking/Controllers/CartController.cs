@@ -9,7 +9,6 @@ using TicketsBooking.DTO.Cart;
 
 namespace TicketsBooking.Controllers
 {
-
     public class CartController : Controller
     {
         IOrderService _orderService;
