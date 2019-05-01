@@ -19,4 +19,11 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\TicketsBooking.BLL\TicketsBooking.BLL.csproj" />
+    <ProjectReference Include="..\TicketsBooking.DAL\TicketsBooking.DAL.csproj" />
+    <ProjectReference Include="..\TicketsBooking.DTO\TicketsBooking.DTO.csproj" />
+  </ItemGroup>
+
 </Project>
