@@ -33,8 +33,8 @@ namespace TicketsBooking.Controllers
         [Authorize]
         public IActionResult AddItem(string itemId)
         {
-            var userName = User.Identity.Name;
-            _orderService.AddItemToBasket(userName, itemId);
+            //var userName = User.Identity.
+            //_orderService.AddItemToBasket(userName, itemId);
             return new EmptyResult();
         }
 

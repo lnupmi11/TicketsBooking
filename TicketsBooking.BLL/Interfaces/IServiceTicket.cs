@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using TicketsBooking.DAL.Entities;
+using TicketsBooking.DTO.Ticket;
 
 namespace TicketsBooking.BLL.Interfaces
 {
-    interface IServiceTicket
+    public interface IServiceTicket
     {
-        void Create(Ticket ticket);
+        void Create(TicketDTO ticket);
         void Delete(int id);
-        void Update(Ticket ticket);
-        IEnumerable<Ticket> GetAll();
-        Ticket Get(int id);
+        void Update(TicketDTO ticket);
+        IEnumerable<TicketDTO> GetAll();
+        TicketDTO Get(int id);
     }
 }
