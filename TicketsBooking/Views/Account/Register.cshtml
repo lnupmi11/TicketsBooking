@@ -2,7 +2,9 @@
     ViewData["Title"] = "SignUn";
 }
 
-<link rel="stylesheet" href="css/main.css">
+@model TicketsBooking.Models.RegisterViewModel
+
+<link rel="stylesheet" href="~/css/main.css">
 <script src="~/js/main.min.js"></script>
 <title>Sign up</title>
 <header class="header">
@@ -43,48 +45,39 @@
         <div class="form-wrapper_title-block">
             <span class="form-wrapper_title-text">Регистрация</span>
         </div>
-        <form class="form-block">
+        <form class="form-block" asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label class="control-label">Name</label>
-                <input type="text"
-                       class="form-group-input"
-                       name="name"
-                       placeholder="Name"
-                       value="">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Surname</label>
-                <input type="text"
-                       class="form-group-input"
-                       name="surname"
-                       placeholder="Surname"
-                       value="">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Email</label>
-                <input type="text"
-                       class="form-group-input"
-                       name="email"
-                       placeholder="example@gmai.com"
-                       value="">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Password</label>
-                <input type="password"
-                       class="form-group-input"
-                       name="password"
-                       placeholder="**********"
-                       value="">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Repeat password</label>
-                <input type="password"
-                       class="form-group-input"
-                       name="repeatPassword"
-                       placeholder="**********"
-                       value="">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <button class="form-group-button">Sign up →</button>
+            <div class="form-group">
+                <label asp-for="PasswordConfirm" class="control-label"></label>
+                <input asp-for="PasswordConfirm" class="form-control" />
+                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+            </div>
+            <input type="submit" class="form-group-button" value="Sign up → " />
         </form>
     </div>
 </div>
