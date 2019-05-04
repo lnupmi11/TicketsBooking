@@ -7,10 +7,7 @@ namespace TicketsBooking.DAL.Entities
 {
     public class User : IdentityUser
     {
-        public string Id { get; set; }
-        public DateTime Year { get; set; }
-
-        public string Username { get; set; }
+        public int Year { get; set; }
 
         public string FirstName { get; set; }
 

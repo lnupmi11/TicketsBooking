@@ -12,5 +12,6 @@ namespace TicketsBooking.DTO.Ticket
         public int NumberOfSeats { get; set; }
         public DateTime FlightDepartmentDate { get; set; }
         public DateTime FlightArrivingDate { get; set; }
+
     }
 }

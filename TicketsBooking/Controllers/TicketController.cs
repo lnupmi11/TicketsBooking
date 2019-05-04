@@ -12,7 +12,7 @@ namespace TicketsBooking.Controllers
         private IServiceTicket _ticketService;
         private IOrderService _orderService;
         private IServiceUser _serviceUser;
-        public TicketController(IServiceTicket ticketService, IOrderService orderService)
+        public TicketController(IServiceTicket ticketService, IOrderService orderService) : base()
         {
             _ticketService = ticketService;
             _orderService = orderService;

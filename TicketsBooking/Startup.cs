@@ -12,6 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TicketsBooking.BLL.Interfaces;
+using TicketsBooking.BLL.Services;
+using TicketsBooking.DAL.Interfaces;
+using TicketsBooking.DAL.UnitOfWork;
+using AutoMapper;
+using TicketsBooking.DAL.Entities;
 
 namespace TicketsBooking
 {
@@ -37,11 +43,24 @@ namespace TicketsBooking
             services.AddDbContext<TicketsBooking.DAL.EntityFramework.TicketsBookingContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<User>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<TicketsBooking.DAL.EntityFramework.TicketsBookingContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddTransient<IServiceTicket, TicketService>();
+
+            services.AddTransient<IOrderService, OrderService>();
+
+            services.AddTransient<IServiceUser, UserService>();
+
+            services.AddScoped(typeof(IUnitOfWork), typeof(TicketsBookingUnitOfWork));
+
+            services.AddAutoMapper(typeof(Startup));
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +88,7 @@ namespace TicketsBooking
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Ticket}/{action=Index}/{id?}");
             });
         }
     }
