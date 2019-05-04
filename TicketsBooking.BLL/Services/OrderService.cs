@@ -3,24 +3,29 @@ using System.Collections.Generic;
 using System.Text;
 using TicketsBooking.BLL.Interfaces;
 using TicketsBooking.DAL.Interfaces;
-using TicketsBooking.DTO.Cart;
+using TicketsBooking.DTO.Ticket;
+using System.Linq;
+using AutoMapper;
 
 namespace TicketsBooking.BLL.Services
 {
     public class OrderService : IOrderService
     {
         private IUnitOfWork _unitOfWork;
-        public OrderService(IUnitOfWork unitOfWork)
+        private IMapper _mapper;
+        public OrderService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public void AddItemToBasket(string userName, string itemId)
         {
             var item = _unitOfWork.TicketRepository.Get(itemId);
-            if (item != null)
+            var user = _unitOfWork.UserRepository.GetAll().Where(u => u.UserName == userName).First();
+            if (item != null && user != null)
             {
-               
+                user.Basket.Tickets.Add(item);
                 _unitOfWork.SaveChanges();
             }
         }
@@ -28,16 +33,31 @@ namespace TicketsBooking.BLL.Services
         public void DeleteItemFromBasket(string userName, string itemId)
         {
             var item = _unitOfWork.TicketRepository.Get(itemId);
-            if (item != null)
+            var user = _unitOfWork.UserRepository.GetAll().Where(u => u.UserName == userName).First();
+            if (item != null && user != null)
             {
-                
-                
+                user.Basket.Tickets.Remove(item);
+                _unitOfWork.SaveChanges();
             }
         }
 
-        public IEnumerable<CartItemDTO> GetAllUserBasketItems(string userName)
+        public IEnumerable<TicketDTO> GetAllUserBasketItems(string userName)
         {
-            return null;
+            var user = _unitOfWork.UserRepository.GetAll().Where(u => u.UserName == userName).First();
+            if(user != null)
+            {
+                var items = user.Basket.Tickets;
+                var itemsDTO = new List<TicketDTO>();
+                foreach(var item in items)
+                {
+                    var itemDTO = _mapper.Map<TicketDTO>(item);
+                    itemsDTO.Add(itemDTO);
+                }
+
+                return itemsDTO;
+            }
+
+            return new List<TicketDTO>();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TicketsBooking.DTO.Cart;
+using TicketsBooking.DTO.Ticket;
 
 namespace TicketsBooking.BLL.Interfaces
 {
@@ -9,6 +9,6 @@ namespace TicketsBooking.BLL.Interfaces
     {
         void AddItemToBasket(string basketId, string itemId);
         void DeleteItemFromBasket(string basketId, string itemId);
-        IEnumerable<CartItemDTO> GetAllUserBasketItems(string basketId);
+        IEnumerable<TicketDTO> GetAllUserBasketItems(string basketId);
     }
 }

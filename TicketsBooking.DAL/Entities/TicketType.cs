@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace TicketsBooking.DAL.Entities
 {
-    public class Basket
+    public class TicketType
     {
-        [Key]
         public int Id { get; set; }
-        public ICollection<Ticket> Tickets { get; set; }
+
+        public string TypeName { get; set; }
     }
 }

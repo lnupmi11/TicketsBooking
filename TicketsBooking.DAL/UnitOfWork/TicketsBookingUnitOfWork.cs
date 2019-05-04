@@ -14,8 +14,13 @@ namespace TicketsBooking.DAL.UnitOfWork
         private TicketsBookingContext _context;
 
         IRepository<City> _cityRepository;
+        IRepository<Flight> _flightRepository;
+        IRepository<Basket> _basketRepository;
+        IRepository<TicketType> _ticketTypeRepository;
         IRepository<Ticket> _ticketRepository;
         IRepository<User> _userRepository;
+
+        //IRepository<User> _userRepository;
 
         public TicketsBookingUnitOfWork(TicketsBookingContext context)
         {
@@ -44,6 +49,41 @@ namespace TicketsBooking.DAL.UnitOfWork
                 }
                 return _ticketRepository;
             }
+        }
+
+        public IRepository<Flight> FlightRepository
+        {
+            get
+            {
+                if (_flightRepository == null)
+                {
+                    _flightRepository = new GenericRepository<Flight>(_context);
+                }
+                return _flightRepository;
+            }
+        }
+        public IRepository<Basket> BasketRepository
+        {
+            get
+            {
+                if (_basketRepository == null)
+                {
+                    _basketRepository = new GenericRepository<Basket>(_context);
+                }
+                return _basketRepository;
+            }
+        }
+        public IRepository<TicketType> TicketTypeRepository
+        {
+            get
+            {
+                if (_ticketTypeRepository == null)
+                {
+                    _ticketTypeRepository = new GenericRepository<TicketType>(_context);
+                }
+                return _ticketTypeRepository;
+            }
+
         }
 
         public IRepository<User> UserRepository

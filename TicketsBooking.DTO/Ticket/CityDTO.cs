@@ -4,10 +4,10 @@ using System.Text;
 
 namespace TicketsBooking.DTO.Ticket
 {
-    public class TicketDTO
+    class CityDTO
     {
         public int Id { get; set; }
-        public double Price { get; set; }
-        public TicketTypeDTO Type { get; set; }
+        public string CityName { get; set; }
+        public string CityCode { get; set; }
     }
 }

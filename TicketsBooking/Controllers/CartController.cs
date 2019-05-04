@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TicketsBooking.BLL.Interfaces;
-using TicketsBooking.DTO.Cart;
+using TicketsBooking.DTO.Ticket;
 
 namespace TicketsBooking.Controllers
 {
@@ -22,7 +22,7 @@ namespace TicketsBooking.Controllers
         public IActionResult Index()
         {
             var userName = User.Identity.Name;
-            List<CartItemDTO> cartItems = new List<CartItemDTO>();
+            var cartItems = new List<TicketDTO>();
             if (!string.IsNullOrEmpty(userName))
             {
                 cartItems = _orderService.GetAllUserBasketItems(userName).ToList();
