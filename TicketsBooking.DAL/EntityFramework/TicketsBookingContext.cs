@@ -7,7 +7,7 @@ using TicketsBooking.DAL.Entities;
 
 namespace TicketsBooking.DAL.EntityFramework
 {
-    public sealed class TicketsBookingContext : IdentityDbContext
+    public sealed class TicketsBookingContext : IdentityDbContext<User>
     {
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Ticket> Tickets { get; set; }

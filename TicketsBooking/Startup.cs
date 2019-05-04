@@ -43,12 +43,9 @@ namespace TicketsBooking
             services.AddDbContext<TicketsBooking.DAL.EntityFramework.TicketsBookingContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<User>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<TicketsBooking.DAL.EntityFramework.TicketsBookingContext>();
-
-            services.AddIdentity<User, IdentityRole>()
-                    .AddEntityFrameworkStores<TicketsBooking.DAL.EntityFramework.TicketsBookingContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -56,9 +53,13 @@ namespace TicketsBooking
 
             services.AddTransient<IOrderService, OrderService>();
 
+            services.AddTransient<IServiceUser, UserService>();
+
             services.AddScoped(typeof(IUnitOfWork), typeof(TicketsBookingUnitOfWork));
 
             services.AddAutoMapper(typeof(Startup));
+
+
 
         }
 

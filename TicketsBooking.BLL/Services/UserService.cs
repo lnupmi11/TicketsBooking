@@ -8,16 +8,20 @@ using TicketsBooking.DAL.EntityFramework;
 using TicketsBooking.DAL.Interfaces;
 using System.Security.Claims;
 using System.Linq;
+using AutoMapper;
+using TicketsBooking.DTO.User;
 
 namespace TicketsBooking.BLL.Services
 {
     public class UserService : IServiceUser
     {
         private IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
 
-        public UserService(IUnitOfWork unitOfWork)
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public User GetUser(string id)
@@ -27,7 +31,8 @@ namespace TicketsBooking.BLL.Services
 
         public IEnumerable<User> GetAll()
         {
-            return _unitOfWork.UserRepository.GetAll();
+            var iteam = _unitOfWork.UserRepository.GetAll();
+            return iteam;
         }
 
         public void ChangeUsername(User user, string name)
