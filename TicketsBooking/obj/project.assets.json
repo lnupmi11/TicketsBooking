@@ -4814,7 +4814,7 @@
       ]
     },
     "AutoMapper.Extensions.Microsoft.DependencyInjection/6.1.0": {
-      "sha512": "vqbyqXknln1NFn80fbyJVPqJ3LMZhhhq8wMAl4BGTIH6GmK3gtGofuvo8bnWXXuD07y1lnMEuCmiNacvdtxPkw==",
+      "sha512": "KjuQqNFqE0GXCaV10GBlqE5thqgMz0hgzcLidCRBq+nEo9KiFspsRWOsRrk4sQKM3UQqOYRIKfFFO3XBnUo4Yg==",
       "type": "package",
       "path": "automapper.extensions.microsoft.dependencyinjection/6.1.0",
       "files": [
@@ -13143,5 +13143,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Навчання\\TicketsBooking\\TicketsBooking\\obj\\TicketsBooking.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
