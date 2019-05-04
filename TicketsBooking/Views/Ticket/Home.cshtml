@@ -1,0 +1,166 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<link rel="stylesheet" href="css/main.css">
+<script src="~/js/main.min.js"></script>
+<title>Home</title>
+
+<header class="header">
+    <div class="container">
+        <a class="header_logotype active" href="/">
+            W<span>G</span>
+        </a>
+        <nav class="header_menu">
+            <div class="header_burger">
+                <div class="header_burger_item"></div>
+            </div>
+            <ul class="header_menu-list">
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Tickets</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Specials</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Companies</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">About</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="header_buttons">
+            <a class="header_buttons-login" href="/signin">
+                <img src="~/img/icon/user-default.svg" alt="" class="header_buttons-login--avatar">
+                <span>login</span>
+            </a>
+        </div>
+    </div>
+</header>
+<div class="home-page">
+    <div class="home-page-main">
+        <div class="video-background">
+            <div class="video-foreground">
+                <iframe src="https://www.youtube.com/embed/yaAw0n1rqxw?autoplay=1&controls=0&showinfo=0&autohide=1" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="container main_block">
+            <h1 class="main_block-header1">WeGo</h1>
+            <h2 class="main_block-header2">Unleash the traveler inside you</h2>
+
+            <form class="form_tickets-wrapper tickets">
+                <div class="form_tickets-block">
+                    <div class="form_tickets-group">
+                        <input type="text"
+                               class="form_tickets-group-input"
+                               name="from"
+                               placeholder="From">
+                    </div>
+                    <button class="form_tickets-group-change">
+                        <img src="img/icon/repeat.svg"/>
+                    </button>
+                    <div class="form_tickets-group">
+                        <input type="text"
+                               class="form_tickets-group-input"
+                               name="to"
+                               placeholder="To">
+                    </div>
+
+                    <div class="form_tickets-group">
+                        <input type="date"
+                               class="form_tickets-group-input"
+                               name="date"
+                               placeholder="Date">
+                    </div>
+
+                    <div class="form_tickets-group validation ">
+                        <input type="number"
+                               class="form_tickets-group-input"
+                               name="count"
+                               placeholder="Tickets count">
+                    </div>
+                    <button class="form_tickets-group-button">Search now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="home-page-destination container">
+        <p class="main_block-header2">Discover our top destination</p>
+        <div class="destination-block">
+            <div class="destination-block-item">
+                <div class="destination-block-item-info">
+                    <p class="destination-block-item-city">Las Vegas</p>
+                    <a href="#" class="destination-block-item-link">Find tickets</a>
+                </div>
+                <img class="destination-block-item-image" src="img/LasVegas.jpg"/>
+            </div>
+            <div class="destination-block-item">
+                <div class="destination-block-item-info">
+                    <p class="destination-block-item-city">New York</p>
+                    <a href="#" class="destination-block-item-link">Find tickets</a>
+                </div>
+                <img class="destination-block-item-image" src="img/NewYork.jpg"/>
+            </div>
+            <div class="destination-block-item">
+                <div class="destination-block-item-info">
+                    <p class="destination-block-item-city">Paris</p>
+                    <a href="#" class="destination-block-item-link">Find tickets</a>
+                </div>
+                <img class="destination-block-item-image" src="img/Paris.jpg"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="container footer-wrapper">
+        <div class=" main_block-header1 footer-logotype">
+            WeGo
+        </div>
+        <div class="footer-menu">
+            <div class="footer-title">Links</div>
+            <nav class="footer-menu-nav">
+                <ul>
+                    <li>
+                        <a href="#">Tickets</a>
+                    </li>
+                    <li>
+                        <a href="#">Special</a>
+                    </li>
+                    <li>
+                        <a href="#">Companies</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-contact">
+            <div class="footer-title">Contact</div>
+            <div class="footer-contact-wrapper">
+                <a class="footer-contact-col-line" target="_blank" href="tel:+380931234567">+380931234567</a>
+                <a class="footer-contact-col-line" target="_blank" href="test@gmail.com">test@gmail.com</a>
+
+            </div>
+        </div>
+        <div class="footer-socials">
+            <div class="footer-title">Socials</div>
+            <div class="footer-socials-wrapper">
+                <a href="#" title="Facebook"
+                   class="footer-socials-item"
+                   target="_blank">
+                    @* <img src="" class="footer_socials-item--image" alt="Facebook"> *@
+                </a>
+                <a href="#" title="Twitter" class="footer-socials-item" target="_blank">
+                    @* <img src="" class="footer_socials-item--image" alt="Twitter"> *@
+                </a>
+                <a href="#" title="Instagram" class="footer-socials-item" target="_blank">
+                    @* <img src="" class="footer_socials-item--image" alt="Twitter"> *@
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

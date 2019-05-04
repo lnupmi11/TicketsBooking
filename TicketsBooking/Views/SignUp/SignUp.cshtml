@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "SignUn";
+}
+
+<link rel="stylesheet" href="css/main.css">
+<script src="~/js/main.min.js"></script>
+<title>Sign up</title>
+<header class="header">
+    <div class="container">
+        <a class="header_logotype active" href="/">
+            W<span>G</span>
+        </a>
+        <nav class="header_menu">
+            <div class="header_burger">
+                <div class="header_burger_item"></div>
+            </div>
+            <ul class="header_menu-list">
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Tickets</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Specials</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Companies</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">About</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="header_buttons">
+            <a class="header_buttons-login" href="/signin">
+                <img src="~/img/icon/user-default.svg" alt="" class="header_buttons-login--avatar">
+                <span>login</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="login-page container">
+    <div class="form-wrapper ">
+        <div class="form-wrapper_title-block">
+            <span class="form-wrapper_title-text">Регистрация</span>
+        </div>
+        <form class="form-block">
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <input type="text"
+                       class="form-group-input"
+                       name="name"
+                       placeholder="Name"
+                       value="">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Surname</label>
+                <input type="text"
+                       class="form-group-input"
+                       name="surname"
+                       placeholder="Surname"
+                       value="">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="text"
+                       class="form-group-input"
+                       name="email"
+                       placeholder="example@gmai.com"
+                       value="">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Password</label>
+                <input type="password"
+                       class="form-group-input"
+                       name="password"
+                       placeholder="**********"
+                       value="">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Repeat password</label>
+                <input type="password"
+                       class="form-group-input"
+                       name="repeatPassword"
+                       placeholder="**********"
+                       value="">
+            </div>
+            <button class="form-group-button">Sign up →</button>
+        </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container footer-wrapper">
+        <div class=" main_block-header1 footer-logotype">
+            WeGo
+        </div>
+        <div class="footer-menu">
+            <div class="footer-title">Links</div>
+            <nav class="footer-menu-nav">
+                <ul>
+                    <li>
+                        <a href="#">Tickets</a>
+                    </li>
+                    <li>
+                        <a href="#">Special</a>
+                    </li>
+                    <li>
+                        <a href="#">Companies</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-contact">
+            <div class="footer-title">Contact</div>
+            <div class="footer-contact-wrapper">
+                <a class="footer-contact-col-line" target="_blank" href="tel:+380931234567">+380931234567</a>
+                <a class="footer-contact-col-line" target="_blank" href="test@gmail.com">test@gmail.com</a>
+
+            </div>
+        </div>
+        <div class="footer-socials">
+            <div class="footer-title">Socials</div>
+            <div class="footer-socials-wrapper">
+                <a href="#" title="Facebook"
+                   class="footer-socials-item"
+                   target="_blank">
+                    @* <img src="" class="footer_socials-item--image" alt="Facebook"> *@
+                </a>
+                <a href="#" title="Twitter" class="footer-socials-item" target="_blank">
+                    @* <img src="" class="footer_socials-item--image" alt="Twitter"> *@
+                </a>
+                <a href="#" title="Instagram" class="footer-socials-item" target="_blank">
+                    @* <img src="" class="footer_socials-item--image" alt="Twitter"> *@
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
