@@ -32,7 +32,7 @@ namespace TicketsBooking.BLL.Services
 
         public void ChangeUsername(User user, string name)
         {
-            user.Username = name;
+            user.UserName = name;
             _unitOfWork.UserRepository.Update(user);
         }
 
