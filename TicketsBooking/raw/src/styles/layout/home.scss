@@ -1,11 +1,12 @@
 .home-page {
 
   &-main {
-    padding-bottom: 110px;
-    height: calc(100vh - 179px);
+    //padding-bottom: 110px;
+    height: calc(100vh - 69px);
     position: relative;
     display: flex;
     align-items: center;
+    overflow: hidden;
 
     .video-background {
       background: #000;
@@ -64,6 +65,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 0 10%;
+
         .destination-block-item:nth-child(2),
         .destination-block-item:nth-child(3) {
           width: calc(50% - 10px);
