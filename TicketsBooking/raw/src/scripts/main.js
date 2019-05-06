@@ -11,10 +11,10 @@ $(document).ready(function () {
         e.preventDefault();
         var data = $(this).serialize();
         // var requestUrl = $('#requestUrl').val();
-        var requestUrl = 'http://ip.jsontest.com/';
+        var requestUrl = 'https://httpbin.org/post';
         $.ajax({
             type: "POST",
-            url: 'https://httpbin.org/post',
+            url: requestUrl,
             data: data,
             success: function (response) {
                 if (response.status) {
