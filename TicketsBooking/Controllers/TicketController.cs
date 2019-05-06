@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TicketsBooking.BLL.Interfaces;
+using TicketsBooking.Models;
 
 namespace TicketsBooking.Controllers
 {
@@ -22,9 +23,9 @@ namespace TicketsBooking.Controllers
             return View();
         }
 
-        public IActionResult Search(string cityFrom, string cityTo)
+        public IActionResult Search(FlightViewModel flightViewModel)
         {
-            var tickets = _ticketService.GetAll().Where(t => t.CityFrom == cityFrom).Where(t => t.CityTo == cityTo);
+            var tickets = _ticketService.GetAll().Where(t => t.CityFrom == flightViewModel.cityFrom).Where(t => t.CityTo == flightViewModel.cityTo);
 
             if (tickets != null)
             {
