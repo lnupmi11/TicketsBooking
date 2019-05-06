@@ -6,4 +6,60 @@ $(window).on('load', function () {
 
 $(document).ready(function () {
 
+
+    $('#signup-form').on('submit', function (e) {
+        e.preventDefault();
+        var data = $(this).serialize();
+        // var requestUrl = $('#requestUrl').val();
+        var requestUrl = 'http://ip.jsontest.com/';
+        $.ajax({
+            type: "POST",
+            url: 'https://httpbin.org/post',
+            data: data,
+            success: function (response) {
+                if (response.status) {
+                    $('body').append(
+                        '<div class="popup-form">\n' +
+                        '    <div class="popup-form-block">\n' +
+                        '        <p class="popup-form-block-text">' + response.message + '</p>\n' +
+                        '        <span class="popup-form-block-button">Close</span>\n' +
+                        '    </div>\n' +
+                        '</div>');
+                } else {
+                    $('body').append(
+                        '<div class="popup-form failed">\n' +
+                        '    <div class="popup-form-block">\n' +
+                        '        <p class="popup-form-block-text">Something was wrong!</p>\n' +
+                        '        <span class="popup-form-block-button">Close</span>\n' +
+                        '    </div>\n' +
+                        '</div>');
+                }
+                $('body .popup-form').fadeIn(400);
+                e.preventDefault();
+
+            },
+            error: function () {
+                $('body').append(
+                    '<div class="popup-form failed">\n' +
+                    '    <div class="popup-form-block">\n' +
+                    '        <p class="popup-form-block-text">Something was wrong! Please, try again later</p>\n' +
+                    '        <span class="popup-form-block-button">Close</span>\n' +
+                    '    </div>\n' +
+                    '</div>');
+                $('body .popup-form').fadeIn(400);
+                e.preventDefault();
+            }
+        });
+    });
+
+
+    $('body').on('click', '.popup-form-block-button', function () {
+        setTimeout(function () {
+            $('body .popup-form').fadeOut(400);
+        });
+        setTimeout(function () {
+            $('body .popup-form').remove();
+        }, 1000);
+    });
+
 });

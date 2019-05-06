@@ -77,6 +77,7 @@
 
   }
 
+
   &_logotype {
     width: 100%;
     max-width: 140px;
@@ -183,16 +184,21 @@
       }
     }
 
-    &-login {
+    &-basket {
       display: flex;
       align-items: center;
       margin-left: 35px;
 
-      &--avatar {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
+      img {
+        width: 30px;
+        height: 30px;
       }
+    }
+
+    &-login {
+      display: flex;
+      align-items: center;
+      margin-left: 15px;
 
       span {
         display: block;

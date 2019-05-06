@@ -30,8 +30,10 @@
             </ul>
         </nav>
         <div class="header_buttons">
-            <a class="header_buttons-login" href="@Url.Action("Login", "Account")" >
-                <img src="~/img/icon/user-default.svg" alt="" class="header_buttons-login--avatar">
+            <a class="header_buttons-basket" href="#">
+                <img src="~/img/icon/basket.svg" alt="">
+            </a>
+            <a class="header_buttons-login" href="/Account/Login">
                 <span>login</span>
             </a>
         </div>
@@ -73,12 +75,12 @@
                                placeholder="Date">
                     </div>
 
-                    <div class="form_tickets-group validation ">
+                    @*<div class="form_tickets-group validation ">
                         <input type="number"
                                class="form_tickets-group-input"
                                name="count"
                                placeholder="Tickets count">
-                    </div>
+                    </div>*@
                     <button class="form_tickets-group-button">Search now</button>
                 </div>
             </form>

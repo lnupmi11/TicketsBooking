@@ -32,8 +32,10 @@
             </ul>
         </nav>
         <div class="header_buttons">
+            <a class="header_buttons-basket" href="#">
+                <img src="~/img/icon/basket.svg" alt="">
+            </a>
             <a class="header_buttons-login" href="/Account/Login">
-                <img src="~/img/icon/user-default.svg" alt="" class="header_buttons-login--avatar">
                 <span>login</span>
             </a>
         </div>
@@ -45,7 +47,7 @@
         <div class="form-wrapper_title-block">
             <span class="form-wrapper_title-text">Sign Up</span>
         </div>
-        <form class="form-block" asp-action="Register">
+        <form class="form-block" id="signup-form" asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label">Email</label>
@@ -97,7 +99,7 @@
                        value=""/>
                 <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
             </div>
-            <input type="submit" class="form-group-button" value="Sign up → "/>
+            <button type="submit" class="form-group-button" value=" ">Sign up →</button>
         </form>
     </div>
 </div>
