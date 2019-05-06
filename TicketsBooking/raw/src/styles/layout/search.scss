@@ -1,0 +1,157 @@
+
+.ticket {
+  background-color: #eceef2;
+  border-radius: 10px;
+  box-shadow: 0px 3px 2px 0px rgba(204, 204, 204, 0.5);
+  width: 100%;
+  max-width: 800px;
+  margin: 50px auto 0;
+
+  &-id {
+    text-align: center;
+    border-bottom: 2px dashed #fff;
+
+    p {
+      padding: 10px;
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 16px;
+
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.lnr {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 45px;
+}
+
+.ticket-main_info {
+  display: flex;
+  border-bottom: 1px solid #fff;
+  align-items: center;
+}
+
+.duration {
+  position: relative;
+  padding: 40px 0 45px;
+  width: 70%;
+  border-right: 1px solid #fff;
+}
+
+.price {
+  width: 30%;
+  position: relative;
+  padding: 40px 20px 45px 0;
+  font-size: 44px;
+  font-weight: 100;
+  margin: 0;
+  line-height: 36px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.time {
+  width: 49%;
+  display: inline-block;
+  text-align: center;
+
+  p {
+    font-size: 36px;
+    font-weight: 300;
+    margin: 0;
+    line-height: 32px;
+    letter-spacing: 2px;
+  }
+
+  p:nth-child(2) {
+    font-size: 24px;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 100;
+    color: #ccc;
+    letter-spacing: normal;
+  }
+}
+
+
+.buttons button {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  display: inline-block;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'Open Sans', sans-serif;
+  color: #5c5856;
+  letter-spacing: 2px;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border-radius: 0 0 10px 0;
+
+  &:hover {
+    background-color: #e3e5e9;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.buttons {
+  position: relative;
+  font-size: 0;
+}
+
+.buttons:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.buttons:after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+@media only screen and (max-width: 400px) {
+
+  .time p {
+    font-size: 30px;
+    letter-spacing: 3px;
+  }
+
+  .time span {
+    letter-spacing: normal;
+  }
+
+  .lnr {
+    font-size: 30px;
+  }
+
+}

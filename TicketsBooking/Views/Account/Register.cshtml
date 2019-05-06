@@ -32,7 +32,7 @@
             </ul>
         </nav>
         <div class="header_buttons">
-            <a class="header_buttons-login" href="/signin">
+            <a class="header_buttons-login" href="/Account/Login">
                 <img src="~/img/icon/user-default.svg" alt="" class="header_buttons-login--avatar">
                 <span>login</span>
             </a>
@@ -43,41 +43,61 @@
 <div class="login-page container">
     <div class="form-wrapper ">
         <div class="form-wrapper_title-block">
-            <span class="form-wrapper_title-text">Регистрация</span>
+            <span class="form-wrapper_title-text">Sign Up</span>
         </div>
         <form class="form-block" asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email"
+                       type="email"
+                       class="form-group-input"
+                       name="Email"
+                       placeholder="example@gmai.com"
+                       value=""/>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Year" class="control-label"></label>
-                <input asp-for="Year" class="form-control" />
-                <span asp-validation-for="Year" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
+                <label asp-for="FirstName" class="control-label">Name</label>
+                <input asp-for="FirstName"
+                       type="text"
+                       class="form-group-input"
+                       name="FirstName"
+                       placeholder="Name"
+                       value=""/>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
+                <label asp-for="LastName" class="control-label">Surname</label>
+                <input asp-for="LastName"
+                       type="text"
+                       class="form-group-input"
+                       name="LastName"
+                       placeholder="Surname"
+                       value=""/>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <label asp-for="Password" class="control-label">Password</label>
+                <input asp-for="Password"
+                       type="password"
+                       class="form-group-input"
+                       name="Password"
+                       placeholder="**********"
+                       value=""/>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PasswordConfirm" class="control-label"></label>
-                <input asp-for="PasswordConfirm" class="form-control" />
+                <label asp-for="PasswordConfirm" class="control-label">Repeat password</label>
+                <input asp-for="PasswordConfirm"
+                       type="password"
+                       class="form-group-input"
+                       name="PasswordConfirm"
+                       placeholder="**********"
+                       value=""/>
                 <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
             </div>
-            <input type="submit" class="form-group-button" value="Sign up → " />
+            <input type="submit" class="form-group-button" value="Sign up → "/>
         </form>
     </div>
 </div>
