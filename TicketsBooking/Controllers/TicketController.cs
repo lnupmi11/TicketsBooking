@@ -32,16 +32,16 @@ namespace TicketsBooking.Controllers
             var flights = _flightService.GetAll().Where(t => t.LocationFrom == flightViewModel.cityFrom).Where(t => t.LocationTo == flightViewModel.cityTo).
                 Where(t => t.FlightDepartmentDate == flightViewModel.dateTime);
 
-            if (flights != null)
+            var tickets = new List<TicketDTO>();
+            foreach (var iteam in flights)
             {
-                var tickets = new List<TicketDTO>();
-                foreach (var iteam in flights)
-                {
-                    tickets.Add(_ticketService.Get(iteam.Id));
-                }
-                return View(tickets);
+                tickets.Add(_ticketService.Get(iteam.Id));
             }
 
+            if (tickets.Count != 0)
+            {
+                return View(tickets);
+            }
             return View();
         }
 
