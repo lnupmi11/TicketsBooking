@@ -12,10 +12,12 @@ namespace TicketsBooking.Controllers
     public class CartController : Controller
     {
         IOrderService _orderService;
+        IServiceTicket _serviceTicket;
 
-        public CartController(IOrderService orderService) : base()
+        public CartController(IOrderService orderService, IServiceTicket serviceTicket) : base()
         {
             _orderService = orderService;
+            _serviceTicket = serviceTicket;
         }
 
         [Authorize]
@@ -44,6 +46,16 @@ namespace TicketsBooking.Controllers
             var userName = User.Identity.Name;
             _orderService.DeleteItemFromBasket(userName, itemId);
             return new EmptyResult();
+        }
+
+        [Authorize]
+        public IActionResult Buy(List<string> itemIds)
+        {
+            foreach(var item in itemIds)
+            {
+                _serviceTicket.Delete(Int32.Parse(item));
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
