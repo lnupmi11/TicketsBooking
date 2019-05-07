@@ -50,12 +50,12 @@
             <h1 class="main_block-header1">WeGo</h1>
             <h2 class="main_block-header2">Unleash the traveler inside you</h2>
 
-            <form class="form_tickets-wrapper tickets">
+            <form class="form_tickets-wrapper tickets" method="post" action="/Ticket/Search">
                 <div class="form_tickets-block">
                     <div class="form_tickets-group">
                         <input type="text"
                                class="form_tickets-group-input"
-                               name="from"
+                               name="cityFrom"
                                placeholder="From">
                     </div>
                     <button class="form_tickets-group-change">
@@ -64,14 +64,14 @@
                     <div class="form_tickets-group">
                         <input type="text"
                                class="form_tickets-group-input"
-                               name="to"
+                               name="cityTo"
                                placeholder="To">
                     </div>
 
                     <div class="form_tickets-group">
                         <input type="date"
                                class="form_tickets-group-input"
-                               name="date"
+                               name="dateTime"
                                placeholder="Date">
                     </div>
 
