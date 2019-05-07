@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<TicketsBooking.DTO.Ticket.TicketDTO>
+@{
     ViewData["Title"] = "Search";
 }
 
@@ -45,45 +46,82 @@
 
 <div class="container main_block">
     <h1 class="main_block-header1">WeGo</h1>
-    <form class="form_tickets-wrapper tickets">
+    <form class="form_tickets-wrapper tickets" method="post" action="/Ticket/Search">
         <div class="form_tickets-block">
             <div class="form_tickets-group">
                 <input type="text"
                        class="form_tickets-group-input"
-                       name="from"
+                       name="cityFrom"
                        placeholder="From">
             </div>
             <button class="form_tickets-group-change">
-                <img src="~/img/icon/repeat.svg"/>
+                <img src="~/img/icon/repeat.svg" />
             </button>
             <div class="form_tickets-group">
                 <input type="text"
                        class="form_tickets-group-input"
-                       name="to"
+                       name="cityTo"
                        placeholder="To">
             </div>
 
             <div class="form_tickets-group">
                 <input type="date"
                        class="form_tickets-group-input"
-                       name="date"
+                       name="dateTime"
                        placeholder="Date">
             </div>
 
             @*
-            <div class="form_tickets-group validation ">
-                <input type="number"
-                       class="form_tickets-group-input"
-                       name="count"
-                       placeholder="Tickets count">
-            </div>*@
+                <div class="form_tickets-group validation ">
+                    <input type="number"
+                           class="form_tickets-group-input"
+                           name="count"
+                           placeholder="Tickets count">
+                </div>*@
             <button class="form_tickets-group-button">Search now</button>
         </div>
     </form>
 </div>
-<hr/>
+<hr />
 
 <h2 class="main_block-header2">We find for you:</h2>
+
+@if (Model.Count() < 0)
+{
+    <div>nema she</div>
+    @foreach (var item in Model)
+    {
+        <div class="ticket">
+            <div class="ticket-id">
+                <p>ID:<span>@item.Id</span></p>
+            </div>
+            <div class="ticket-main_info">
+                <div class="duration">
+                    <div class="company">Company</div>
+                    <div class="time">
+                        <p>15:30</p>
+                        <p>Lviv</p>
+                        <span>30-08-2018</span>
+                    </div>
+                    <div class="time">
+                        <p>17:00</p>
+                        <p>Kyiv</p>
+                        <span>30-08-2018</span>
+                    </div>
+                    <span class="lnr lnr-arrow-right"></span>
+                </div>
+                <div class="price">
+                    <p>@item.Price</p>
+                </div>
+            </div>
+            <div class="buttons">
+                <button>To order</button>
+            </div>
+        </div>
+    }
+}
+
+
 <div class="ticket">
     <div class="ticket-id">
         <p>ID:<span>UI78UU</span></p>
@@ -138,33 +176,7 @@
         <button>To order</button>
     </div>
 </div>
-<div class="ticket">
-    <div class="ticket-id">
-        <p>ID:<span>UI78UU</span></p>
-    </div>
-    <div class="ticket-main_info">
-        <div class="duration">
-            <div class="company">Company</div>
-            <div class="time">
-                <p>15:30</p>
-                <p>Lviv</p>
-                <span>30-08-2018</span>
-            </div>
-            <div class="time">
-                <p>17:00</p>
-                <p>Kyiv</p>
-                <span>30-08-2018</span>
-            </div>
-            <span class="lnr lnr-arrow-right"></span>
-        </div>
-        <div class="price">
-            <p>140$</p>
-        </div>
-    </div>
-    <div class="buttons">
-        <button>To order</button>
-    </div>
-</div>
+
 <footer class="footer">
     <div class="container footer-wrapper">
         <div class=" main_block-header1 footer-logotype">

@@ -47,7 +47,7 @@
         <div class="form-wrapper_title-block">
             <span class="form-wrapper_title-text">Sign Up</span>
         </div>
-        <form class="form-block" id="signup-form" asp-action="Register">
+        <form class="form-block" id="signup-form" method="post" action="/Account/Register" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label">Email</label>

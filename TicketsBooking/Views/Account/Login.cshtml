@@ -47,20 +47,20 @@
         <div class="form-wrapper_title-block">
             <span class="form-wrapper_title-text">Sign in</span>
         </div>
-        <form class="form-block" asp-controller="Account" asp-action="Login">
+        <form class="form-block"  asp-controller="Account" asp-action="Login" method="post">
             <div class="form-group">
                 <label class="control-label">Email</label>
                 <input type="text"
                        class="form-group-input"
-                       name="email"
-                       placeholder="example@gmai.com"
+                       name="Email"
+                       placeholder="example@gmail.com"
                        value="">
             </div>
             <div class="form-group">
                 <label class="control-label">Password</label>
                 <input type="password"
                        class="form-group-input"
-                       name="password"
+                       name="Password"
                        placeholder="**********"
                        value="">
             </div>
@@ -68,7 +68,7 @@
                 <div class="form-group-show_pass">
                     <input type="checkbox"
                            id="squaredOne"
-                           name="check"
+                           name="RememberMe"
                            value="on">
                     <label class="checkbox_square" for="squaredOne"></label>
                     <label class="checkbox_text" for="squaredOne">Show password</label>
