@@ -25,12 +25,12 @@ namespace TicketsBooking.Controllers
 
         public IActionResult Search(FlightViewModel flightViewModel)
         {
-            var tickets = _ticketService.GetAll().Where(t => t.CityFrom == flightViewModel.cityFrom).Where(t => t.CityTo == flightViewModel.cityTo);
+            //var tickets = _ticketService.GetAll().Where(t => t.CityFrom == flightViewModel.cityFrom).Where(t => t.CityTo == flightViewModel.cityTo);
 
-            if (tickets != null)
-            {
-                return View(tickets);
-            }
+            //if (tickets != null)
+            //{
+            //    return View(tickets);
+            //}
 
             return View();
         }
