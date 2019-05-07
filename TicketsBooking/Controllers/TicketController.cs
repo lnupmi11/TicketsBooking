@@ -37,12 +37,8 @@ namespace TicketsBooking.Controllers
             {
                 tickets.Add(_ticketService.Get(iteam.Id));
             }
-
-            if (tickets.Count != 0)
-            {
-                return View(tickets);
-            }
-            return View();
+            
+            return View(tickets);
         }
 
         public IActionResult AddToCart(int id)
