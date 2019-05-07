@@ -57,6 +57,8 @@ namespace TicketsBooking
 
             services.AddScoped(typeof(IUnitOfWork), typeof(TicketsBookingUnitOfWork));
 
+            services.AddTransient<IServiceFlight, FlightService>();
+
             services.AddAutoMapper(typeof(Startup));
 
 

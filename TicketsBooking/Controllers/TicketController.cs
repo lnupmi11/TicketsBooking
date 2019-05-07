@@ -14,11 +14,13 @@ namespace TicketsBooking.Controllers
         private IServiceTicket _ticketService;
         private IOrderService _orderService;
         private IServiceFlight _flightService;
-        public TicketController(IServiceTicket ticketService, IOrderService orderService, IServiceFlight serviceFlight) : base()
+        private IServiceUser _serviceUser;
+        public TicketController(IServiceTicket ticketService, IOrderService orderService, IServiceFlight serviceFlight, IServiceUser serviceUser) : base()
         {
             _ticketService = ticketService;
             _orderService = orderService;
             _flightService = serviceFlight;
+            _serviceUser = serviceUser;
         }
         public IActionResult Index()
         {
@@ -45,7 +47,7 @@ namespace TicketsBooking.Controllers
 
         public IActionResult AddToCart(int id)
         {
-            //_orderService.AddItemToBasket(_serviceUser.GetByName(User.Identity.Name).Basket.Id.ToString(), id.ToString());
+            _orderService.AddItemToBasket(_serviceUser.GetByName(User.Identity.Name).Basket.Id.ToString(), id.ToString());
 
             return RedirectToAction("Index");
         }
