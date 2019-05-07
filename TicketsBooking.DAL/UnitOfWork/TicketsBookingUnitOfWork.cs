@@ -13,7 +13,6 @@ namespace TicketsBooking.DAL.UnitOfWork
     {
         private TicketsBookingContext _context;
 
-        IRepository<City> _cityRepository;
         IRepository<Flight> _flightRepository;
         IRepository<Basket> _basketRepository;
         IRepository<TicketType> _ticketTypeRepository;
@@ -25,18 +24,6 @@ namespace TicketsBooking.DAL.UnitOfWork
         public TicketsBookingUnitOfWork(TicketsBookingContext context)
         {
             _context = context;
-        }
-
-        public IRepository<City> CityRepository
-        {
-            get
-            {
-                if (_cityRepository == null)
-                {
-                    _cityRepository = new GenericRepository<City>(_context);
-                }
-                return _cityRepository;
-            }
         }
 
         public IRepository<Ticket> TicketRepository
