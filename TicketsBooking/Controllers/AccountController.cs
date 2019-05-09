@@ -72,7 +72,6 @@ namespace TicketsBooking.Controllers
                     }
                     else
                     {
-                        
                         return RedirectToAction("Privacy", "Home");
                     }
                 }
@@ -85,11 +84,10 @@ namespace TicketsBooking.Controllers
         }
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Ticket");
         }
 
 
