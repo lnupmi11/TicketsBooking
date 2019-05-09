@@ -29,13 +29,17 @@ namespace TicketsBooking.Controllers
 
         public IActionResult Search(FlightViewModel flightViewModel)
         {
-            var flights = _flightService.GetAll().Where(t => t.LocationFrom == flightViewModel.cityFrom).Where(t => t.LocationTo == flightViewModel.cityTo);
+            var flights = _flightService.GetAll().Where(t => t.LocationFrom == flightViewModel.cityFrom).
+                Where(t => t.LocationTo == flightViewModel.cityTo).
+                Where(t => t.FlightDepartmentDate.Year == flightViewModel.dateTime.Year).
+                Where(t => t.FlightDepartmentDate.Month == flightViewModel.dateTime.Month).
+                Where(t => t.FlightDepartmentDate.Day == flightViewModel.dateTime.Day);
 
             var tickets = new List<TicketViewModel>();
             foreach (var iteam in flights)
             {
-                var ticket = _ticketService.Get(iteam.Id);
-                if(ticket != null)
+                var listTicket = _ticketService.GetAll().Where(t => t.FlightID == iteam.Id);
+                foreach(var ticket in listTicket)
                 {
                     var viewTicket = new TicketViewModel()
                     {

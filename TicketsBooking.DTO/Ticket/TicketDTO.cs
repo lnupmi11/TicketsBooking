@@ -9,5 +9,6 @@ namespace TicketsBooking.DTO.Ticket
         public int Id { get; set; }
         public double Price { get; set; }
         public TicketTypeDTO Type { get; set; }
+        public int FlightID { get; set; } 
     }
 }

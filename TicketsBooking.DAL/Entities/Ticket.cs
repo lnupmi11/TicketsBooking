@@ -12,5 +12,6 @@ namespace TicketsBooking.DAL.Entities
         public TicketType Type { get; set; }
         public double Price { get; set; }
         public Basket Basket { get; set; }
+        public int FlightId { get; set; }
     }
 }
