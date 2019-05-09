@@ -60,9 +60,9 @@ namespace TicketsBooking.Controllers
             return View();
         }
 
-        public IActionResult AddToCart(TicketViewModel ticketViewModel)
+        public IActionResult AddToCart(int id)
         {
-            _orderService.AddItemToBasket(User.Identity.Name, ticketViewModel.Id.ToString());
+            _orderService.AddItemToBasket(User.Identity.Name, id.ToString());
 
             return RedirectToAction("Index");
         }

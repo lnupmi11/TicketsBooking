@@ -6,6 +6,7 @@ using TicketsBooking.DAL.Interfaces;
 using TicketsBooking.DTO.Ticket;
 using System.Linq;
 using AutoMapper;
+using TicketsBooking.DAL.Entities;
 
 namespace TicketsBooking.BLL.Services
 {
@@ -25,6 +26,14 @@ namespace TicketsBooking.BLL.Services
             var user = _unitOfWork.UserRepository.GetAll().Where(u => u.UserName == userName).First();
             if (item != null && user != null)
             {
+                if(user.Basket == null)
+                {
+                    _unitOfWork.BasketRepository.Create(new DAL.Entities.Basket()
+                    {
+                        Tickets = new List<Ticket>()
+                    });
+
+                }
                 user.Basket.Tickets.Add(item);
                 _unitOfWork.SaveChanges();
             }

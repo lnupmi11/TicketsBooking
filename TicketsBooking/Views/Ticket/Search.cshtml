@@ -133,7 +133,7 @@
                 </div>
             </div>
             <div class="buttons">
-                <button action="AddToCart" >To order</button>
+                <button onclick="window.location.href = '@Url.Action("AddToCart", "Ticket" , new { id = item.Id }, null)'" >To order</button>
             </div>
         </div>
     }
