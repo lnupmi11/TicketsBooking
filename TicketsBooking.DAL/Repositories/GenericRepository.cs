@@ -46,7 +46,7 @@ namespace TicketsBooking.DAL.Repositories
 
         public TEntity Get(string id)
         {
-            return _dbSet.Find(id);
+            return _dbSet.Find(Int32.Parse(id));
         }
 
         public TEntity Get(Func<TEntity, bool> condition)

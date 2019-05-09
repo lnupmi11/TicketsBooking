@@ -29,8 +29,7 @@ namespace TicketsBooking.Controllers
 
         public IActionResult Search(FlightViewModel flightViewModel)
         {
-            var flights = _flightService.GetAll().Where(t => t.LocationFrom == flightViewModel.cityFrom).Where(t => t.LocationTo == flightViewModel.cityTo).
-                Where(t => t.FlightDepartmentDate == flightViewModel.dateTime);
+            var flights = _flightService.GetAll().Where(t => t.LocationFrom == flightViewModel.cityFrom).Where(t => t.LocationTo == flightViewModel.cityTo);
 
             var tickets = new List<TicketViewModel>();
             foreach (var iteam in flights)
