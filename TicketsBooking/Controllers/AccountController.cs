@@ -34,8 +34,8 @@ namespace TicketsBooking.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Ticket");
+                    await _signInManager.SignInAsync(user, false);                   
+                    return RedirectToAction("Privacy", "Home");
                 }
                 else
                 {
@@ -45,6 +45,7 @@ namespace TicketsBooking.Controllers
                     }
                 }
             }
+            
             return View(model);
         }
 
@@ -57,6 +58,8 @@ namespace TicketsBooking.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            
+
             if (ModelState.IsValid)
             {
                 var result =
@@ -69,7 +72,8 @@ namespace TicketsBooking.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Ticket");
+                        
+                        return RedirectToAction("Privacy", "Home");
                     }
                 }
                 else
@@ -80,7 +84,7 @@ namespace TicketsBooking.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpGet]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
         {

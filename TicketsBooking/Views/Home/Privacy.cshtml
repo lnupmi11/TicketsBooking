@@ -1,7 +1,65 @@
 ﻿
 @{
-    ViewData["Title"] = "Privacy";
+    ViewData["Title"] = "Private";
 }
 
-<h1>Privacy</h1>
 
+<link rel="stylesheet" href="~/css/main.css">
+@*<script src="~/js/main.min.js"></script>*@
+<title>Sign up</title>
+<header class="header">
+    <div class="container">
+        <a class="header_logotype active" href="/">
+            W<span>G</span>
+        </a>
+        <nav class="header_menu">
+            <div class="header_burger">
+                <div class="header_burger_item"></div>
+            </div>
+            <ul class="header_menu-list">
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Tickets</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Specials</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Companies</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="/Home/About">About</a>
+                </li>
+            </ul>
+        </nav>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="header_buttons">
+                <a class="header_buttons-basket" href="#">
+                    <img src="~/img/icon/basket.svg" alt="">
+                </a>
+                <a class="header_buttons-login" href="/Account/LogOff">
+                    <span>Logout</span>
+                </a>
+            </div>
+        }
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="header_buttons">
+                <a class="header_buttons-basket" href="#">
+                    <img src="~/img/icon/basket.svg" alt="">
+                </a>
+                <a class="header_buttons-login" href="/Account/Login">
+                    <span>login</span>
+                </a>
+            </div>
+        }
+
+
+    </div>
+</header>
+
+
+<body>
+</body>

@@ -32,14 +32,29 @@
                 </li>
             </ul>
         </nav>
-        <div class="header_buttons">
-            <a class="header_buttons-basket" href="#">
-                <img src="~/img/icon/basket.svg" alt="">
-            </a>
-            <a class="header_buttons-login" href="/Account/Login">
-                <span>login</span>
-            </a>
-        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="header_buttons">
+                <a class="header_buttons-basket" href="#">
+                    <img src="~/img/icon/basket.svg" alt="">
+                </a>
+                <a class="header_buttons-login" href="/Account/LogOff">
+                    <span>Logout</span>
+                </a>
+            </div>
+        }
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="header_buttons">
+                <a class="header_buttons-basket" href="#">
+                    <img src="~/img/icon/basket.svg" alt="">
+                </a>
+                <a class="header_buttons-login" href="/Account/Login">
+                    <span>login</span>
+                </a>
+            </div>
+        }
     </div>
 </header>
 

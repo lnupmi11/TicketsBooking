@@ -31,14 +31,29 @@
                 </li>
             </ul>
         </nav>
-        <div class="header_buttons">
-            <a class="header_buttons-basket" href="#">
-                <img src="~/img/icon/basket.svg" alt="">
-            </a>
-            <a class="header_buttons-login" href="/Account/Login">
-                <span>login</span>
-            </a>
-        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="header_buttons">
+                <a class="header_buttons-basket" href="#">
+                    <img src="~/img/icon/basket.svg" alt="">
+                </a>
+                <a class="header_buttons-login" href="/Account/LogOff">
+                    <span>Logout</span>
+                </a>
+            </div>
+        }
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="header_buttons">
+                <a class="header_buttons-basket" href="#">
+                    <img src="~/img/icon/basket.svg" alt="">
+                </a>
+                <a class="header_buttons-login" href="/Account/Login">
+                    <span>login</span>
+                </a>
+            </div>
+        }
     </div>
 </header>
 
@@ -99,7 +114,7 @@
                        value=""/>
                 <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
             </div>
-            <input type="submit" class="form-group-button" value="Sign up →"/>
+            <input type="submit" class="form-group-button" value="Sign up →" />
         </form>
     </div>
 </div>
@@ -154,3 +169,4 @@
         </div>
     </div>
 </footer>
+
