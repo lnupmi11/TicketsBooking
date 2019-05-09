@@ -35,7 +35,7 @@ namespace TicketsBooking.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Ticket");
                 }
                 else
                 {
@@ -69,7 +69,7 @@ namespace TicketsBooking.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Ticket");
                     }
                 }
                 else
