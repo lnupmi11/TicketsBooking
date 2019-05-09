@@ -133,8 +133,9 @@
                 </div>
             </div>
             <div class="buttons">
-                @*<input type="button" value="Create" onclick="location.href='@Url.Action("AddItem", "Cart", new { id = item.Id })'" />*@
-                <button value="@item.Id">To order</button>
+                <form method="post" action="AddToCart">
+                    <button>To order</button>
+                </form>
             </div>
         </div>
     }
