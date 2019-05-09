@@ -5,7 +5,7 @@
 @model TicketsBooking.Models.RegisterViewModel
 
 <link rel="stylesheet" href="~/css/main.css">
-<script src="~/js/main.min.js"></script>
+@*<script src="~/js/main.min.js"></script>*@
 <title>Sign up</title>
 <header class="header">
     <div class="container">
@@ -47,7 +47,7 @@
         <div class="form-wrapper_title-block">
             <span class="form-wrapper_title-text">Sign Up</span>
         </div>
-        <form class="form-block" id="signup-form" method="post" action="/Account/Register" >
+        <form class="form-block" id="signup-form" method="post" asp-controller="Account" asp-action="Register" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label">Email</label>

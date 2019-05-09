@@ -110,10 +110,11 @@
                     <span class="lnr lnr-arrow-right"></span>
                 </div>
                 <div class="price">
-                    <p>@item.Price</p>
+                    <p>@item.Price $</p>
                 </div>
             </div>
             <div class="buttons">
+                @*<input type="button" value="Create" onclick="location.href='@Url.Action("AddItem", "Cart", new { id = item.Id })'" />*@
                 <button value="@item.Id">To order</button>
             </div>
         </div>
