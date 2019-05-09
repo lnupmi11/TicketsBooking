@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TicketsBooking.BLL.Interfaces;
 using TicketsBooking.DTO.Ticket;
+using TicketsBooking.Models;
 
 namespace TicketsBooking.Controllers
 {

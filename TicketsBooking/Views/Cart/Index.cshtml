@@ -1,7 +1,129 @@
-﻿
+﻿@model IEnumerable<TicketsBooking.DTO.Ticket.TicketDTO>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Search";
 }
 
-<h1>Index</h1>
+<link rel="stylesheet" href="~/css/main.css">
+<script src="~/js/main.min.js"></script>
 
+<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+<title>Search</title>
+<header class="header">
+    <div class="container">
+        <a class="header_logotype active" href="/">
+            W<span>G</span>
+        </a>
+        <nav class="header_menu">
+            <div class="header_burger">
+                <div class="header_burger_item"></div>
+            </div>
+            <ul class="header_menu-list">
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Tickets</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Specials</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Companies</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">About</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="header_buttons">
+            <a class="header_buttons-basket" href="#">
+                <img src="~/img/icon/basket.svg" alt="">
+            </a>
+            <a class="header_buttons-login" href="/Account/Login">
+                <span>login</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+
+
+<h2 class="main_block-header2">Your tickets:</h2>
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <div class="ticket">
+            <div class="ticket-id">
+                <p>ID:<span>@item.Id</span></p>
+            </div>
+            <div class="ticket-main_info">
+                <div class="duration">
+                    <div class="company">Company</div>
+                    <span class="lnr lnr-arrow-right"></span>
+                </div>
+                <div class="price">
+                    <p>@item.Price</p>
+                </div>
+            </div>
+            <div class="buttons">
+                <button value="@item.Id">Buy</button>
+            </div>
+        </div>
+    }
+}
+
+
+@if (Model == null)
+{
+    <h3 style="text-align:center;">Sorry, but there are no your tickets!!!</h3>
+}
+
+<footer class="footer">
+    <div class="container footer-wrapper">
+        <div class=" main_block-header1 footer-logotype">
+            WeGo
+        </div>
+        <div class="footer-menu">
+            <div class="footer-title">Links</div>
+            <nav class="footer-menu-nav">
+                <ul>
+                    <li>
+                        <a href="#">Tickets</a>
+                    </li>
+                    <li>
+                        <a href="#">Special</a>
+                    </li>
+                    <li>
+                        <a href="#">Companies</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-contact">
+            <div class="footer-title">Contact</div>
+            <div class="footer-contact-wrapper">
+                <a class="footer-contact-col-line" target="_blank" href="tel:+380931234567">+380931234567</a>
+                <a class="footer-contact-col-line" target="_blank" href="test@gmail.com">test@gmail.com</a>
+
+            </div>
+        </div>
+        <div class="footer-socials">
+            <div class="footer-title">Socials</div>
+            <div class="footer-socials-wrapper">
+                <a href="#" title="Facebook"
+                   class="footer-socials-item"
+                   target="_blank">
+                    @* <img src="" class="footer_socials-item--image" alt="Facebook"> *@
+                </a>
+                <a href="#" title="Twitter" class="footer-socials-item" target="_blank">
+                    @* <img src="" class="footer_socials-item--image" alt="Twitter"> *@
+                </a>
+                <a href="#" title="Instagram" class="footer-socials-item" target="_blank">
+                    @* <img src="" class="footer_socials-item--image" alt="Twitter"> *@
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
