@@ -46,15 +46,17 @@ namespace TicketsBooking.BLL.Services
             var user = _unitOfWork.UserRepository.GetAll().Where(u => u.UserName == userName).First();
             if(user != null)
             {
-                var items = user.Basket.Tickets;
-                var itemsDTO = new List<TicketDTO>();
-                foreach(var item in items)
+                if (user.Basket != null)
                 {
-                    var itemDTO = _mapper.Map<TicketDTO>(item);
-                    itemsDTO.Add(itemDTO);
+                    var items = user.Basket.Tickets;
+                    var itemsDTO = new List<TicketDTO>();
+                    foreach (var item in items)
+                    {
+                        var itemDTO = _mapper.Map<TicketDTO>(item);
+                        itemsDTO.Add(itemDTO);
+                    }
                 }
-
-                return itemsDTO;
+                return new List<TicketDTO>();
             }
 
             return new List<TicketDTO>();

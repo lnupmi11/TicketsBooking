@@ -62,7 +62,7 @@ namespace TicketsBooking.Controllers
 
         public IActionResult AddToCart(TicketViewModel ticketViewModel)
         {
-            _orderService.AddItemToBasket(_serviceUser.GetByName(User.Identity.Name).Basket.Id.ToString(), ticketViewModel.Id.ToString());
+            _orderService.AddItemToBasket(User.Identity.Name, ticketViewModel.Id.ToString());
 
             return RedirectToAction("Index");
         }
