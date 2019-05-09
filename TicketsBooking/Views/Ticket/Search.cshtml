@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TicketsBooking.DTO.Ticket.TicketDTO>
+﻿@model IEnumerable<TicketsBooking.Models.TicketViewModel>
 @{
     ViewData["Title"] = "Search";
 }
@@ -86,9 +86,8 @@
 
 <h2 class="main_block-header2">We find for you:</h2>
 
-@if (Model.Count() > 0)
+@if (Model != null)
 {
-    <div>nema she</div>
     @foreach (var item in Model)
     {
         <div class="ticket">
@@ -99,14 +98,14 @@
                 <div class="duration">
                     <div class="company">Company</div>
                     <div class="time">
-                        <p>15:30</p>
-                        <p>Lviv</p>
-                        <span>30-08-2018</span>
+                        <p>@item.FlightArrivingDate.Hour</p>
+                        <p>@item.LocationFrom</p>
+                        <span>@item.FlightArrivingDate</span>
                     </div>
                     <div class="time">
-                        <p>17:00</p>
-                        <p>Kyiv</p>
-                        <span>30-08-2018</span>
+                        <p>@item.FlightDepartmentDate.Hour</p>
+                        <p>@item.LocationTo</p>
+                        <span>@item.FlightDepartmentDate</span>
                     </div>
                     <span class="lnr lnr-arrow-right"></span>
                 </div>
@@ -122,60 +121,10 @@
 }
 
 
-<div class="ticket">
-    <div class="ticket-id">
-        <p>ID:<span>UI78UU</span></p>
-    </div>
-    <div class="ticket-main_info">
-        <div class="duration">
-            <div class="company">Company</div>
-            <div class="time">
-                <p>15:30</p>
-                <p>Lviv</p>
-                <span>30-08-2018</span>
-            </div>
-            <div class="time">
-                <p>17:00</p>
-                <p>Kyiv</p>
-                <span>30-08-2018</span>
-            </div>
-            <span class="lnr lnr-arrow-right"></span>
-        </div>
-        <div class="price">
-            <p>140$</p>
-        </div>
-    </div>
-    <div class="buttons">
-        <button>To order</button>
-    </div>
-</div>
-<div class="ticket">
-    <div class="ticket-id">
-        <p>ID:<span>UI78UU</span></p>
-    </div>
-    <div class="ticket-main_info">
-        <div class="duration">
-            <div class="company">Company</div>
-            <div class="time">
-                <p>15:30</p>
-                <p>Lviv</p>
-                <span>30-08-2018</span>
-            </div>
-            <div class="time">
-                <p>17:00</p>
-                <p>Kyiv</p>
-                <span>30-08-2018</span>
-            </div>
-            <span class="lnr lnr-arrow-right"></span>
-        </div>
-        <div class="price">
-            <p>140$</p>
-        </div>
-    </div>
-    <div class="buttons">
-        <button>To order</button>
-    </div>
-</div>
+@if(Model == null)
+{
+        <h3 style="text-align:center;" >Sorry, but there are no tickets for the given parameters :( </h3>
+}
 
 <footer class="footer">
     <div class="container footer-wrapper">
