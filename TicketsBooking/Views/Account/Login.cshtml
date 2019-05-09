@@ -47,30 +47,36 @@
         <div class="form-wrapper_title-block">
             <span class="form-wrapper_title-text">Sign in</span>
         </div>
-        <form class="form-block"  asp-controller="Account" asp-action="Login" method="post">
+        <form class="form-block"   method="post" asp-controller="Account" asp-action="Login"
+                                    asp-route-returnUrl="@Model.ReturnUrl">
             <div class="form-group">
-                <label class="control-label">Email</label>
+                <label class="control-label" asp-for="Email">Email</label>
                 <input type="text"
                        class="form-group-input"
                        name="Email"
                        placeholder="example@gmail.com"
-                       value="">
+                       value=""
+                       asp-for="Email">
+                <span asp-validation-for="Email"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Password</label>
+                <label class="control-label" asp-for="Password">Password</label>
                 <input type="password"
                        class="form-group-input"
                        name="Password"
                        placeholder="**********"
+                       asp-for="Password"
                        value="">
+                <span asp-validation-for="Password"></span>
             </div>
             <div class="form-group pass_settings">
                 <div class="form-group-show_pass">
                     <input type="checkbox"
                            id="squaredOne"
                            name="RememberMe"
-                           value="on">
-                    <label class="checkbox_square" for="squaredOne"></label>
+                           value="on"
+                           asp-for="RememberMe">
+                    <label class="checkbox_square" for="squaredOne" asp-for="RememberMe" ></label>
                     <label class="checkbox_text" for="squaredOne">Show password</label>
                 </div>
                 <div class="form-group-forgot_pass">
