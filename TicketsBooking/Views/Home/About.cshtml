@@ -29,6 +29,12 @@
                 <li class="header_menu-item">
                     <a class="header_menu-item--link" href="/Home/About">About</a>
                 </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="/Home/Privacy"> @User.Identity.Name </a>
+                    </li>
+                }
             </ul>
         </nav>
         @if (User.Identity.IsAuthenticated)

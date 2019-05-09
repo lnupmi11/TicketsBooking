@@ -1113,3 +1113,10 @@
     background-color:white;
     padding:30px;
 }
+
+/* Privacy Page*/
+.privacy-page{
+    text-align:center;
+    min-height:40vh;
+    padding-top:20vh;
+}
