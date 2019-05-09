@@ -4784,7 +4784,8 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Microsoft.AspNetCore": "2.2.0",
-          "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0"
+          "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
+          "TicketsBooking.DAL": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TicketsBooking.DTO.dll": {}

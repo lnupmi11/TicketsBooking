@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TicketsBooking.DAL.Entities;
 
 namespace TicketsBooking.DTO.Ticket
 {
@@ -10,5 +11,6 @@ namespace TicketsBooking.DTO.Ticket
         public double Price { get; set; }
         public TicketTypeDTO Type { get; set; }
         public int FlightID { get; set; } 
+        public Basket Basket { get; set; }
     }
 }

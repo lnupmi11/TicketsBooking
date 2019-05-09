@@ -26,15 +26,19 @@ namespace TicketsBooking.BLL.Services
             var user = _unitOfWork.UserRepository.GetAll().Where(u => u.UserName == userName).First();
             if (item != null && user != null)
             {
-                if(user.Basket == null)
+                var basket = _unitOfWork.BasketRepository.GetAll().Where(t => t.UserId == user.Id).FirstOrDefault();
+                if (basket == null)
                 {
-                    _unitOfWork.BasketRepository.Create(new DAL.Entities.Basket()
+                    _unitOfWork.BasketRepository.Create(new Basket()
                     {
+                        UserId = user.Id,
                         Tickets = new List<Ticket>()
                     });
-
+                    _unitOfWork.SaveChanges();
                 }
-                user.Basket.Tickets.Add(item);
+
+                basket = _unitOfWork.BasketRepository.GetAll().Where(t => t.UserId == user.Id).FirstOrDefault();
+                basket.Tickets.Add(item);
                 _unitOfWork.SaveChanges();
             }
         }
@@ -50,22 +54,18 @@ namespace TicketsBooking.BLL.Services
             }
         }
 
-        public IEnumerable<TicketDTO> GetAllUserBasketItems(string userName)
+        public IEnumerable<TicketDTO> GetAllUserBasketItems(string userId)
         {
-            var user = _unitOfWork.UserRepository.GetAll().Where(u => u.UserName == userName).First();
-            if(user != null)
+            var basket = _unitOfWork.BasketRepository.GetAll().Where(u => u.UserId == userId).FirstOrDefault();
+            if (basket != null && basket.Tickets != null)
             {
-                if (user.Basket != null)
+                var itemsDTO = new List<TicketDTO>();
+                foreach (var item in basket.Tickets)
                 {
-                    var items = user.Basket.Tickets;
-                    var itemsDTO = new List<TicketDTO>();
-                    foreach (var item in items)
-                    {
-                        var itemDTO = _mapper.Map<TicketDTO>(item);
-                        itemsDTO.Add(itemDTO);
-                    }
+                    var itemDTO = _mapper.Map<TicketDTO>(item);
+                    itemsDTO.Add(itemDTO);
                 }
-                return new List<TicketDTO>();
+                return itemsDTO;
             }
 
             return new List<TicketDTO>();

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TicketsBooking.BLL.Interfaces;
+using TicketsBooking.DAL.Interfaces;
 using TicketsBooking.DTO.Ticket;
 using TicketsBooking.Models;
 
@@ -14,21 +15,23 @@ namespace TicketsBooking.Controllers
     {
         IOrderService _orderService;
         IServiceTicket _serviceTicket;
+        private IUnitOfWork _unitOfWork;
 
-        public CartController(IOrderService orderService, IServiceTicket serviceTicket) : base()
+        public CartController(IUnitOfWork unitOfWork, IOrderService orderService, IServiceTicket serviceTicket) : base()
         {
             _orderService = orderService;
             _serviceTicket = serviceTicket;
+            _unitOfWork = unitOfWork;
         }
 
         [Authorize]
         public IActionResult Index()
         {
-            var userName = User.Identity.Name;
+            var user = _unitOfWork.UserRepository.GetAll().Where(t => t.Email == User.Identity.Name).First();
             var cartItems = new List<TicketDTO>();
-            if (!string.IsNullOrEmpty(userName))
+            if (!string.IsNullOrEmpty(User.Identity.Name))
             {
-                cartItems = _orderService.GetAllUserBasketItems(userName).ToList();
+                cartItems = _orderService.GetAllUserBasketItems(user.Id.ToString()).ToList();
             }
             return View(cartItems);
         }

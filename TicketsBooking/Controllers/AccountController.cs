@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using TicketsBooking.DAL.Entities;
 using TicketsBooking.Models;
+using TicketsBooking.DAL.UnitOfWork;
 
 namespace TicketsBooking.Controllers
 {
@@ -13,7 +14,6 @@ namespace TicketsBooking.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
@@ -34,7 +34,8 @@ namespace TicketsBooking.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, false);                   
+                    await _signInManager.SignInAsync(user, false); 
+                    
                     return RedirectToAction("Privacy", "Home");
                 }
                 else

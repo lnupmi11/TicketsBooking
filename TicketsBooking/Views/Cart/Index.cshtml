@@ -53,7 +53,7 @@
         @if (!User.Identity.IsAuthenticated)
         {
             <div class="header_buttons">
-                
+
                 <a class="header_buttons-login" href="/Account/Login">
                     <span>login</span>
                 </a>
@@ -66,28 +66,26 @@
 
 <h2 class="main_block-header2">Your tickets:</h2>
 
-@if (Model != null)
+
+@foreach (var item in Model)
 {
-    @foreach (var item in Model)
-    {
-        <div class="ticket">
-            <div class="ticket-id">
-                <p>ID:<span>@item.Id</span></p>
+    <div class="ticket">
+        <div class="ticket-id">
+            <p>ID:<span>@item.Id</span></p>
+        </div>
+        <div class="ticket-main_info">
+            <div class="duration">
+                <div class="company">Company</div>
+                <span class="lnr lnr-arrow-right"></span>
             </div>
-            <div class="ticket-main_info">
-                <div class="duration">
-                    <div class="company">Company</div>
-                    <span class="lnr lnr-arrow-right"></span>
-                </div>
-                <div class="price">
-                    <p>@item.Price</p>
-                </div>
-            </div>
-            <div class="buttons">
-                <button value="@item.Id">Buy</button>
+            <div class="price">
+                <p>@item.Price</p>
             </div>
         </div>
-    }
+        <div class="buttons">
+            <button value="@item.Id">Buy</button>
+        </div>
+    </div>
 }
 
 

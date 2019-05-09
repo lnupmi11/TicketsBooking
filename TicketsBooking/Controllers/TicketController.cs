@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TicketsBooking.BLL.Interfaces;
+using TicketsBooking.DAL.Interfaces;
 using TicketsBooking.DTO.Ticket;
 using TicketsBooking.Models;
 
@@ -15,12 +16,14 @@ namespace TicketsBooking.Controllers
         private IOrderService _orderService;
         private IServiceFlight _flightService;
         private IServiceUser _serviceUser;
-        public TicketController(IServiceTicket ticketService, IOrderService orderService, IServiceFlight serviceFlight, IServiceUser serviceUser) : base()
+        private IUnitOfWork _unitOfWork;
+        public TicketController(IUnitOfWork unitOfWork, IServiceTicket ticketService, IOrderService orderService, IServiceFlight serviceFlight, IServiceUser serviceUser) : base()
         {
             _ticketService = ticketService;
             _orderService = orderService;
             _flightService = serviceFlight;
             _serviceUser = serviceUser;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
@@ -38,9 +41,10 @@ namespace TicketsBooking.Controllers
             var tickets = new List<TicketViewModel>();
             foreach (var iteam in flights)
             {
-                var listTicket = _ticketService.GetAll().Where(t => t.FlightID == iteam.Id);
+                var listTicket = _ticketService.GetAll().Where(t => t.FlightID == iteam.Id).Where(t => t.Basket == null);
                 foreach(var ticket in listTicket)
                 {
+                    var basket = _unitOfWork.BasketRepository.GetAll();
                     var viewTicket = new TicketViewModel()
                     {
                         Id = ticket.Id,
@@ -62,6 +66,7 @@ namespace TicketsBooking.Controllers
 
         public IActionResult AddToCart(int id)
         {
+            
             _orderService.AddItemToBasket(User.Identity.Name, id.ToString());
 
             return RedirectToAction("Index");

@@ -10,5 +10,6 @@ namespace TicketsBooking.DAL.Entities
         [Key]
         public int Id { get; set; }
         public ICollection<Ticket> Tickets { get; set; }
+        public string UserId { get; set; }
     }
 }
