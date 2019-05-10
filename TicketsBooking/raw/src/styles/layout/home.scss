@@ -1,0 +1,233 @@
+.home-page {
+
+  &-main {
+    //padding-bottom: 110px;
+    height: calc(100vh - 69px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    .video-background {
+      background: #000;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -99;
+
+      &:after {
+        content: '';
+        background: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+      }
+    }
+
+    .video-foreground,
+    .video-background iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    @media (min-aspect-ratio: 16/9) {
+      .video-foreground {
+        height: 300%;
+        top: -100%;
+      }
+    }
+    @media (max-aspect-ratio: 16/9) {
+      .video-foreground {
+        width: 300%;
+        left: -100%;
+      }
+    }
+  }
+
+  &-destination {
+    .main_block-header2 {
+      font-size: 48px;
+    }
+
+    .destination {
+      &-block {
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 10%;
+
+        .destination-block-item:nth-child(2),
+        .destination-block-item:nth-child(3) {
+          width: calc(50% - 10px);
+        }
+
+        &-item {
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+          margin-bottom: 20px;
+
+          &:hover {
+            .destination-block-item-image {
+              transform: scale(1.1);
+            }
+          }
+
+          &-info {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
+          }
+
+          &-city {
+            margin-bottom: 18px;
+            text-align: center;
+            font-size: 40px;
+            line-height: 40px;
+            font-family: 'Roboto-Medium', sans-serif;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 2px;
+          }
+
+          &-link {
+            text-align: center;
+            font-size: 18px;
+            line-height: 18px;
+            font-family: cursive;
+            color: #527aff;
+            transition: .3s;
+            letter-spacing: 1.6px;
+
+            &:hover {
+              text-decoration: underline;
+              color: #4261d7;
+            }
+          }
+
+          &-image {
+            width: 100%;
+            height: auto;
+            transition: .3s;
+            z-index: 0;
+          }
+        }
+
+      }
+
+    }
+  }
+}
+
+.main_block {
+  max-width: 750px;
+  padding: 40px 0;
+  background: white;
+
+  &-header1 {
+    color: #0037a2;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 90px;
+    line-height: 90px;
+    font-family: 'LogoFont', sans-serif;
+    letter-spacing: 5px;
+  }
+
+  &-header2 {
+    margin: 40px auto 0;
+    text-align: center;
+    font-size: 36px;
+    line-height: 36px;
+    font-family: 'Roboto-Light', sans-serif;
+
+  }
+}
+
+.form_tickets {
+  &-wrapper {
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px;
+  }
+
+  &-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &-group {
+    width: calc(50% - 30px);
+    margin-top: 20px;
+
+    &-input {
+      border: 1px solid #cbcbcb;
+      padding: 7px 15px;
+      font-family: Roboto-Light, sans-serif;
+      font-size: 18px;
+      line-height: 21px;
+      font-weight: 100;
+      width: 100%;
+      height: 36px;
+    }
+
+    &-change {
+      width: 60px;
+      height: 36px;
+      border: none;
+      border-bottom: 1px solid #cbcbcb;
+      border-top: 1px solid #cbcbcb;
+      background-color: transparent;
+      margin-top: 20px;
+      transition: .3s;
+      cursor: pointer;
+
+      img {
+        width: 24px;
+        height: auto;
+      }
+
+      &:hover {
+        background: #cbcbcb;
+      }
+    }
+
+    &-button {
+      border: 1px solid #cbcbcb;
+      padding: 10px 15px;
+      font-family: Roboto-Light, sans-serif;
+      text-align: center;
+      width: 100%;
+      margin-top: 20px;
+      transition: .3s;
+      cursor: pointer;
+      text-transform: uppercase;
+      background-color: transparent;
+      font-size: 22px;
+      letter-spacing: 3px;
+
+      &:hover {
+        background: #cbcbcb;
+      }
+    }
+  }
+}

@@ -1,0 +1,255 @@
+
+  .form {
+    &-block {
+      margin-top: 10px;
+
+      .form-group-button {
+        display: inline-block;
+        white-space: pre;
+        min-width: 260px;
+        background-color: #0037a2;
+        text-align: center;
+        transition: .3s;
+        border: none;
+        width: 100%;
+        padding: 20px;
+        font-size: 18px;
+        line-height: 19px;
+        margin-top: 11px;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover{
+          background-color: #00368e;
+        }
+      }
+
+      .validation_error {
+        height: 0;
+        text-align: right;
+        font-size: 14px;
+        font-family: Roboto-Light, sans-serif;
+        font-weight: 100;
+        color: #F16164;
+        margin-right: 23px;
+        margin-top: -2px;
+        opacity: 0;
+        display: block;
+        line-height: 20px;
+        transition: all .2s linear .1s;
+
+        &.block-error {
+          transform: translateY(-20px);
+          opacity: 1;
+          margin: 0 auto;
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+
+        &.form-group-error {
+          .form-group-input {
+            border-bottom: 1px solid #F16164;
+          }
+
+          .validation_error {
+            opacity: 1;
+            transition: all .2s linear .1s;
+          }
+        }
+
+        .control-label {
+          font-size: 14px;
+          line-height: 16px;
+          font-family: 'Roboto-Medium', sans-serif;
+          font-weight: 100;
+          margin-bottom: 3px;
+          transition: .2s;
+        }
+
+        .form-group-input {
+          border: none;
+          border-bottom: 1px solid #EFEFEF;
+          padding: 7px 15px;
+          font-family: Roboto-Light, sans-serif;
+          font-size: 18px;
+          line-height: 21px;
+          font-weight: 100;
+
+          &.textarea {
+            min-height: 36px;
+            max-height: 150px;
+            height: 36px;
+            resize: vertical;
+          }
+        }
+
+        &.pass_settings {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        &-forgot_pass {
+          a {
+            text-decoration: underline;
+            color: #71BEEE;
+            font-family: Roboto-Medium, sans-serif;
+            font-size: 16px;
+            @media (max-width: 480px) {
+              font-size: 14px;
+            }
+
+            &:hover {
+              text-decoration: none;
+              color: #06ABF3;
+            }
+          }
+        }
+        
+        &--button{
+          
+        }
+      }
+    }
+  }
+
+  .form-group-show_pass {
+    position: relative;
+    background: white;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:hover label.checkbox_square::after {
+      opacity: 0.3;
+    }
+
+    label.checkbox_square {
+      height: 13px;
+      width: 13px;
+      border: 1px solid #EFEFEF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      position: absolute;
+      top: 2px;
+      left: 0;
+      cursor: pointer;
+
+      &:after {
+        content: '';
+        width: 9px;
+        height: 9px;
+        display: block;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        background: #71BEEE;
+        opacity: 0;
+      }
+    }
+
+    input[type=checkbox] {
+      visibility: hidden;
+
+      &:checked + label.checkbox_square:after {
+        opacity: 1;
+      }
+    }
+
+    .checkbox_text {
+      display: flex;
+      margin: 0 0 0 20px;
+      width: auto;
+      font-size: 14px;
+      font-family: Roboto-Light, sans-serif;
+      font-weight: 100;
+      cursor: pointer;
+
+      @media only screen and (max-width: 480px) {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .form-wrapper {
+    width: 435px;
+    margin: 0 auto;
+
+    @media only screen and (max-width: 480px) {
+      width: 100%;
+    }
+    &.nowrap {
+      .form-wrapper_title {
+        &-block {
+          margin-bottom: 60px;
+          align-items: unset;
+        }
+        &-text {
+          white-space: normal;
+          text-transform: capitalize;
+          line-height: 40px;
+        }
+      }
+    }
+    &_title {
+      &-block {
+        width: 100%;
+        height: 77px;
+        position: relative;
+        padding: 28px 18px 7px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      &-text {
+        margin: 0 auto;
+        font-size: 46px;
+        line-height: 49px;
+        font-family: 'Roboto-Bold', sans-serif;
+        white-space: nowrap;
+        @media only screen and (max-width: 480px) {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+
+  .registration{
+    &-block{
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+    &-text{
+      color: #000;
+      font-family: Roboto-Light,sans-serif;
+      font-size: 16px;
+      margin: 0 10px;
+    }
+    &-link{
+      color: #71beee;
+      font-family: Roboto-Medium,sans-serif;
+      text-decoration: underline;
+      margin: 0;
+      font-size: 16px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+        color: #06ABF3;
+      }
+    }
+  }
