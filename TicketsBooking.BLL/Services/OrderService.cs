@@ -7,6 +7,7 @@ using TicketsBooking.DTO.Ticket;
 using System.Linq;
 using AutoMapper;
 using TicketsBooking.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace TicketsBooking.BLL.Services
 {
@@ -14,10 +15,12 @@ namespace TicketsBooking.BLL.Services
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        public OrderService(IUnitOfWork unitOfWork, IMapper mapper)
+        private IServiceTicket _serviceTicket;
+        public OrderService(IUnitOfWork unitOfWork, IMapper mapper, IServiceTicket serviceTicket)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _serviceTicket = serviceTicket;
         }
 
         public void AddItemToBasket(string userName, string itemId)
@@ -56,15 +59,18 @@ namespace TicketsBooking.BLL.Services
 
         public IEnumerable<TicketDTO> GetAllUserBasketItems(string userId)
         {
-            var basket = _unitOfWork.BasketRepository.GetAll().Where(u => u.UserId == userId).FirstOrDefault();
+            var basket = _unitOfWork.BasketRepository.GetQuery().Include(t => t.Tickets)
+                .Where(t => t.UserId == userId).FirstOrDefault();
             if (basket != null && basket.Tickets != null)
             {
                 var itemsDTO = new List<TicketDTO>();
-                foreach (var item in basket.Tickets)
+
+                foreach (var ticket in basket.Tickets)
                 {
-                    var itemDTO = _mapper.Map<TicketDTO>(item);
+                    var itemDTO = _mapper.Map<TicketDTO>(ticket);
                     itemsDTO.Add(itemDTO);
                 }
+
                 return itemsDTO;
             }
 

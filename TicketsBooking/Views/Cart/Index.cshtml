@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TicketsBooking.DTO.Ticket.TicketDTO>
+﻿@model IEnumerable<TicketsBooking.Models.TicketViewModel>
 @{
     ViewData["Title"] = "Search";
 }
@@ -76,10 +76,20 @@
         <div class="ticket-main_info">
             <div class="duration">
                 <div class="company">Company</div>
+                <div class="time">
+                    <p>@item.FlightArrivingDate.Hour</p>
+                    <p>@item.LocationFrom</p>
+                    <span>@item.FlightDepartmentDate</span>
+                </div>
+                <div class="time">
+                    <p>@item.FlightDepartmentDate.Hour</p>
+                    <p>@item.LocationTo</p>
+                    <span>@item.FlightArrivingDate</span>
+                </div>
                 <span class="lnr lnr-arrow-right"></span>
             </div>
             <div class="price">
-                <p>@item.Price</p>
+                <p>@item.Price $</p>
             </div>
         </div>
         <div class="buttons">

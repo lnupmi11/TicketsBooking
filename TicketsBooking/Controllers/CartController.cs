@@ -28,21 +28,35 @@ namespace TicketsBooking.Controllers
         public IActionResult Index()
         {
             var user = _unitOfWork.UserRepository.GetAll().Where(t => t.Email == User.Identity.Name).First();
-            var cartItems = new List<TicketDTO>();
+            var cartItems = new List<TicketViewModel>();
             if (!string.IsNullOrEmpty(User.Identity.Name))
             {
-                cartItems = _orderService.GetAllUserBasketItems(user.Id.ToString()).ToList();
+                var ticketDTOs = _orderService.GetAllUserBasketItems(user.Id.ToString()).ToList();
+                foreach(var item in ticketDTOs)
+                {
+                    var flight = _unitOfWork.FlightRepository.Get(t => t.Id == item.FlightID);
+                    var viewTicket = new TicketViewModel()
+                    {
+                        Id = item.Id,
+                        Price = item.Price,
+                        FlightArrivingDate = flight.FlightArrivingDate,
+                        FlightDepartmentDate = flight.FlightDepartmentDate,
+                        LocationFrom = flight.LocationFrom,
+                        LocationTo = flight.LocationTo
+                    };
+                    cartItems.Add(viewTicket);
+                }
             }
             return View(cartItems);
         }
 
-        [Authorize]
-        public IActionResult AddItem(string itemId)
-        {
-            var userName = User.Identity.Name;
-            _orderService.AddItemToBasket(userName, itemId);
-            return new EmptyResult();
-        }
+        //[Authorize]
+        //public IActionResult AddItem(string itemId)
+        //{
+        //    var userName = User.Identity.Name;
+        //    _orderService.AddItemToBasket(userName, itemId);
+        //    return new EmptyResult();
+        //}
 
         [Authorize]
         public IActionResult RemoveItem(string itemId)
