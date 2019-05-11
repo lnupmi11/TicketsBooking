@@ -50,14 +50,6 @@ namespace TicketsBooking.Controllers
             return View(cartItems);
         }
 
-        //[Authorize]
-        //public IActionResult AddItem(string itemId)
-        //{
-        //    var userName = User.Identity.Name;
-        //    _orderService.AddItemToBasket(userName, itemId);
-        //    return new EmptyResult();
-        //}
-
         [Authorize]
         public IActionResult RemoveItem(int id)
         {
