@@ -33,7 +33,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li class="header_menu-item">
-                        <a class="header_menu-item--link" href="/Home/Privacy"> @User.Identity.Name </a>
+                        <a class="header_menu-item--link" href="/Users/Index"> @User.Identity.Name </a>
                     </li>
                 }
             </ul>
@@ -41,7 +41,7 @@
         @if (User.Identity.IsAuthenticated)
         {
             <div class="header_buttons">
-                <a class="header_buttons-basket" href="#">
+                <a class="header_buttons-basket" href="/Cart/Index">
                     <img src="~/img/icon/basket.svg" alt="">
                 </a>
                 <a class="header_buttons-login" href="/Account/LogOff">
