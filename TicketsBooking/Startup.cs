@@ -18,6 +18,8 @@ using TicketsBooking.DAL.Interfaces;
 using TicketsBooking.DAL.UnitOfWork;
 using AutoMapper;
 using TicketsBooking.DAL.Entities;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 namespace TicketsBooking
 {
@@ -61,6 +63,7 @@ namespace TicketsBooking
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
 
         }

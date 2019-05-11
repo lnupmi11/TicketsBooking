@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TicketsBooking.BLL.Interfaces;
@@ -32,7 +35,7 @@ namespace TicketsBooking.Controllers
             if (!string.IsNullOrEmpty(User.Identity.Name))
             {
                 var ticketDTOs = _orderService.GetAllUserBasketItems(user.Id.ToString()).ToList();
-                foreach(var item in ticketDTOs)
+                foreach (var item in ticketDTOs)
                 {
                     var flight = _unitOfWork.FlightRepository.Get(t => t.Id == item.FlightID);
                     var viewTicket = new TicketViewModel()
@@ -59,12 +62,39 @@ namespace TicketsBooking.Controllers
         }
 
         [Authorize]
+        [HttpGet]
         public IActionResult Buy(int id)
         {
-            
-            _serviceTicket.Delete(id);
-            
-            return RedirectToAction("Index", "Home");
+            //var globalSettings = new GlobalSettings
+            //{
+            //    ColorMode = ColorMode.Color,
+            //    Orientation = Orientation.Portrait,
+            //    PaperSize = PaperKind.A4,
+            //    Margins = new MarginSettings { Top = 10 },
+            //    DocumentTitle = "PDF Report",
+            //    Out = @"D:\PDFCreator\Employee_Report.pdf"
+            //};
+
+            //var objectSettings = new ObjectSettings
+            //{
+            //    PagesCount = true,
+            //    HtmlContent = TemplateGenerator.GetHTMLString(),
+            //    WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css") },
+            //    HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
+            //    FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" }
+            //};
+
+            //var pdf = new HtmlToPdfDocument()
+            //{
+            //    GlobalSettings = globalSettings,
+            //    Objects = { objectSettings }
+            //};
+
+            //_converter.Convert(pdf);
+
+            return Ok("Successfully created PDF document.");
+
         }
+
     }
 }
