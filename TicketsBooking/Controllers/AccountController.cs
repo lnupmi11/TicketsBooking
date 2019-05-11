@@ -36,7 +36,7 @@ namespace TicketsBooking.Controllers
                 {
                     await _signInManager.SignInAsync(user, false); 
                     
-                    return RedirectToAction("Privacy", "Home");
+                    return RedirectToAction("Index", "Users");
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace TicketsBooking.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Privacy", "Home");
+                        return RedirectToAction("Index", "Users");
                     }
                 }
                 else
