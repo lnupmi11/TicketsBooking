@@ -28,7 +28,7 @@ namespace TicketsBooking.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EditUserViewModel model)
+        public async Task<IActionResult> Index(EditUserViewModel model)
         {
             if (ModelState.IsValid)
             {
