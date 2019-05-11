@@ -95,6 +95,9 @@
         <div class="buttons">
             <button value="@item.Id">Buy</button>
         </div>
+        <div class="buttons">
+            <button onclick="window.location.href = '@Url.Action("RemoveItem", "Cart" , new { id = item.Id }, null)'">Remove</button>
+        </div>
     </div>
 }
 

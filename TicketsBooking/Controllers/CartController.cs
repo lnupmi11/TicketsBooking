@@ -61,9 +61,9 @@ namespace TicketsBooking.Controllers
         [Authorize]
         public IActionResult RemoveItem(string itemId)
         {
-            var userName = User.Identity.Name;
-            _orderService.DeleteItemFromBasket(userName, itemId);
-            return new EmptyResult();
+            //var userName = User.Identity.Name;
+            //_orderService.DeleteItemFromBasket(userName, itemId);
+            return RedirectToAction("Index", "Cart");
         }
 
         [Authorize]

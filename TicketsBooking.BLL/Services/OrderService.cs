@@ -40,7 +40,7 @@ namespace TicketsBooking.BLL.Services
                     _unitOfWork.SaveChanges();
                 }
 
-                basket = _unitOfWork.BasketRepository.GetAll().Where(t => t.UserId == user.Id).FirstOrDefault();
+                basket = _unitOfWork.BasketRepository.GetQuery().Include(t=>t.Tickets).Where(t => t.UserId == user.Id).FirstOrDefault();
                 basket.Tickets.Add(item);
                 _unitOfWork.SaveChanges();
             }
