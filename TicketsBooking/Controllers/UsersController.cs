@@ -82,10 +82,10 @@ namespace TicketsBooking.Controllers
                         HttpContext.RequestServices.GetService(typeof(IPasswordHasher<User>)) as IPasswordHasher<User>;
 
                     IdentityResult result =
-                        await _passwordValidator.ValidateAsync(_userManager, user, model.NewPassword);
+                        await _passwordValidator.ValidateAsync(_userManager, user, model.Password);
                     if (result.Succeeded)
                     {
-                        user.PasswordHash = _passwordHasher.HashPassword(user, model.NewPassword);
+                        user.PasswordHash = _passwordHasher.HashPassword(user, model.Password);
                         await _userManager.UpdateAsync(user);
                         return RedirectToAction("Index");
                     }
