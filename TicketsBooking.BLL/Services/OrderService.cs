@@ -49,10 +49,13 @@ namespace TicketsBooking.BLL.Services
         public void DeleteItemFromBasket(string userName, string itemId)
         {
             var item = _unitOfWork.TicketRepository.Get(itemId);
-            var user = _unitOfWork.UserRepository.GetAll().Where(u => u.UserName == userName).First();
-            if (item != null && user != null)
+            var basket = _unitOfWork.UserRepository.GetQuery().Include(u => u.Basket)
+                                                        .Include(u => u.Basket.Tickets)
+                                                        .FirstOrDefault(u => u.UserName == userName)
+                                                        .Basket;
+            if (item != null && basket != null)
             {
-                user.Basket.Tickets.Remove(item);
+                basket.Tickets.Remove(item);
                 _unitOfWork.SaveChanges();
             }
         }

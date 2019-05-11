@@ -59,20 +59,19 @@ namespace TicketsBooking.Controllers
         //}
 
         [Authorize]
-        public IActionResult RemoveItem(string itemId)
+        public IActionResult RemoveItem(int id)
         {
-            //var userName = User.Identity.Name;
-            //_orderService.DeleteItemFromBasket(userName, itemId);
+            var userName = User.Identity.Name;
+            _orderService.DeleteItemFromBasket(userName, id.ToString());
             return RedirectToAction("Index", "Cart");
         }
 
         [Authorize]
-        public IActionResult Buy(List<string> itemIds)
+        public IActionResult Buy(int id)
         {
-            foreach(var item in itemIds)
-            {
-                _serviceTicket.Delete(Int32.Parse(item));
-            }
+            
+            _serviceTicket.Delete(id);
+            
             return RedirectToAction("Index", "Home");
         }
     }

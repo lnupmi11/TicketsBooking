@@ -4,7 +4,7 @@
 }
 
 <link rel="stylesheet" href="~/css/main.css">
-<script src="~/js/main.min.js"></script>
+@*<script src="~/js/main.min.js"></script>*@
 
 <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 <title>Search</title>
@@ -93,7 +93,7 @@
             </div>
         </div>
         <div class="buttons">
-            <button value="@item.Id">Buy</button>
+            <button onclick="window.location.href = '@Url.Action("Buy", "Cart" , new { id = item.Id }, null)'">Buy</button>
         </div>
         <div class="buttons">
             <button onclick="window.location.href = '@Url.Action("RemoveItem", "Cart" , new { id = item.Id }, null)'">Remove</button>
