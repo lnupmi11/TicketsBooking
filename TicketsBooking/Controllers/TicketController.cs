@@ -44,7 +44,6 @@ namespace TicketsBooking.Controllers
                 var listTicket = _ticketService.GetAll().Where(t => t.FlightID == iteam.Id).Where(t => t.Basket == null);
                 foreach(var ticket in listTicket)
                 {
-                    var basket = _unitOfWork.BasketRepository.GetAll();
                     var viewTicket = new TicketViewModel()
                     {
                         Id = ticket.Id,

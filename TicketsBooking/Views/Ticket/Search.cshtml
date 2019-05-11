@@ -53,7 +53,7 @@
         @if (!User.Identity.IsAuthenticated)
         {
             <div class="header_buttons">
-                
+
                 <a class="header_buttons-login" href="/Account/Login">
                     <span>login</span>
                 </a>
@@ -132,17 +132,20 @@
                     <p>@item.Price $</p>
                 </div>
             </div>
-            <div class="buttons">
-                <button onclick="window.location.href = '@Url.Action("AddToCart", "Ticket" , new { id = item.Id }, null)'" >To order</button>
-            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="buttons">
+                    <button onclick="window.location.href = '@Url.Action("AddToCart", "Ticket" , new { id = item.Id }, null)'">To order</button>
+                </div>
+            }
         </div>
     }
 }
 
 
-@if(Model == null)
+@if (Model == null)
 {
-        <h3 style="text-align:center;" >Sorry, but there are no tickets for the given parameters :( </h3>
+    <h3 style="text-align:center;">Sorry, but there are no tickets for the given parameters :( </h3>
 }
 
 <footer class="footer">

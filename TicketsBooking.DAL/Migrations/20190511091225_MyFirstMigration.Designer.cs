@@ -10,7 +10,7 @@ using TicketsBooking.DAL.EntityFramework;
 namespace TicketsBooking.DAL.Migrations
 {
     [DbContext(typeof(TicketsBookingContext))]
-    [Migration("20190511085727_MyFirstMigration")]
+    [Migration("20190511091225_MyFirstMigration")]
     partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
