@@ -95,6 +95,15 @@
             </div>
             <input type="submit" class="form-group-button" value="Edit →" />
         </form>
+        <div class="registration-block">
+            <span class="registration-text">
+                You want to change your password ?
+            </span>
+            <a class="registration-link"
+               href="@Url.Action("ChangePassword", "Users", new { id = Model.Id })">
+                Change Password
+            </a>
+        </div>
     </div>
 </div>
 
