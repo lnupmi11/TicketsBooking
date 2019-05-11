@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TicketsBooking.BLL.Interfaces;
 using TicketsBooking.DAL.Interfaces;
 using TicketsBooking.DTO.Ticket;
@@ -41,10 +42,10 @@ namespace TicketsBooking.Controllers
             var tickets = new List<TicketViewModel>();
             foreach (var iteam in flights)
             {
-                var listTicket = _ticketService.GetAll().Where(t => t.FlightID == iteam.Id).Where(t => t.Basket == null);
-                foreach(var ticket in listTicket)
+                var listTicket = _unitOfWork.TicketRepository.GetQuery().Include(t => t.Basket).Where(t => t.Basket == null);
+
+                foreach (var ticket in listTicket)
                 {
-                    var basket = _unitOfWork.BasketRepository.GetAll();
                     var viewTicket = new TicketViewModel()
                     {
                         Id = ticket.Id,

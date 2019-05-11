@@ -7,6 +7,7 @@ using TicketsBooking.DTO.Ticket;
 using System.Linq;
 using AutoMapper;
 using TicketsBooking.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace TicketsBooking.BLL.Services
 {
@@ -14,10 +15,12 @@ namespace TicketsBooking.BLL.Services
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        public OrderService(IUnitOfWork unitOfWork, IMapper mapper)
+        private IServiceTicket _serviceTicket;
+        public OrderService(IUnitOfWork unitOfWork, IMapper mapper, IServiceTicket serviceTicket)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _serviceTicket = serviceTicket;
         }
 
         public void AddItemToBasket(string userName, string itemId)
@@ -37,7 +40,7 @@ namespace TicketsBooking.BLL.Services
                     _unitOfWork.SaveChanges();
                 }
 
-                basket = _unitOfWork.BasketRepository.GetAll().Where(t => t.UserId == user.Id).FirstOrDefault();
+                basket = _unitOfWork.BasketRepository.GetQuery().Include(t=>t.Tickets).Where(t => t.UserId == user.Id).FirstOrDefault();
                 basket.Tickets.Add(item);
                 _unitOfWork.SaveChanges();
             }
@@ -46,29 +49,37 @@ namespace TicketsBooking.BLL.Services
         public void DeleteItemFromBasket(string userName, string itemId)
         {
             var item = _unitOfWork.TicketRepository.Get(itemId);
-            var user = _unitOfWork.UserRepository.GetAll().Where(u => u.UserName == userName).First();
-            if (item != null && user != null)
+            var basket = _unitOfWork.UserRepository.GetQuery().Include(u => u.Basket)
+                                                        .Include(u => u.Basket.Tickets)
+                                                        .FirstOrDefault(u => u.UserName == userName)
+                                                        .Basket;
+            if (item != null && basket != null)
             {
-                user.Basket.Tickets.Remove(item);
+                basket.Tickets.Remove(item);
                 _unitOfWork.SaveChanges();
             }
         }
 
         public IEnumerable<TicketDTO> GetAllUserBasketItems(string userId)
         {
-            var basket = _unitOfWork.BasketRepository.GetAll().Where(u => u.UserId == userId).FirstOrDefault();
+            var basket = _unitOfWork.BasketRepository.GetQuery().Include(t => t.Tickets)
+                .Where(t => t.UserId == userId).FirstOrDefault();
             if (basket != null && basket.Tickets != null)
             {
                 var itemsDTO = new List<TicketDTO>();
-                foreach (var item in basket.Tickets)
+
+                foreach (var ticket in basket.Tickets)
                 {
-                    var itemDTO = _mapper.Map<TicketDTO>(item);
+                    var itemDTO = _mapper.Map<TicketDTO>(ticket);
                     itemsDTO.Add(itemDTO);
                 }
+
                 return itemsDTO;
             }
 
             return new List<TicketDTO>();
         }
+
+
     }
 }

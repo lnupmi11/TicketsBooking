@@ -25,7 +25,7 @@ namespace TicketsBooking.DAL.Repositories
 
         public void Delete(string id)
         {
-            var entity = _dbSet.Find(id);
+            var entity = _dbSet.Find(Int32.Parse(id));
             if (entity != null)
             {
                 _dbSet.Remove(entity);
