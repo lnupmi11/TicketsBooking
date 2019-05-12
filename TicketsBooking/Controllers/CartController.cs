@@ -12,6 +12,7 @@ using DinkToPdf;
 using DinkToPdf.Contracts;
 using TicketsBooking.Utility;
 using Microsoft.EntityFrameworkCore;
+using TicketsBooking.DAL.Entities;
 
 namespace TicketsBooking.Controllers
 {
@@ -112,6 +113,17 @@ namespace TicketsBooking.Controllers
             };
 
             //_converter.Convert(pdf);
+
+            var boughtTicket = new BoughtTicket()
+            {
+                LocationFrom = viewTicket.LocationFrom,
+                LocationTo = viewTicket.LocationTo,
+                Price = viewTicket.Price,
+                Id = viewTicket.Id
+            };
+
+
+            _unitOfWork.BoughtTicketRepository.Create(boughtTicket);
 
             _unitOfWork.TicketRepository.Delete(ticket.Id.ToString());
 
