@@ -11,16 +11,11 @@ namespace TicketsBooking.Controllers
 {
     public class HistoryBoughtController : Controller
     {
-        IOrderService _orderService;
-        IServiceTicket _serviceTicket;
-        private IUnitOfWork _unitOfWork;
+        IServiceBoughtTicket _serviceBoughtTicket;
 
-        public HistoryBoughtController(IUnitOfWork unitOfWork, IOrderService orderService,
-            IServiceTicket serviceTicket) : base()
+        public HistoryBoughtController(IServiceBoughtTicket serviceBoughtTicket) : base()
         {
-            _orderService = orderService;
-            _serviceTicket = serviceTicket;
-            _unitOfWork = unitOfWork;
+            _serviceBoughtTicket = serviceBoughtTicket;
         }
         public IActionResult Index()
         {

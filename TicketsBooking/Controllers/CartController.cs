@@ -72,6 +72,7 @@ namespace TicketsBooking.Controllers
         {
             var ticket = _unitOfWork.TicketRepository.Get(id.ToString());
             var flight = _unitOfWork.FlightRepository.GetAll().Where(t => t.Id == ticket.FlightId).FirstOrDefault();
+            var user = _unitOfWork.UserRepository.GetAll().Where(t => t.Email == User.Identity.Name).First();
 
             var viewTicket = new TicketViewModel()
             {
@@ -119,6 +120,7 @@ namespace TicketsBooking.Controllers
                 LocationFrom = viewTicket.LocationFrom,
                 LocationTo = viewTicket.LocationTo,
                 Price = viewTicket.Price,
+                User = user
             };
 
 

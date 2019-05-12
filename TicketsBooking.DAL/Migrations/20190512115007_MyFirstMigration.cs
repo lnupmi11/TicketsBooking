@@ -51,21 +51,6 @@ namespace TicketsBooking.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BoughtTickets",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Price = table.Column<double>(nullable: false),
-                    LocationFrom = table.Column<string>(nullable: true),
-                    LocationTo = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BoughtTickets", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Flights",
                 columns: table => new
                 {
@@ -221,6 +206,28 @@ namespace TicketsBooking.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BoughtTickets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Price = table.Column<double>(nullable: false),
+                    LocationFrom = table.Column<string>(nullable: true),
+                    LocationTo = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BoughtTickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BoughtTickets_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tickets",
                 columns: table => new
                 {
@@ -299,6 +306,11 @@ namespace TicketsBooking.DAL.Migrations
                 column: "UserId",
                 unique: true,
                 filter: "[UserId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BoughtTickets_UserId",
+                table: "BoughtTickets",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_BasketId",

@@ -10,6 +10,6 @@ namespace TicketsBooking.DAL.Entities
         public double Price { get; set; }
         public string LocationFrom { get; set; }
         public string LocationTo { get; set; }
-
+        public User User { get; set; }
     }
 }
