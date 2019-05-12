@@ -52,18 +52,87 @@ namespace TicketsBooking.Test.BLL
             Assert.Single(ticketService.GetAll());
         }
 
+        [Fact]
+        public void DeleteTest()
+        {
+            //Arrange
+            List<Ticket> tickets = new List<Ticket>();
+            var ticket1 = new Ticket() { Id = 1, Price = 400, FlightId = 1 };
+            var ticket2 = new Ticket() { Id = 2, Price = 200, FlightId = 2 };
+            tickets.Add(ticket1);
+            tickets.Add(ticket2);
+            
+            //Act
+            ticketMockRepository.Setup(x => x.GetAll()).Returns(tickets);
+            ticketMockRepository.Setup(x => x.Delete(ticket1.Id.ToString()));
+            mapper.Setup(x => x.Map<Ticket>(ticket1)).Returns(ticket1);
 
+            ticketService.Delete(ticket1.Id);
+
+
+            //Assert
+            Assert.Null(ticketService.Get(ticket1.Id));
+        }
+
+        [Fact]
+        public void GetAllTest()
+        {
+            //Arrange
+            var testCollection = GetTicketCollection();
+
+            //Act
+            var actualCollection = ticketService.GetAll();
+
+            //Assert
+            Assert.Equal(testCollection.Count(), actualCollection.Count());
+
+        }
+
+        [Fact]
+        public void GetTicketTest()
+        {
+            //Arrange
+            int index = 1;
+            var testTicket = GetTicketCollection().ElementAt(index);
+
+            //Act            
+            ticketMockRepository.Setup(x => x.Get(index.ToString())).Returns(GetTicketCollection().ElementAt(index));
+            mapper.Setup(x => x.Map<TicketDTO>(It.IsAny<Ticket>())).Returns(GetTicketCollectionDTO().ElementAt(index));
+            var actualTicket = ticketService.Get(index);
+
+            //Assert
+            Assert.Equal(testTicket.Id, actualTicket.Id);
+            Assert.Equal(testTicket.Price, actualTicket.Price);
+            Assert.Equal(testTicket.Type.Id, actualTicket.Type.Id);
+        }
+
+        [Fact]
+        public void UpdateTicketTest()
+        {
+
+            //Arrange
+            int index = 1;
+            var testTicket = GetTicketCollection().ElementAt(index);
+
+            //Act            
+            ticketMockRepository.Setup(x => x.Get(index.ToString())).Returns(GetTicketCollection().ElementAt(index));
+            mapper.Setup(x => x.Map<TicketDTO>(It.IsAny<Ticket>())).Returns(GetTicketCollectionDTO().ElementAt(index));
+            var actualTicket = ticketService.Get(index);
+        }
 
         //Test data
 
         private void Initialize()
         {
-            mapper.Setup(x => x.Map<Ticket>(GetTicketCollection().ToList()[0])).Returns(GetTicketCollection().ToList()[0]);
-            mapper.Setup(x => x.Map<Ticket>(GetTicketCollection().ToList()[1])).Returns(GetTicketCollection().ToList()[1]);
-            mapper.Setup(x => x.Map<Ticket>(GetTicketCollection().ToList()[2])).Returns(GetTicketCollection().ToList()[2]);
-            mapper.Setup(x => x.Map<Ticket>(GetTicketCollection().ToList()[3])).Returns(GetTicketCollection().ToList()[3]);
-            mapper.Setup(x => x.Map<Ticket>(GetTicketCollection().ToList()[4])).Returns(GetTicketCollection().ToList()[4]);
-            mapper.Setup(x => x.Map<Ticket>(GetTicketCollection().ToList()[5])).Returns(GetTicketCollection().ToList()[5]);
+            mapper.Setup(x => x.Map<TicketDTO>(GetTicketCollection().ToList()[0])).Returns(GetTicketCollectionDTO().ToList()[0]);
+            mapper.Setup(x => x.Map<TicketDTO>(GetTicketCollection().ToList()[1])).Returns(GetTicketCollectionDTO().ToList()[1]);
+            mapper.Setup(x => x.Map<TicketDTO>(GetTicketCollection().ToList()[2])).Returns(GetTicketCollectionDTO().ToList()[2]);
+            mapper.Setup(x => x.Map<TicketDTO>(GetTicketCollection().ToList()[3])).Returns(GetTicketCollectionDTO().ToList()[3]);
+            mapper.Setup(x => x.Map<TicketDTO>(GetTicketCollection().ToList()[4])).Returns(GetTicketCollectionDTO().ToList()[4]);
+            mapper.Setup(x => x.Map<TicketDTO>(GetTicketCollection().ToList()[5])).Returns(GetTicketCollectionDTO().ToList()[5]);
+
+
+            ticketMockRepository.Setup(x => x.GetAll()).Returns(GetTicketCollection());
         }
 
         private IEnumerable<Ticket> GetTicketCollection()
@@ -71,13 +140,28 @@ namespace TicketsBooking.Test.BLL
             var ticketType = new TicketType() { TypeName = "econom" };
             return new[]
             {
-                new Ticket { Price = 273, Type = ticketType },
-                new Ticket { Price = 112, Type = ticketType },
-                new Ticket { Price = 231, Type = ticketType },
-                new Ticket { Price = 221, Type = ticketType },
-                new Ticket { Price = 100, Type = ticketType },
-                new Ticket { Price = 321, Type = ticketType }
+                new Ticket { Id = 1,  Price = 273, Type = ticketType },
+                new Ticket { Id = 2, Price = 112, Type = ticketType },
+                new Ticket { Id = 3, Price = 231, Type = ticketType },
+                new Ticket { Id = 4, Price = 221, Type = ticketType },
+                new Ticket { Id = 5, Price = 100, Type = ticketType },
+                new Ticket { Id = 6, Price = 321, Type = ticketType }
             };
         }
+
+        private IEnumerable<TicketDTO> GetTicketCollectionDTO()
+        {
+            var ticketType = new TicketTypeDTO() { TypeName = "econom" };
+            return new[]
+            {
+                new TicketDTO { Id = 1,  Price = 273, Type = ticketType },
+                new TicketDTO { Id = 2, Price = 112, Type = ticketType },
+                new TicketDTO { Id = 3, Price = 231, Type = ticketType },
+                new TicketDTO { Id = 4, Price = 221, Type = ticketType },
+                new TicketDTO { Id = 5, Price = 100, Type = ticketType },
+                new TicketDTO { Id = 6, Price = 321, Type = ticketType }
+            };
+        }
+
     }
 }
