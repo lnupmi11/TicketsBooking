@@ -2,7 +2,6 @@
 using TicketsBooking.DAL.Interfaces;
 using TicketsBooking.DAL.Entities;
 using TicketsBooking.DAL.Repositories;
-using TicketsBooking.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -82,6 +81,10 @@ namespace TicketsBooking.DAL.UnitOfWork
                     _userRepository = new GenericRepository<User>(_context);
                 }
                 return _userRepository;
+            }
+            set
+            {
+                this.UserRepository =  new GenericRepository<User>(_context);
             }
         }
 
