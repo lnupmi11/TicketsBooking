@@ -52,8 +52,7 @@ namespace TicketsBooking.Test.BLL
             Assert.Equal(testCollection.ElementAt(0).UserName, actualCollection.ElementAt(0).UserName);
 
         }
-
-
+        
         [Fact]
         public void GetUserTest()
         {
@@ -72,6 +71,56 @@ namespace TicketsBooking.Test.BLL
             Assert.Equal(testUser.LastName, actualUser.LastName);
         }
 
+        [Fact]
+        public void ChangeUsernameTest()
+        {
+            //Arrange
+            int index = 0;
+            var testUser = GetUserCollection().ElementAt(index);
+
+            //Act
+            userMockRepository.Setup(x => x.Get(index.ToString())).Returns(GetUserCollection().ElementAt(index));
+            mapper.Setup(x => x.Map<User>(It.IsAny<User>())).Returns(GetUserCollection().ElementAt(index));
+            userService.ChangeUsername(testUser, "newname");
+
+            //Assert
+            Assert.Equal(testUser.UserName, "newname");
+        }
+
+        [Fact]
+        public void ChangeFirstnameTest()
+        {
+            //Arrange
+            int index = 0;
+            var testUser = GetUserCollection().ElementAt(index);
+
+            //Act
+            userMockRepository.Setup(x => x.Get(index.ToString())).Returns(GetUserCollection().ElementAt(index));
+            mapper.Setup(x => x.Map<User>(It.IsAny<User>())).Returns(GetUserCollection().ElementAt(index));
+            userService.ChangeFirstname(testUser, "NewFirstname");
+
+            //Assert
+            Assert.Equal(testUser.FirstName, "NewFirstname");
+        }
+
+        [Fact]
+        public void ChangeLastnameTest()
+        {
+            //Arrange
+            int index = 0;
+            var testUser = GetUserCollection().ElementAt(index);
+
+            //Act
+            userMockRepository.Setup(x => x.Get(index.ToString())).Returns(GetUserCollection().ElementAt(index));
+            mapper.Setup(x => x.Map<User>(It.IsAny<User>())).Returns(GetUserCollection().ElementAt(index));
+            userService.ChangeLastname(testUser, "NewLastname");
+
+            //Assert
+            Assert.Equal(testUser.LastName, "NewLastname");
+        }
+
+
+       
         //Test data
 
         private void Initialize()
@@ -82,8 +131,6 @@ namespace TicketsBooking.Test.BLL
             mapper.Setup(x => x.Map<User>(GetUserCollection().ToList()[3])).Returns(GetUserCollection().ToList()[3]);
             mapper.Setup(x => x.Map<User>(GetUserCollection().ToList()[4])).Returns(GetUserCollection().ToList()[4]);
             mapper.Setup(x => x.Map<User>(GetUserCollection().ToList()[5])).Returns(GetUserCollection().ToList()[5]);
-
-
         }
 
         private IEnumerable<User> GetUserCollection()

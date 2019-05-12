@@ -35,6 +35,10 @@ namespace TicketsBooking.DAL.UnitOfWork
                 }
                 return _ticketRepository;
             }
+            set
+            {
+                this._ticketRepository = value ?? new GenericRepository<Ticket>(_context);
+            }
         }
 
         public IRepository<Flight> FlightRepository
@@ -69,7 +73,7 @@ namespace TicketsBooking.DAL.UnitOfWork
                 }
                 return _ticketTypeRepository;
             }
-
+           
         }
 
         public IRepository<User> UserRepository
