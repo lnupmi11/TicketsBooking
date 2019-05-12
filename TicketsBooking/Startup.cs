@@ -57,6 +57,8 @@ namespace TicketsBooking
 
             services.AddTransient<IServiceUser, UserService>();
 
+            services.AddTransient<IServiceBoughtTicket, BoughtTicketService>();
+
             services.AddScoped(typeof(IUnitOfWork), typeof(TicketsBookingUnitOfWork));
 
             services.AddTransient<IServiceFlight, FlightService>();

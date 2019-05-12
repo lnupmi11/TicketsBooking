@@ -10,7 +10,7 @@ using TicketsBooking.DAL.EntityFramework;
 namespace TicketsBooking.DAL.Migrations
 {
     [DbContext(typeof(TicketsBookingContext))]
-    [Migration("20190511091225_MyFirstMigration")]
+    [Migration("20190512115007_MyFirstMigration")]
     partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,6 +150,27 @@ namespace TicketsBooking.DAL.Migrations
                         .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("TicketsBooking.DAL.Entities.BoughtTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LocationFrom");
+
+                    b.Property<string>("LocationTo");
+
+                    b.Property<double>("Price");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BoughtTickets");
                 });
 
             modelBuilder.Entity("TicketsBooking.DAL.Entities.Flight", b =>
@@ -318,6 +339,13 @@ namespace TicketsBooking.DAL.Migrations
                     b.HasOne("TicketsBooking.DAL.Entities.User")
                         .WithOne("Basket")
                         .HasForeignKey("TicketsBooking.DAL.Entities.Basket", "UserId");
+                });
+
+            modelBuilder.Entity("TicketsBooking.DAL.Entities.BoughtTicket", b =>
+                {
+                    b.HasOne("TicketsBooking.DAL.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TicketsBooking.DAL.Entities.Ticket", b =>

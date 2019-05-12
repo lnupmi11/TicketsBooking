@@ -42,7 +42,7 @@ namespace TicketsBooking.Controllers
             var tickets = new List<TicketViewModel>();
             foreach (var iteam in flights)
             {
-                var listTicket = _unitOfWork.TicketRepository.GetQuery().Include(t => t.Basket).Where(t => t.Basket == null);
+                var listTicket = _unitOfWork.TicketRepository.GetQuery().Include(t => t.Basket).Where(t => t.Basket == null).Where(t=>t.FlightId == iteam.Id);
 
                 foreach (var ticket in listTicket)
                 {

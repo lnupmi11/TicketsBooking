@@ -150,6 +150,27 @@ namespace TicketsBooking.DAL.Migrations
                     b.ToTable("Baskets");
                 });
 
+            modelBuilder.Entity("TicketsBooking.DAL.Entities.BoughtTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LocationFrom");
+
+                    b.Property<string>("LocationTo");
+
+                    b.Property<double>("Price");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BoughtTickets");
+                });
+
             modelBuilder.Entity("TicketsBooking.DAL.Entities.Flight", b =>
                 {
                     b.Property<int>("Id")
@@ -316,6 +337,13 @@ namespace TicketsBooking.DAL.Migrations
                     b.HasOne("TicketsBooking.DAL.Entities.User")
                         .WithOne("Basket")
                         .HasForeignKey("TicketsBooking.DAL.Entities.Basket", "UserId");
+                });
+
+            modelBuilder.Entity("TicketsBooking.DAL.Entities.BoughtTicket", b =>
+                {
+                    b.HasOne("TicketsBooking.DAL.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TicketsBooking.DAL.Entities.Ticket", b =>
