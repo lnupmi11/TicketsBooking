@@ -39,10 +39,17 @@ namespace TicketsBooking.Test.BLL
         public void GetAllTest()
         {
             //Arrange
+            var testCollection = GetUserCollection();
+
+            //Act
+            var actualCollection = userService.GetAll();
 
             //Assert
-            Assert.Equal(1, 1);
-                       
+            Assert.Equal(testCollection.Count(), actualCollection.Count());
+            Assert.Equal(testCollection.ElementAt(0).FirstName, actualCollection.ElementAt(0).FirstName);
+            Assert.Equal(testCollection.ElementAt(0).LastName, actualCollection.ElementAt(0).LastName);
+            Assert.Equal(testCollection.ElementAt(0).UserName, actualCollection.ElementAt(0).UserName);
+
         }
 
 
