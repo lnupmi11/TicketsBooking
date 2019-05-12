@@ -22,42 +22,42 @@ namespace TicketsBooking.BLL.Services
         {
             if (boughtTicketDTO != null)
             {
-                var flight = _mapper.Map<BoughtTicket>(boughtTicketDTO);
-                _unitOfWork.FlightRepository.Create(flight);
+                var boughtTicket = _mapper.Map<BoughtTicket>(boughtTicketDTO);
+                _unitOfWork.BoughtTicketRepository.Create(boughtTicket);
             }
         }
 
         public void Delete(int id)
         {
-            _unitOfWork.FlightRepository.Delete(id.ToString());
+            _unitOfWork.BoughtTicketRepository.Delete(id.ToString());
         }
 
         public BoughtTicketDTO Get(int id)
         {
-            var flight = _unitOfWork.FlightRepository.Get(id.ToString());
-            var flightDTO = _mapper.Map<BoughtTicketDTO>(flight);
+            var boughtTicket = _unitOfWork.BoughtTicketRepository.Get(id.ToString());
+            var boughtTicketDTO = _mapper.Map<BoughtTicketDTO>(boughtTicket);
 
-            return flightDTO;
+            return boughtTicketDTO;
         }
 
         public IEnumerable<BoughtTicketDTO> GetAll()
         {
-            var flights = _unitOfWork.FlightRepository.GetAll();
-            var flightDTO = new List<BoughtTicketDTO>();
+            var boughtTickets = _unitOfWork.BoughtTicketRepository.GetAll();
+            var boughtTicketDTO = new List<BoughtTicketDTO>();
 
-            foreach (var item in flights)
+            foreach (var item in boughtTickets)
             {
-                var flight = _mapper.Map<BoughtTicketDTO>(item);
-                flightDTO.Add(flight);
+                var boughtTicket = _mapper.Map<BoughtTicketDTO>(item);
+                boughtTicketDTO.Add(boughtTicket);
             }
 
-            return flightDTO;
+            return boughtTicketDTO;
         }
 
-        public void Update(BoughtTicketDTO flightDTO)
+        public void Update(BoughtTicketDTO boughtTicketDTO)
         {
-            var flight = _mapper.Map<Flight>(flightDTO);
-            _unitOfWork.FlightRepository.Update(flight);
+            var boughtTickets = _mapper.Map<Flight>(boughtTicketDTO);
+            _unitOfWork.FlightRepository.Update(boughtTickets);
             _unitOfWork.SaveChanges();
         }
     }
