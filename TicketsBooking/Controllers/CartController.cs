@@ -119,7 +119,6 @@ namespace TicketsBooking.Controllers
                 LocationFrom = viewTicket.LocationFrom,
                 LocationTo = viewTicket.LocationTo,
                 Price = viewTicket.Price,
-                Id = viewTicket.Id
             };
 
 
