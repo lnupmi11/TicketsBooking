@@ -18,6 +18,7 @@ namespace TicketsBooking.DAL.UnitOfWork
         IRepository<TicketType> _ticketTypeRepository;
         IRepository<Ticket> _ticketRepository;
         IRepository<User> _userRepository;
+        IRepository<BoughtTicket> _boughtTicketRepository;
 
         //IRepository<User> _userRepository;
 
@@ -82,6 +83,18 @@ namespace TicketsBooking.DAL.UnitOfWork
                     _userRepository = new GenericRepository<User>(_context);
                 }
                 return _userRepository;
+            }
+        }
+
+        public IRepository<BoughtTicket> BoughtTicketRepository
+        {
+            get
+            {
+                if (_boughtTicketRepository == null)
+                {
+                    _boughtTicketRepository = new GenericRepository<BoughtTicket>(_context);
+                }
+                return _boughtTicketRepository;
             }
         }
 

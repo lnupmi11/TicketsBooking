@@ -9,6 +9,7 @@ namespace TicketsBooking.DAL.Interfaces
         IRepository<Flight> FlightRepository { get; }
         IRepository<Basket> BasketRepository { get; }
         IRepository<TicketType> TicketTypeRepository { get; }
+        IRepository<BoughtTicket> BoughtTicketRepository { get; }
         void SaveChanges();
     }
 }
