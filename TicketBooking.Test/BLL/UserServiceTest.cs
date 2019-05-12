@@ -42,6 +42,7 @@ namespace TicketsBooking.Test.BLL
             var testCollection = GetUserCollection();
 
             //Act
+            userMockRepository.Setup(x => x.GetAll()).Returns(GetUserCollection());
             var actualCollection = userService.GetAll();
 
             //Assert
@@ -53,20 +54,36 @@ namespace TicketsBooking.Test.BLL
         }
 
 
+        [Fact]
+        public void GetUserTest()
+        {
+            //Arrange
+            int index = 0;
+            var testUser = GetUserCollection().ElementAt(index);
+
+            //Act
+            userMockRepository.Setup(x => x.Get(index.ToString())).Returns(GetUserCollection().ElementAt(index));
+            mapper.Setup(x => x.Map<User>(It.IsAny<User>())).Returns(GetUserCollection().ElementAt(index));
+            var actualUser = userService.GetUser(index.ToString());
+
+            //Assert
+            Assert.Equal(testUser.UserName, actualUser.UserName);
+            Assert.Equal(testUser.FirstName, actualUser.FirstName);
+            Assert.Equal(testUser.LastName, actualUser.LastName);
+        }
 
         //Test data
 
         private void Initialize()
         {
-            mapper.Setup(x => x.Map<UserDTO>(GetUserCollection().ToList()[0])).Returns(GetUserCollectionDTO().ToList()[0]);
-            mapper.Setup(x => x.Map<UserDTO>(GetUserCollection().ToList()[1])).Returns(GetUserCollectionDTO().ToList()[1]);
-            mapper.Setup(x => x.Map<UserDTO>(GetUserCollection().ToList()[2])).Returns(GetUserCollectionDTO().ToList()[2]);
-            mapper.Setup(x => x.Map<UserDTO>(GetUserCollection().ToList()[3])).Returns(GetUserCollectionDTO().ToList()[3]);
-            mapper.Setup(x => x.Map<UserDTO>(GetUserCollection().ToList()[4])).Returns(GetUserCollectionDTO().ToList()[4]);
-            mapper.Setup(x => x.Map<UserDTO>(GetUserCollection().ToList()[5])).Returns(GetUserCollectionDTO().ToList()[5]);
+            mapper.Setup(x => x.Map<User>(GetUserCollection().ToList()[0])).Returns(GetUserCollection().ToList()[0]);
+            mapper.Setup(x => x.Map<User>(GetUserCollection().ToList()[1])).Returns(GetUserCollection().ToList()[1]);
+            mapper.Setup(x => x.Map<User>(GetUserCollection().ToList()[2])).Returns(GetUserCollection().ToList()[2]);
+            mapper.Setup(x => x.Map<User>(GetUserCollection().ToList()[3])).Returns(GetUserCollection().ToList()[3]);
+            mapper.Setup(x => x.Map<User>(GetUserCollection().ToList()[4])).Returns(GetUserCollection().ToList()[4]);
+            mapper.Setup(x => x.Map<User>(GetUserCollection().ToList()[5])).Returns(GetUserCollection().ToList()[5]);
 
 
-            userMockRepository.Setup(x => x.GetAll()).Returns(GetUserCollection());
         }
 
         private IEnumerable<User> GetUserCollection()
@@ -81,19 +98,7 @@ namespace TicketsBooking.Test.BLL
                 new User{UserName = "username6",  FirstName = "firstname6", LastName = "lastname6"}
             };
         }
-
-        private IEnumerable<UserDTO> GetUserCollectionDTO()
-        {
-            return new[]
-            {
-                new UserDTO{UserName = "username1",  FirstName = "firstname1", LastName = "lastname1"},
-                new UserDTO{UserName = "username2",  FirstName = "firstname2", LastName = "lastname2"},
-                new UserDTO{UserName = "username3",  FirstName = "firstname3", LastName = "lastname3"},
-                new UserDTO{UserName = "username4",  FirstName = "firstname4", LastName = "lastname4"},
-                new UserDTO{UserName = "username5",  FirstName = "firstname5", LastName = "lastname5"},
-                new UserDTO{UserName = "username6",  FirstName = "firstname6", LastName = "lastname6"}
-            };
-        }
+        
 
     }
 }
