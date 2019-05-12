@@ -18,7 +18,7 @@ namespace TicketsBooking.Test.BLL
 {
     public class UserServiceTest
     {
-        private  UserService userService;
+        private readonly IServiceUser userService;
         private TicketsBookingUnitOfWork unitOfWork;
         private Mock<IRepository<User>> userMockRepository;
         private Mock<IMapper> mapper;

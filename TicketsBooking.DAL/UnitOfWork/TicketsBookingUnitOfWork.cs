@@ -84,7 +84,7 @@ namespace TicketsBooking.DAL.UnitOfWork
             }
             set
             {
-                this.UserRepository =  new GenericRepository<User>(_context);
+                this._userRepository = value ?? new GenericRepository<User>(_context);
             }
         }
 

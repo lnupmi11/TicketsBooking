@@ -9,26 +9,25 @@ namespace TicketsBooking.DAL.Repositories
     class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private DbContext _context;
-        private DbSet<TEntity> _dbSet;
 
         public GenericRepository(DbContext context)
         {
             _context = context;
-            _dbSet = context.Set<TEntity>();
+           
         }
 
         public void Create(TEntity entity)
         {
-            _dbSet.Add(entity);
+            _context.Set<TEntity>().Add(entity);
             _context.SaveChanges();
         }
 
         public void Delete(string id)
         {
-            var entity = _dbSet.Find(Int32.Parse(id));
+            var entity = _context.Set<TEntity>().Find(Int32.Parse(id));
             if (entity != null)
             {
-                _dbSet.Remove(entity);
+                _context.Set<TEntity>().Remove(entity);
             }
             _context.SaveChanges();
         }
@@ -41,27 +40,27 @@ namespace TicketsBooking.DAL.Repositories
 
         public IEnumerable<TEntity> GetAllWhere(Func<TEntity, bool> condition)
         {
-            return _dbSet.Where(condition);
+            return _context.Set<TEntity>().Where(condition);
         }
 
         public TEntity Get(string id)
         {
-            return _dbSet.Find(Int32.Parse(id));
+            return _context.Set<TEntity>().Find(Int32.Parse(id));
         }
 
         public TEntity Get(Func<TEntity, bool> condition)
         {
-            return _dbSet.FirstOrDefault(condition);
+            return _context.Set<TEntity>().FirstOrDefault(condition);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _dbSet.ToList();
+            return _context.Set<TEntity>().ToList();
         }
 
         public IQueryable<TEntity> GetQuery()
         {
-            return _dbSet;
+            return _context.Set<TEntity>();
         }
 
         public void SaveChanges()
