@@ -150,6 +150,23 @@ namespace TicketsBooking.DAL.Migrations
                     b.ToTable("Baskets");
                 });
 
+            modelBuilder.Entity("TicketsBooking.DAL.Entities.BoughtTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LocationFrom");
+
+                    b.Property<string>("LocationTo");
+
+                    b.Property<double>("Price");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BoughtTickets");
+                });
+
             modelBuilder.Entity("TicketsBooking.DAL.Entities.Flight", b =>
                 {
                     b.Property<int>("Id")

@@ -51,6 +51,21 @@ namespace TicketsBooking.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BoughtTickets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Price = table.Column<double>(nullable: false),
+                    LocationFrom = table.Column<string>(nullable: true),
+                    LocationTo = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BoughtTickets", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Flights",
                 columns: table => new
                 {
@@ -317,6 +332,9 @@ namespace TicketsBooking.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "BoughtTickets");
 
             migrationBuilder.DropTable(
                 name: "Tickets");

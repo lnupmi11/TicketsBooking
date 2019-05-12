@@ -10,7 +10,7 @@ using TicketsBooking.DAL.EntityFramework;
 namespace TicketsBooking.DAL.Migrations
 {
     [DbContext(typeof(TicketsBookingContext))]
-    [Migration("20190511091225_MyFirstMigration")]
+    [Migration("20190512111408_MyFirstMigration")]
     partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,6 +150,23 @@ namespace TicketsBooking.DAL.Migrations
                         .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("TicketsBooking.DAL.Entities.BoughtTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LocationFrom");
+
+                    b.Property<string>("LocationTo");
+
+                    b.Property<double>("Price");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BoughtTickets");
                 });
 
             modelBuilder.Entity("TicketsBooking.DAL.Entities.Flight", b =>
