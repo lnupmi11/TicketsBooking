@@ -1,10 +1,14 @@
-﻿@model IEnumerable<TicketsBooking.Models.TicketViewModel>
+﻿@model IEnumerable<TicketsBooking.Models.FlightViewModel>
 
 <link rel="stylesheet" href="~/css/main.css">
 <script src="~/js/main.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-<title>Tickets</title>
+<title>Flights</title>
+
 
 <header class="header">
     <div class="container">
@@ -21,6 +25,9 @@
                 </li>
                 <li class="header_menu-item">
                     <a class="header_menu-item--link" href="/Admin/Flights">Flights</a>
+                </li>
+                <li class="header_menu-item">
+                    <a class="header_menu-item--link" href="#">Users</a>
                 </li>
                 <li class="header_menu-item">
                     <a class="header_menu-item--link" href="">Add Ticket</a>
@@ -43,43 +50,31 @@
     </div>
 </header>
 
+
 <div class="admin-tickets-page">
     <h1>All tickets that are available for users:</h1>
     @if (Model != null)
     {
         @foreach (var item in Model)
         {
-            <div class="ticket">
-                <div class="ticket-id">
-                    <p>ID:<span>@item.Id</span></p>
-                </div>
-                <div class="ticket-main_info">
-                    <div class="duration">
-                        <div class="company">Company</div>
-                        <div class="time">
-                            <p>@item.FlightDepartmentDate.Hour</p>
-                            <p>@item.LocationFrom</p>
-                            <span>@item.FlightDepartmentDate</span>
-                        </div>
-                        <div class="time">
-                            <p>@item.FlightArrivingDate.Hour</p>
-                            <p>@item.LocationTo</p>
-                            <span>@item.FlightArrivingDate</span>
-                        </div>
-                        <span class="lnr lnr-arrow-right"></span>
-                    </div>
-                    <div class="price">
-                        <p>@item.Price $</p>
-                    </div>
-                </div>
-                @if (User.Identity.IsAuthenticated)
-                {
-                <div class="buttons">
-                    <button onclick="window.location.href = '@Url.Action("EditTicket", "Admin" , new { id = item.Id }, null)'">Edit</button>
-                    <button onclick="window.location.href = '@Url.Action("DeleteTicket", "Admin" , new { id = item.Id }, null)'">Delete</button>
-                </div>
-                }
-            </div>
+    <div class="flight-item d-flex justify-content-between  mb-3">
+        <div class="p-2 flight-from">
+            <h2>From : @item.cityFrom</h2>
+            <p>@item.dateTimeDeparture</p>
+        </div>
+        <div class="p-2"><i class="fa fa-plane" style="font-size:36px"></i></div>
+        <div class="p-2 flight-to">
+            <h2>To: @item.cityTo</h2>
+            <p>@item.dateTimeArriving</p>
+        </div>
+        <div class="p-2 btn-group-vertical">
+            <button type="button" class="btn btn-primary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+            
+            
+        
         }
     }
 

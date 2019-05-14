@@ -28,6 +28,7 @@ namespace TicketsBooking.Controllers
             _serviceUser = serviceUser;
             _unitOfWork = unitOfWork;
         }
+
         public IActionResult AddTicket()
         {
             return View();
@@ -39,19 +40,19 @@ namespace TicketsBooking.Controllers
             var flights = _flightService.GetAll();
 
             var tickets = new List<TicketViewModel>();
-            foreach (var iteam in flights)
+            foreach (var item in flights)
             {
-                var itemTickets = _ticketService.GetAll().Where(x => x.FlightID == iteam.Id).ToList();
+                var itemTickets = _ticketService.GetAll().Where(x => x.FlightID == item.Id).ToList();
                 foreach (var ticket in itemTickets)
                 {
                     var viewTicket = new TicketViewModel()
                     {
                         Id = ticket.Id,
                         Price = ticket.Price,
-                        FlightArrivingDate = iteam.FlightArrivingDate,
-                        FlightDepartmentDate = iteam.FlightDepartmentDate,
-                        LocationFrom = iteam.LocationFrom,
-                        LocationTo = iteam.LocationTo
+                        FlightArrivingDate = item.FlightArrivingDate,
+                        FlightDepartmentDate = item.FlightDepartmentDate,
+                        LocationFrom = item.LocationFrom,
+                        LocationTo = item.LocationTo
                     };
                     tickets.Add(viewTicket);
                 }
@@ -62,17 +63,17 @@ namespace TicketsBooking.Controllers
             }
             return View();
         }
+        
+        
 
-        //TODO: available for admin only
-        [Authorize]
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteTicket(int id)
         {
             _ticketService.Delete(id);
             return RedirectToAction("GetAllTickets", "Admin");
         }
+        
 
-        [Authorize]
         [Authorize(Roles = "Admin")]
         public IActionResult EditTicket(int id)
         {
@@ -98,6 +99,31 @@ namespace TicketsBooking.Controllers
             _ticketService.Update(ticket);
 
             return RedirectToAction("GetAllTickets", "Admin");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Flights()
+        {
+            var flights = _flightService.GetAll();
+
+            var data = new List<FlightViewModel>();
+            foreach (var item in flights)
+            {
+                var flight = new FlightViewModel()
+                {
+                    cityFrom = item.LocationFrom,
+                    cityTo = item.LocationTo,
+                    dateTimeDeparture = item.FlightDepartmentDate,
+                    dateTimeArriving = item.FlightArrivingDate
+                };
+                data.Add(flight);
+                
+            }
+            if (data.Count != 0)
+            {
+                return View(data);
+            }
+            return View();
         }
     }
 }

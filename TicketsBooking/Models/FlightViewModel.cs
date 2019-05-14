@@ -10,6 +10,9 @@ namespace TicketsBooking.Models
         public string cityFrom { get; set; }
         public string cityTo { get; set; }
         public DateTime dateTime { get; set; }
+
+        public DateTime dateTimeDeparture { get; set; }
+        public DateTime dateTimeArriving { get; set; }
         public int Count { get; set; }
     }
 }
