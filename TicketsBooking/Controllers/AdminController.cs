@@ -33,6 +33,7 @@ namespace TicketsBooking.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult GetAllTickets()
         {
             var flights = _flightService.GetAll();
@@ -64,11 +65,39 @@ namespace TicketsBooking.Controllers
 
         //TODO: available for admin only
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteTicket(int id)
         {
             _ticketService.Delete(id);
             return RedirectToAction("GetAllTickets", "Admin");
         }
 
+        [Authorize]
+        [Authorize(Roles = "Admin")]
+        public IActionResult EditTicket(int id)
+        {
+            var ticket = _ticketService.Get(id);
+            var flight = _flightService.Get(ticket.FlightID);
+            var viewTicket = new TicketViewModel()
+            {
+                Id = ticket.Id,
+                Price = ticket.Price,
+                FlightArrivingDate = flight.FlightArrivingDate,
+                FlightDepartmentDate = flight.FlightDepartmentDate,
+                LocationFrom = flight.LocationFrom,
+                LocationTo = flight.LocationTo,
+                Type = ticket.Type,
+                FlightId = flight.Id
+            };
+            return View(viewTicket);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdateTicket(TicketDTO ticket)
+        {
+            _ticketService.Update(ticket);
+
+            return RedirectToAction("GetAllTickets", "Admin");
+        }
     }
 }
