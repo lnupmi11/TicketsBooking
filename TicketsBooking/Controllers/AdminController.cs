@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TicketsBooking.BLL.Interfaces;
@@ -59,6 +60,14 @@ namespace TicketsBooking.Controllers
                 return View(tickets);
             }
             return View();
+        }
+
+        //TODO: available for admin only
+        [Authorize]
+        public IActionResult DeleteTicket(int id)
+        {
+            _ticketService.Delete(id);
+            return RedirectToAction("GetAllTickets", "Admin");
         }
 
     }

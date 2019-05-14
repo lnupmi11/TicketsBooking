@@ -75,8 +75,8 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                 <div class="buttons">
-                    <button onclick="window.location.href = '@Url.Action("AddToCart", "Ticket" , new { id = item.Id }, null)'">Edit</button>
-                    <button onclick="window.location.href = '@Url.Action("AddToCart", "Ticket" , new { id = item.Id }, null)'">Delete</button>
+                    <button onclick="window.location.href = '@Url.Action("EditTicket", "Admin" , new { id = item.Id }, null)'">Edit</button>
+                    <button onclick="window.location.href = '@Url.Action("DeleteTicket", "Admin" , new { id = item.Id }, null)'">Delete</button>
                 </div>
                 }
             </div>
