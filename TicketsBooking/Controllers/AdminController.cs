@@ -161,6 +161,20 @@ namespace TicketsBooking.Controllers
             return RedirectToAction("Flights", "Admin");
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddFlight()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddFlight(FlightDTO flight)
+        {
+            _flightService.Create(flight);
+            return RedirectToAction("Flights", "Admin");
+        }
+
 
     }
 
