@@ -30,10 +30,7 @@ namespace TicketsBooking.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult AddTicket()
-        {
-            return View();
-        }
+  
 
         [Authorize(Roles = "Admin")]
         public IActionResult GetAllTickets()
@@ -175,7 +172,53 @@ namespace TicketsBooking.Controllers
             return RedirectToAction("Flights", "Admin");
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddTicket()
+        {
+            var flights = _flightService.GetAll();
+            var ticketTypes = _unitOfWork.TicketTypeRepository.GetAll();
+            var typesDTO = new List<TicketTypeDTO>();
+            foreach(var t in ticketTypes)
+            {
+                var type = new TicketTypeDTO
+                {
+                    Id = t.Id,
+                    TypeName = t.TypeName
+                };
+                typesDTO.Add(type);
+            }
+            var addTicketModel = new AddTicketModel()
+            {
+                Flights = flights,
+                Types = typesDTO
+            };
+            return View(addTicketModel);
+        }
 
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddTicket(AddTicketResultModel ticket)
+        {
+            var type = _unitOfWork.TicketTypeRepository.Get(ticket.TypeID);
+            var typeDTO = new TicketTypeDTO
+            {
+                Id = type.Id,
+                TypeName = type.TypeName
+            };
+            var ticketDTO = new TicketDTO()
+            {
+                Price = ticket.Price,
+                Type = typeDTO,
+                FlightID = ticket.FlightID
+            };
+
+            for (int i=0; i< ticket.Amount; i++)
+            {
+                _ticketService.Create(ticketDTO);
+            }
+            
+            return RedirectToAction("GetAllTickets", "Admin");
+        }
     }
 
 }

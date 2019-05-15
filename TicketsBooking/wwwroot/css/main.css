@@ -1134,5 +1134,8 @@
     margin-top:2vh;
     padding:10px;
 }
-
+.tr-input {
+    background: transparent;
+    border: none;
+}
 

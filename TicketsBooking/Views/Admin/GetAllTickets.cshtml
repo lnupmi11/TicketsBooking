@@ -45,6 +45,9 @@
 
 <div class="admin-tickets-page">
     <h1>All tickets that are available for users:</h1>
+    <div class="buttons">
+        <button onclick="window.location.href = '@Url.Action("AddTicket", "Admin")'">Add flight</button>
+    </div>
     @if (Model != null)
     {
         @foreach (var item in Model)
@@ -74,10 +77,10 @@
                 </div>
                 @if (User.Identity.IsAuthenticated)
                 {
-                <div class="buttons">
-                    <button onclick="window.location.href = '@Url.Action("EditTicket", "Admin" , new { id = item.Id }, null)'">Edit</button>
-                    <button onclick="window.location.href = '@Url.Action("DeleteTicket", "Admin" , new { id = item.Id }, null)'">Delete</button>
-                </div>
+                    <div class="buttons">
+                        <button onclick="window.location.href = '@Url.Action("EditTicket", "Admin" , new { id = item.Id }, null)'">Edit</button>
+                        <button onclick="window.location.href = '@Url.Action("DeleteTicket", "Admin" , new { id = item.Id }, null)'">Delete</button>
+                    </div>
                 }
             </div>
         }

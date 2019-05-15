@@ -1,4 +1,5 @@
-﻿
+﻿@model TicketsBooking.Models.AddTicketModel
+
 <link rel="stylesheet" href="~/css/main.css">
 <script src="~/js/main.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -7,7 +8,18 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-<title> Add Flight</title>
+<title> Add Ticket</title>
+
+<script>
+    function SelectFlightFunction() {
+        var x = document.getElementById("SelectFlight").value;
+        document.getElementById("SelectedFlight").value = x;
+
+        var x = document.getElementById("SelectType").value;
+        document.getElementById("SelectedType").value = x;
+    }
+</script>
+
 
 <header class="header">
     <div class="container">
@@ -25,7 +37,7 @@
                 <li class="header_menu-item">
                     <a class="header_menu-item--link" href="/Admin/Flights">Flights</a>
                 </li>
-               
+
 
                 <li class="header_menu-item">
                     <a class="header_menu-item--link" href=""> @User.Identity.Name </a>
@@ -46,49 +58,49 @@
 
 <div class="admin-edit-ticket">
 
-    <form method="post" action="/Admin/AddFlight">
-        <div class="flight-item d-flex justify-content-between  mb-3">
-            <div class="p-2 flight-from">
-                <p>
-                    <h2>From : </h2>
-                    <input placeholder="Change City"
-                           name="LocationFrom"
-                           value="" />
-                </p>
-                
-                <p>
-                    <input placeholder="Change Date"
-                           name="FlightDepartmentDate"
-                           value=""
-                           type="date"/>
-                </p>
-            </div>
-            <div class="p-2">
-                <i class="fa fa-plane" style="font-size:36px"></i>
-            </div>
-            <div class="p-2 flight-to">
-                <p>
-                    <h2>To: </h2>
-                    <input placeholder="Change City"
-                           name="LocationTo"
-                           value="" />
-                </p>
-                <p>
-                    <input placeholder="Change Date"
-                           name="FlightArrivingDate"
-                           value="" 
-                           type="date"/>
-                </p>
-            </div>
+    <form method="post" action="/Admin/AddTicket">
+        <p>
+            <select id="SelectFlight">
+                @foreach (var item in Model.Flights)
+                {
+                    <option value="@item.Id">@item.LocationFrom - @item.LocationTo ( @item.FlightDepartmentDate )</option>
+                }
+            </select>
 
-        </div>
+            <input id="SelectedFlight"
+                   value=""
+                   name="FlightID"
+                   class="tr-input"
+                   readonly />
+        </p>
+
+        <p>
+            <select id="SelectType">
+                @foreach (var item in Model.Types)
+                {
+                    <option value="@item.Id">@item.TypeName</option>
+                }
+            </select>
+
+            <input id="SelectedType"
+                   value=""
+                   name="TypeID"
+                   class="tr-input"
+                   readonly />
+        </p>
+
+        <p>Price: <input value="" name="Price" /></p>
+
+        <p>Amount: <input value="" name="Amount" /></p>
+
         <div class="buttons">
-            <button type="submit">Save Changes</button>
+            <button onclick="SelectFlightFunction()">Save Ticket</button>
+
         </div>
     </form>
 
     <div class="buttons">
-        <button onclick="window.location.href = '@Url.Action("Flights", "Admin")'">Cancel</button>
+        <button onclick="window.location.href = '@Url.Action("GetAllTickets", "Admin")'">Cancel</button>
 
     </div>
 </div>
@@ -143,5 +155,6 @@
         </div>
     </div>
 </footer>
+
 
 
