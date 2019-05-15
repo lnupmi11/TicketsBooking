@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TicketsBooking.Models.FlightViewModel>
+﻿@model TicketsBooking.Models.FlightViewModel
 
 <link rel="stylesheet" href="~/css/main.css">
 <script src="~/js/main.min.js"></script>
@@ -6,9 +6,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-<title>Flights</title>
 
+<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+<title> Edit Ticket</title>
 
 <header class="header">
     <div class="container">
@@ -50,40 +50,55 @@
     </div>
 </header>
 
+<div class="admin-edit-ticket">
 
-<div class="admin-tickets-page">
-    <h1>All tickets that are available for users:</h1>
-    @if (Model != null)
-    {
-        @foreach (var item in Model)
-        {
-            <div class="flight-item d-flex justify-content-between  mb-3">
-                <div class="p-2 flight-from">
-                    <h2>From : @item.cityFrom</h2>
-                    <p>@item.dateTimeDeparture</p>
-                </div>
-                <div class="p-2"><i class="fa fa-plane" style="font-size:36px"></i></div>
-                <div class="p-2 flight-to">
-                    <h2>To: @item.cityTo</h2>
-                    <p>@item.dateTimeArriving</p>
-                </div>
-                <div class="p-2 btn-group-vertical">
-                    <button type="button" class="btn btn-primary" onclick="window.location.href = '@Url.Action("EditFlight", "Admin" , new { id = item.Id }, null)'">Edit</button>
-                    <button type="button" class="btn btn-danger" onclick="window.location.href = '@Url.Action("DeleteFlight", "Admin" , new { id = item.Id }, null)'">Delete</button>
-                </div>
+    <form method="post" action="/Admin/UpdateFlight">
+        <div class="flight-item d-flex justify-content-between  mb-3">
+            <div class="p-2 flight-from">
+                <p>
+                    <h2>From : @Model.cityFrom</h2>
+                    <input placeholder="Change City"
+                           name="LocationFrom"
+                           value="" />
+                </p>
+                <p>@Model.dateTimeDeparture</p>
+                <p>
+                    <input placeholder="Change Date"
+                           name="FlightDepartmentDate"
+                           value="@Model.dateTimeDeparture" />
+                </p>
             </div>
-            
-            
-        
-        }
-    }
+            <div class="p-2">
+                <i class="fa fa-plane" style="font-size:36px"></i>
+                <p>
+                    ID: <input readonly value="@Model.Id" name="Id" />
+                </p>
+            </div>
+            <div class="p-2 flight-to">
+                <p>
+                    <h2>To: @Model.cityTo</h2>
+                    <input placeholder="Change City"
+                           name="LocationTo"
+                           value="" />
+                </p>
+                <p>@Model.dateTimeArriving</p>
+                <p>
+                    <input placeholder="Change Date"
+                           name="FlightArrivingDate"
+                           value="@Model.dateTimeArriving" />
+                </p>
+            </div>
 
+        </div>
+        <div class="buttons">
+            <button type="submit">Save Changes</button>
+        </div>
+    </form>
 
-    @if (Model == null)
-    {
-        <h3 style="text-align:center;">Sorry, but there are no tickets for the given parameters :( </h3>
-    }
+    <div class="buttons">
+        <button onclick="window.location.href = '@Url.Action("Flights", "Admin")'">Cancel</button>
 
+    </div>
 </div>
 
 <footer class="footer">
@@ -136,3 +151,5 @@
         </div>
     </div>
 </footer>
+
+

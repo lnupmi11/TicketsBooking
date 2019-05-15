@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TicketsBooking.BLL.Interfaces;
 using TicketsBooking.DAL.Interfaces;
+using TicketsBooking.DTO.Flight;
 using TicketsBooking.DTO.Ticket;
 using TicketsBooking.Models;
 
@@ -101,6 +102,8 @@ namespace TicketsBooking.Controllers
             return RedirectToAction("GetAllTickets", "Admin");
         }
 
+
+        
         [Authorize(Roles = "Admin")]
         public IActionResult Flights()
         {
@@ -111,6 +114,7 @@ namespace TicketsBooking.Controllers
             {
                 var flight = new FlightViewModel()
                 {
+                    Id = item.Id,
                     cityFrom = item.LocationFrom,
                     cityTo = item.LocationTo,
                     dateTimeDeparture = item.FlightDepartmentDate,
@@ -125,5 +129,31 @@ namespace TicketsBooking.Controllers
             }
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult EditFlight(int id)
+        {            
+            var flight = _flightService.Get(id);
+            var viewFlight = new FlightViewModel()
+            {
+                Id = flight.Id,
+                cityFrom = flight.LocationFrom,
+                cityTo = flight.LocationTo,
+                dateTimeDeparture = flight.FlightDepartmentDate,
+                dateTimeArriving = flight.FlightArrivingDate
+            };
+
+            return View(viewFlight);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdateFlight(FlightDTO flight)
+        {
+            _flightService.Update(flight);
+
+            return RedirectToAction("Flights", "Admin");
+        }
+
     }
+
 }
