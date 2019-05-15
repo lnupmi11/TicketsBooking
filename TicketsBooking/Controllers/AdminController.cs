@@ -154,6 +154,14 @@ namespace TicketsBooking.Controllers
             return RedirectToAction("Flights", "Admin");
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteFlight(int id)
+        {
+            _flightService.Delete(id);
+            return RedirectToAction("Flights", "Admin");
+        }
+
+
     }
 
 }
