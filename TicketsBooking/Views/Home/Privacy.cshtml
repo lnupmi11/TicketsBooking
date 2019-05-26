@@ -7,63 +7,100 @@
 <link rel="stylesheet" href="~/css/main.css">
 @*<script src="~/js/main.min.js"></script>*@
 <title>Sign up</title>
-<header class="header">
-    <div class="container">
-        <a class="header_logotype active" href="/">
-            W<span>G</span>
-        </a>
-        <nav class="header_menu">
-            <div class="header_burger">
-                <div class="header_burger_item"></div>
-            </div>
-            <ul class="header_menu-list">
-                <li class="header_menu-item">
-                    <a class="header_menu-item--link" href="@Url.Action("Index", "Ticket")">Tickets</a>
-                </li>
-                <li class="header_menu-item">
-                    <a class="header_menu-item--link" href="#">Specials</a>
-                </li>
-                <li class="header_menu-item">
-                    <a class="header_menu-item--link" href="#">Companies</a>
-                </li>
-                <li class="header_menu-item">
-                    <a class="header_menu-item--link" href="/Home/About">About</a>
-                </li>
-                @if (User.Identity.IsAuthenticated)
-                {
+@if (User.IsInRole("Admin"))
+{
+    <header class="header">
+        <div class="container">
+            <a class="header_logotype active" href="/">
+                W<span>G</span>
+            </a>
+            <nav class="header_menu">
+                <div class="header_burger">
+                    <div class="header_burger_item"></div>
+                </div>
+                <ul class="header_menu-list">
                     <li class="header_menu-item">
-                        <a class="header_menu-item--link" href="/Home/Privacy"> @User.Identity.Name </a>
+                        <a class="header_menu-item--link" href="/Admin/GetAllTickets">Tickets</a>
                     </li>
-                }
-            </ul>
-        </nav>
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="#">Users</a>
+                    </li>
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="">Add Ticket</a>
+                    </li>
 
-        @if (User.Identity.IsAuthenticated)
-        {
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href=""> @User.Identity.Name </a>
+                    </li>
+
+                </ul>
+            </nav>
             <div class="header_buttons">
-                <a class="header_buttons-basket" href="/Cart/Index">
-                    <img src="~/img/icon/basket.svg" alt="">
-                </a>
+            
                 <a class="header_buttons-login" href="/Account/LogOff">
                     <span>Logout</span>
                 </a>
             </div>
-        }
+        </div>
+    </header>
+}
 
-        @if (!User.Identity.IsAuthenticated)
-        {
-            <div class="header_buttons">
-                
-                <a class="header_buttons-login" href="/Account/Login">
-                    <span>login</span>
-                </a>
-            </div>
-        }
+@if (!User.IsInRole("Admin"))
+{
+    <header class="header">
+        <div class="container">
+            <a class="header_logotype active" href="/">
+                W<span>G</span>
+            </a>
+            <nav class="header_menu">
+                <div class="header_burger">
+                    <div class="header_burger_item"></div>
+                </div>
+                <ul class="header_menu-list">
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="@Url.Action("Index", "Ticket")">Tickets</a>
+                    </li>
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="#">Specials</a>
+                    </li>
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="#">Companies</a>
+                    </li>
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="/Home/About">About</a>
+                    </li>
 
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="header_menu-item">
+                            <a class="header_menu-item--link" href="/Users/Index"> @User.Identity.Name </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="header_buttons">
+                    <a class="header_buttons-basket" href="/Cart/Index">
+                        <img src="~/img/icon/basket.svg" alt="">
+                    </a>
+                    <a class="header_buttons-login" href="/Account/LogOff">
+                        <span>Logout</span>
+                    </a>
+                </div>
+            }
 
-    </div>
-</header>
-
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div class="header_buttons">
+                    <a class="header_buttons-login" href="/Account/Login">
+                        <span>login</span>
+                    </a>
+                </div>
+            }
+        </div>
+    </header>
+}
 <div class="privacy-page">
     <p> We are working to add new features to your privacy page. </p>
     <p>We are very happy that you are with us. :)</p>

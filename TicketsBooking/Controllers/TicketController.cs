@@ -46,16 +46,20 @@ namespace TicketsBooking.Controllers
 
                 foreach (var ticket in listTicket)
                 {
-                    var viewTicket = new TicketViewModel()
+                    if(ticket.FlightId == iteam.Id)
                     {
-                        Id = ticket.Id,
-                        Price = ticket.Price,
-                        FlightArrivingDate = iteam.FlightArrivingDate,
-                        FlightDepartmentDate = iteam.FlightDepartmentDate,
-                        LocationFrom = iteam.LocationFrom,
-                        LocationTo = iteam.LocationTo
-                    };
-                    tickets.Add(viewTicket);
+                        var viewTicket = new TicketViewModel()
+                        {
+                            Id = ticket.Id,
+                            Price = ticket.Price,
+                            FlightArrivingDate = iteam.FlightArrivingDate,
+                            FlightDepartmentDate = iteam.FlightDepartmentDate,
+                            LocationFrom = iteam.LocationFrom,
+                            LocationTo = iteam.LocationTo
+                        };
+                        tickets.Add(viewTicket);
+                    }
+                    
                 }
             }
             if (tickets.Count != 0)

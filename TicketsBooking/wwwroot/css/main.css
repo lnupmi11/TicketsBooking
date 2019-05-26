@@ -1120,3 +1120,22 @@
     min-height:40vh;
     padding-top:20vh;
 }
+.admin-edit-id-header{
+    background-color:transparent;
+}
+.flight-item
+{
+    height:auto;
+    width:90vw;
+    margin-left:5vw;
+    background-color:rgba(242, 236, 171, 0.75);
+    color:black;
+    border:solid 1px black;
+    margin-top:2vh;
+    padding:10px;
+}
+.tr-input {
+    background: transparent;
+    border: none;
+}
+

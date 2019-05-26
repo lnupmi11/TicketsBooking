@@ -14,7 +14,6 @@ namespace TicketsBooking.Controllers
     {
         UserManager<User> _userManager;
         private IMapper _mapper;
-
         public UsersController(UserManager<User> userManager, IMapper mapper)
         {
             _userManager = userManager;
