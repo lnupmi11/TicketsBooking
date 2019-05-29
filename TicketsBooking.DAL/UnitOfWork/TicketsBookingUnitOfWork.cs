@@ -51,6 +51,10 @@ namespace TicketsBooking.DAL.UnitOfWork
                 }
                 return _flightRepository;
             }
+            set
+            {
+                this._flightRepository = value ?? new GenericRepository<Flight>(_context);
+            }
         }
         public IRepository<Basket> BasketRepository
         {
