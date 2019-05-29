@@ -63,9 +63,7 @@
                     <li class="header_menu-item">
                         <a class="header_menu-item--link" href="@Url.Action("Index", "Ticket")">Tickets</a>
                     </li>
-                    <li class="header_menu-item">
-                        <a class="header_menu-item--link" href="#">Specials</a>
-                    </li>
+                   
                     
                     <li class="header_menu-item">
                         <a class="header_menu-item--link" href="/Home/About">About</a>
@@ -76,15 +74,16 @@
                         <li class="header_menu-item">
                             <a class="header_menu-item--link" href="/Users/Index"> @User.Identity.Name </a>
                         </li>
+                        <li class="header_menu-item">
+                            <a class="header_menu-item--link" href="/HistoryBought/Index"> History </a>
+                        </li>
                     }
                 </ul>
             </nav>
             @if (User.Identity.IsAuthenticated)
             {
             <div class="header_buttons">
-                <a class="header_buttons-basket" href="/HistoryBought/Index">
-                    <span>History</span>
-                </a>
+               
                 <a class="header_buttons-basket" href="/Cart/Index">
                     <img src="~/img/icon/basket.svg" alt="">
                 </a>

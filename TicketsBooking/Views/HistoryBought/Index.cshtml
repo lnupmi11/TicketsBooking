@@ -61,9 +61,7 @@
                     <li class="header_menu-item">
                         <a class="header_menu-item--link" href="@Url.Action("Index", "Ticket")">Tickets</a>
                     </li>
-                    <li class="header_menu-item">
-                        <a class="header_menu-item--link" href="#">Specials</a>
-                    </li>
+
                     <li class="header_menu-item">
                         <a class="header_menu-item--link" href="#">Companies</a>
                     </li>
@@ -75,6 +73,9 @@
                     {
                         <li class="header_menu-item">
                             <a class="header_menu-item--link" href="/Users/Index"> @User.Identity.Name </a>
+                        </li>
+                        <li class="header_menu-item">
+                            <a class="header_menu-item--link" href="/HistoryBought/Index"> History </a>
                         </li>
                     }
                 </ul>
