@@ -96,7 +96,7 @@ namespace TicketsBooking.Test.BLL
 
             //Act            
             flightMockRepository.Setup(x => x.Get(index.ToString())).Returns(GetFlightCollection().ElementAt(index));
-            mapper.Setup(x => x.Map<FlightDTO>(It.IsAny<Flight>())).Returns(GetFlightCollection().ElementAt(index));
+            mapper.Setup(x => x.Map<FlightDTO>(It.IsAny<Flight>())).Returns(GetFlightCollectionDTO().ElementAt(index));
             var actualFlight = flightService.Get(index);
 
             //Assert
@@ -114,7 +114,7 @@ namespace TicketsBooking.Test.BLL
 
             //Act            
             flightMockRepository.Setup(x => x.Get(index.ToString())).Returns(GetFlightCollection().ElementAt(index));
-            mapper.Setup(x => x.Map<FlightDTO>(It.IsAny<Flight>())).Returns(GetFlightCollection().ElementAt(index));
+            mapper.Setup(x => x.Map<FlightDTO>(It.IsAny<Flight>())).Returns(GetFlightCollectionDTO().ElementAt(index));
             var actualFlight = flightService.Get(index);
         }
 
