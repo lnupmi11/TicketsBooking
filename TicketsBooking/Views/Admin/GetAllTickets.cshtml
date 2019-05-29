@@ -46,7 +46,7 @@
 <div class="admin-tickets-page">
     <h1>All tickets that are available for users:</h1>
     <div class="buttons">
-        <button onclick="window.location.href = '@Url.Action("AddTicket", "Admin")'">Add flight</button>
+        <button onclick="window.location.href = '@Url.Action("AddTicket", "Admin")'">Add ticket</button>
     </div>
     @if (Model != null)
     {
@@ -58,7 +58,6 @@
                 </div>
                 <div class="ticket-main_info">
                     <div class="duration">
-                        <div class="company">Company</div>
                         <div class="time">
                             <p>@item.FlightDepartmentDate.Hour</p>
                             <p>@item.LocationFrom</p>

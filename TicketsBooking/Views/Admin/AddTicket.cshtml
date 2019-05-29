@@ -58,45 +58,48 @@
 
 <div class="admin-edit-ticket">
 
-    <form method="post" action="/Admin/AddTicket">
-        <p>
-            <select id="SelectFlight">
-                @foreach (var item in Model.Flights)
-                {
-                    <option value="@item.Id">@item.LocationFrom - @item.LocationTo ( @item.FlightDepartmentDate )</option>
-                }
-            </select>
+    <form  class="ticket"  method="post" action="/Admin/AddTicket">
+        <div class="ticket-add">
+            <p>
+                <select id="SelectFlight">
+                    @foreach (var item in Model.Flights)
+                    {
+                        <option value="@item.Id">@item.LocationFrom - @item.LocationTo ( @item.FlightDepartmentDate )</option>
+                    }
+                </select>
 
-            <input id="SelectedFlight"
-                   value=""
-                   name="FlightID"
-                   class="tr-input"
-                   readonly />
-        </p>
+                <input id="SelectedFlight"
+                       value=""
+                       name="FlightID"
+                       class="tr-input"
+                       style="color: transparent; width: 0;"
+                       readonly/>
+            </p>
 
-        <p>
-            <select id="SelectType">
-                @foreach (var item in Model.Types)
-                {
-                    <option value="@item.Id">@item.TypeName</option>
-                }
-            </select>
+            <p>
+                <select id="SelectType">
+                    @foreach (var item in Model.Types)
+                    {
+                        <option value="@item.Id">@item.TypeName</option>
+                    }
+                </select>
 
-            <input id="SelectedType"
-                   value=""
-                   name="TypeID"
-                   class="tr-input"
-                   readonly />
-        </p>
+                <input id="SelectedType"
+                       value=""
+                       name="TypeID"
+                       class="tr-input"
+                       style="color: transparent; width: 0;"
+                       readonly/>
+            </p>
 
-        <p>Price: <input value="" name="Price" /></p>
-
-        <p>Amount: <input value="" name="Amount" /></p>
-
-        <div class="buttons">
-            <button onclick="SelectFlightFunction()">Save Ticket</button>
-
+                <p><input value="" name="Price" placeholder="Price"/>  </p>
+                <p><input value="" name="Amount" placeholder="Amount"/></p>
         </div>
+
+            <div class="buttons">
+                <button onclick="SelectFlightFunction()">Save Ticket</button>
+            </div>
+        
     </form>
 
     <div class="buttons">

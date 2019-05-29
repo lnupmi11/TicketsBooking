@@ -909,6 +909,11 @@
     margin: 50px auto 0
 }
 
+.ticket-add {
+    padding: 20px;
+    text-align: center;
+    align-content: center;
+}
 .ticket-id {
     text-align: center;
     border-bottom: 2px dashed #fff
@@ -973,6 +978,7 @@
     letter-spacing: 3px;
     text-align: center
 }
+
 
 .time {
     width: 49%;
