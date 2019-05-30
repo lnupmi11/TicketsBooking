@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TicketsBooking.Test.BLL
+namespace TicketsBooking.Test.Controllers
 {
-    class OrderServiceTest
+    class CartControllerTests
     {
     }
 }
