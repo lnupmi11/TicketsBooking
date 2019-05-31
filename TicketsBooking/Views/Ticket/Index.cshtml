@@ -5,39 +5,35 @@
 <script src="~/js/main.min.js"></script>
 <title>Home</title>
 
-<header class="header">
-    <div class="container">
-        <a class="header_logotype active" href="/">
-            W<span>G</span>
-        </a>
-        <nav class="header_menu">
-            <div class="header_burger">
-                <div class="header_burger_item"></div>
-            </div>
-            <ul class="header_menu-list">
-                <li class="header_menu-item">
-                    <a class="header_menu-item--link" href="@Url.Action("Index", "Ticket")">Tickets</a>
-                </li>
-                <li class="header_menu-item">
-                    <a class="header_menu-item--link" href="#">Specials</a>
-                </li>
-                <li class="header_menu-item">
-                    <a class="header_menu-item--link" href="#">Companies</a>
-                </li>
-                <li class="header_menu-item">
-                    <a class="header_menu-item--link" href="/Home/About">About</a>
-                </li>
-
-                @if (User.Identity.IsAuthenticated)
-                {
+@if (User.IsInRole("Admin"))
+{
+    <header class="header">
+        <div class="container">
+            <a class="header_logotype active" href="/">
+                W<span>G</span>
+            </a>
+            <nav class="header_menu">
+                <div class="header_burger">
+                    <div class="header_burger_item"></div>
+                </div>
+                <ul class="header_menu-list">
                     <li class="header_menu-item">
-                        <a class="header_menu-item--link" href="/Users/Index"> @User.Identity.Name </a>
+                        <a class="header_menu-item--link" href="/Admin/GetAllTickets">Tickets</a>
                     </li>
-                }
-            </ul>
-        </nav>
-        @if (User.Identity.IsAuthenticated)
-        {
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="/Admin/Flights">Flights</a>
+                    </li>
+                    
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="">Add Ticket</a>
+                    </li>
+
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href=""> @User.Identity.Name </a>
+                    </li>
+
+                </ul>
+            </nav>
             <div class="header_buttons">
                 <a class="header_buttons-basket" href="/Cart/Index">
                     <img src="~/img/icon/basket.svg" alt="">
@@ -46,20 +42,68 @@
                     <span>Logout</span>
                 </a>
             </div>
-        }
+        </div>
+    </header>
+}
 
-        @if (!User.Identity.IsAuthenticated)
-        {
+@if (!User.IsInRole("Admin"))
+{
+    <header class="header">
+        <div class="container">
+            <a class="header_logotype active" href="/">
+                W<span>G</span>
+            </a>
+            <nav class="header_menu">
+                <div class="header_burger">
+                    <div class="header_burger_item"></div>
+                </div>
+                <ul class="header_menu-list">
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="@Url.Action("Index", "Ticket")">Tickets</a>
+                    </li>
+                   
+                    
+                    <li class="header_menu-item">
+                        <a class="header_menu-item--link" href="/Home/About">About</a>
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="header_menu-item">
+                            <a class="header_menu-item--link" href="/Users/Index"> @User.Identity.Name </a>
+                        </li>
+                        <li class="header_menu-item">
+                            <a class="header_menu-item--link" href="/HistoryBought/Index"> History </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            @if (User.Identity.IsAuthenticated)
+            {
             <div class="header_buttons">
-                
-
-                <a class="header_buttons-login" href="/Account/Login">
-                    <span>login</span>
+               
+                <a class="header_buttons-basket" href="/Cart/Index">
+                    <img src="~/img/icon/basket.svg" alt="">
+                </a>
+                <a class="header_buttons-login" href="/Account/LogOff">
+                    <span>Logout</span>
                 </a>
             </div>
-        }
-    </div>
-</header>
+            }
+
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div class="header_buttons">
+                    <a class="header_buttons-login" href="/Account/Login">
+                        <span>login</span>
+                    </a>
+                </div>
+            }
+        </div>
+    </header>
+}
+
+
 <div class="home-page">
     <div class="home-page-main">
         <div class="video-background">
@@ -80,7 +124,7 @@
                                placeholder="From">
                     </div>
                     <button class="form_tickets-group-change">
-                        <img src="img/icon/repeat.svg"/>
+                        <img src="img/icon/repeat.svg" />
                     </button>
                     <div class="form_tickets-group">
                         <input type="text"
@@ -97,12 +141,12 @@
                     </div>
 
                     @*<div class="form_tickets-group validation ">
-                        <input type="number"
-                               class="form_tickets-group-input"
-                               name="count"
-                               placeholder="Tickets count">
-                    </div>*@
-                    <input class="form_tickets-group-button" value="Search now"  type="submit" />
+                            <input type="number"
+                                   class="form_tickets-group-input"
+                                   name="count"
+                                   placeholder="Tickets count">
+                        </div>*@
+                    <input class="form_tickets-group-button" value="Search now" type="submit" />
                 </div>
             </form>
         </div>
@@ -116,21 +160,21 @@
                     <p class="destination-block-item-city">Las Vegas</p>
                     <a href="#" class="destination-block-item-link">Find tickets</a>
                 </div>
-                <img class="destination-block-item-image" src="img/LasVegas.jpg"/>
+                <img class="destination-block-item-image" src="img/LasVegas.jpg" />
             </div>
             <div class="destination-block-item">
                 <div class="destination-block-item-info">
                     <p class="destination-block-item-city">New York</p>
                     <a href="#" class="destination-block-item-link">Find tickets</a>
                 </div>
-                <img class="destination-block-item-image" src="img/NewYork.jpg"/>
+                <img class="destination-block-item-image" src="img/NewYork.jpg" />
             </div>
             <div class="destination-block-item">
                 <div class="destination-block-item-info">
                     <p class="destination-block-item-city">Paris</p>
                     <a href="#" class="destination-block-item-link">Find tickets</a>
                 </div>
-                <img class="destination-block-item-image" src="img/Paris.jpg"/>
+                <img class="destination-block-item-image" src="img/Paris.jpg" />
             </div>
         </div>
     </div>
@@ -152,9 +196,7 @@
                     <li>
                         <a href="#">Special</a>
                     </li>
-                    <li>
-                        <a href="#">Companies</a>
-                    </li>
+                    
                     <li>
                         <a href="#">About</a>
                     </li>

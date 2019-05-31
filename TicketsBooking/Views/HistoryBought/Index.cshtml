@@ -1,13 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Edit";
+﻿@model IEnumerable<TicketsBooking.DTO.Ticket.BoughtTicketDTO>
+@{
+    ViewData["Title"] = "Search";
 }
-
-@model TicketsBooking.Models.ChangePasswordViewModel
 
 <link rel="stylesheet" href="~/css/main.css">
 @*<script src="~/js/main.min.js"></script>*@
-<title>Sign up</title>
 
+<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+<title>Search</title>
 @if (User.IsInRole("Admin"))
 {
     <header class="header">
@@ -21,11 +21,9 @@
                 </div>
                 <ul class="header_menu-list">
                     <li class="header_menu-item">
-                        <a class="header_menu-item--link" href="@Url.Action("Index", "Ticket")">Tickets</a>
+                        <a class="header_menu-item--link" href="/Admin/GetAllTickets">Tickets</a>
                     </li>
-                    <li class="header_menu-item">
-                        <a class="header_menu-item--link" href="#">Users</a>
-                    </li>
+                    
                     <li class="header_menu-item">
                         <a class="header_menu-item--link" href="">Add Ticket</a>
                     </li>
@@ -37,7 +35,7 @@
                 </ul>
             </nav>
             <div class="header_buttons">
-         
+
                 <a class="header_buttons-login" href="/Account/LogOff">
                     <span>Logout</span>
                 </a>
@@ -62,9 +60,7 @@
                         <a class="header_menu-item--link" href="@Url.Action("Index", "Ticket")">Tickets</a>
                     </li>
 
-                    <li class="header_menu-item">
-                        <a class="header_menu-item--link" href="#">Companies</a>
-                    </li>
+                   
                     <li class="header_menu-item">
                         <a class="header_menu-item--link" href="/Home/About">About</a>
                     </li>
@@ -91,40 +87,52 @@
                     </a>
                 </div>
             }
+
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div class="header_buttons">
+                    <a class="header_buttons-login" href="/Account/Login">
+                        <span>login</span>
+                    </a>
+                </div>
+            }
         </div>
     </header>
 }
 
-<div class="login-page container">
-    <div class="form-wrapper ">
-        <div class="form-wrapper_title-block">
-            <span class="form-wrapper_title-text">Edit</span>
+<h2 class="main_block-header2">Your tickets:</h2>
+
+
+@foreach (var item in Model)
+{
+    <div class="ticket">
+        <div class="ticket-id">
+            <p>ID:<span>@item.Id</span></p>
         </div>
-        <form class="form-block" id="signup-form" method="post" asp-action="ChangePassword" asp-controller="Users">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label">Email</label>
-                <input asp-for="Email"
-                       type="email"
-                       readonly
-                       class="form-group-input"
-                       name="Email"
-                       value="@Model.Email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="ticket-main_info">
+            <div class="duration">
+                <div class="time">
+                    <p>@item.LocationFrom</p>
+                </div>
+                <div class="time">
+                    <p>@item.LocationTo</p>
+                </div>
+                <span class="lnr lnr-arrow-right"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label" asp-for="Password">Password</label>
-                <input type="password"
-                       class="form-group-input"
-                       name="Password"
-                       asp-for="Password"
-                       value="">
-                <span asp-validation-for="Password"></span>
+            <div class="price">
+                <p>@item.Price $</p>
             </div>
-            <input type="submit" class="form-group-button" value="Change Password →" />
-        </form>
+        </div>
+     
     </div>
-</div>
+}
+
+
+@if (Model.Count() == 0)
+{
+    <h3 style="text-align:center;">Sorry, but you haven`t bought any tickets yet!</h3>
+    <h3 style="text-align:center;"> You can visit our ticket tab and buy it. </h3>
+}
 
 <footer class="footer">
     <div class="container footer-wrapper">
@@ -141,7 +149,9 @@
                     <li>
                         <a href="#">Special</a>
                     </li>
-                    
+                    <li>
+                        <a href="#">Companies</a>
+                    </li>
                     <li>
                         <a href="#">About</a>
                     </li>
@@ -174,4 +184,3 @@
         </div>
     </div>
 </footer>
-
