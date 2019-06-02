@@ -40,13 +40,14 @@ namespace TicketsBooking.Controllers
                 }
                 else
                 {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
+                    //foreach (var error in result.Errors)
+                    //{
+                    //    ModelState.AddModelError(string.Empty, error.Description);
+                    //}
+                    ViewBag.Message = "Password must have number, letter and symbol";
+                    return View(model);
                 }
             }
-            
             return View(model);
         }
 

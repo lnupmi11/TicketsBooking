@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TicketsBooking.DAL.Migrations
 {
-    public partial class MyFirstMigration : Migration
+    public partial class AddProductReviews : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

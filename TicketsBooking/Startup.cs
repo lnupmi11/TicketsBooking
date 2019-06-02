@@ -35,6 +35,7 @@ namespace TicketsBooking
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -49,6 +50,17 @@ namespace TicketsBooking
                 .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<TicketsBooking.DAL.EntityFramework.TicketsBookingContext>();
+
+
+            //services.Configure<IdentityOptions>(options =>
+            //{
+            //    options.Password.RequireDigit = false;
+            //    options.Password.RequiredLength = 1;
+            //    options.Password.RequireLowercase = false;
+            //    options.Password.RequiredUniqueChars = 0;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //    options.Password.RequireUppercase = false;
+            //});
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -149,7 +161,19 @@ namespace TicketsBooking
             }
             await UserManager.AddToRoleAsync(user1, Roles.User.ToString());
 
-            
+            User user2 = await UserManager.FindByEmailAsync("editor@editor.com");
+
+            if (user2 == null)
+            {
+                user2 = new User()
+                {
+                    UserName = "editor@editor.com",
+                    Email = "editor@editor.com",
+                };
+                await UserManager.CreateAsync(user2, "Editor@1");
+            }
+            await UserManager.AddToRoleAsync(user2, Roles.Editor.ToString());
+
         }
     }
 }

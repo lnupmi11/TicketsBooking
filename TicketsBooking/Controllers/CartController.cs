@@ -35,10 +35,10 @@ namespace TicketsBooking.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            var user = _unitOfWork.UserRepository.GetAll().Where(t => t.Email == User.Identity.Name).First();
             var cartItems = new List<TicketViewModel>();
             if (!string.IsNullOrEmpty(User.Identity.Name))
             {
+                var user = _unitOfWork.UserRepository.GetAll().Where(t => t.Email == User.Identity.Name).First();
                 var ticketDTOs = _orderService.GetAllUserBasketItems(user.Id.ToString()).ToList();
                 foreach (var item in ticketDTOs)
                 {

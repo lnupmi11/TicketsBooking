@@ -40,6 +40,8 @@ namespace TicketsBooking.Controllers
                     user.FirstName = model.FirstName;
 
                     var result = await _userManager.UpdateAsync(user);
+
+
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index");

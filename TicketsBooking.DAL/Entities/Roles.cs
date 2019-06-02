@@ -11,5 +11,7 @@ namespace TicketsBooking.DAL.Entities
         Admin,
         [Description("User")]
         User,
+        [Description("Editor")]
+        Editor,
     }
 }
