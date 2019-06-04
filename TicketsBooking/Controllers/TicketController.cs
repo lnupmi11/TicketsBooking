@@ -114,5 +114,36 @@ namespace TicketsBooking.Controllers
             return View();
         }
 
+        public IActionResult SortByDate (int? pg)
+        {
+            int pageSize = 3;
+            int pageNumber = (pg ?? 1);
+            var flights = _unitOfWork.FlightRepository.GetQuery().Include(t => t.Tickets);
+            var tickets = new List<TicketViewModel>();
+            foreach (var iteam in flights)
+            {
+                foreach (var ticket in iteam.Tickets)
+                {
+                    var viewTicket = new TicketViewModel()
+                    {
+                        Id = ticket.Id,
+                        Price = ticket.Price,
+                        FlightArrivingDate = iteam.FlightArrivingDate,
+                        FlightDepartmentDate = iteam.FlightDepartmentDate,
+                        LocationFrom = iteam.LocationFrom,
+                        LocationTo = iteam.LocationTo
+                    };
+
+                    tickets.Add(viewTicket);
+                }
+            }
+
+            var listTickets = tickets.OrderBy(t => t.FlightDepartmentDate).ToList();
+            var listTicketsResult = listTickets.ToPagedList(pageNumber, pageSize);
+            ViewBag.listTickets = listTicketsResult;
+
+            return View();
+        }
+
     }
 }

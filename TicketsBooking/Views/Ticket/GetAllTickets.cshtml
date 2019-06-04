@@ -153,6 +153,9 @@
 
 @if (ViewBag.listTickets != null)
 {
+    <div class="buttons">
+        <button onclick="window.location.href = '@Url.Action("SortByDate", "Ticket")'">Sort By Date</button>
+    </div>
     @foreach (var item in ViewBag.listTickets)
     {
         <div class="ticket">

@@ -1,10 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Index";
-}
-<link rel="stylesheet" href="css/main.css">
-<script src="~/js/main.min.js"></script>
-<title>Home</title>
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
 
+@model IEnumerable<TicketsBooking.Models.TicketViewModel>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<link rel="stylesheet" href="~/css/main.css">
+<script src="~/js/main.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+<title>Search</title>
 @if (User.IsInRole("Admin"))
 {
     <header class="header">
@@ -23,7 +30,7 @@
                     <li class="header_menu-item">
                         <a class="header_menu-item--link" href="/Admin/Flights">Flights</a>
                     </li>
-                    
+
                     <li class="header_menu-item">
                         <a class="header_menu-item--link" href="">Add Ticket</a>
                     </li>
@@ -67,10 +74,6 @@
                         <a class="header_menu-item--link" href="/Home/About">About</a>
                     </li>
 
-                    <li class="header_menu-item">
-                        <a class="header_menu-item--link" href="/Ticket/GetAllTickets">All Tickets</a>
-                    </li>
-
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="header_menu-item">
@@ -84,15 +87,14 @@
             </nav>
             @if (User.Identity.IsAuthenticated)
             {
-            <div class="header_buttons">
-               
-                <a class="header_buttons-basket" href="/Cart/Index">
-                    <img src="~/img/icon/basket.svg" alt="">
-                </a>
-                <a class="header_buttons-login" href="/Account/LogOff">
-                    <span>Logout</span>
-                </a>
-            </div>
+                <div class="header_buttons">
+                    <a class="header_buttons-basket" href="/Cart/Index">
+                        <img src="~/img/icon/basket.svg" alt="">
+                    </a>
+                    <a class="header_buttons-login" href="/Account/LogOff">
+                        <span>Logout</span>
+                    </a>
+                </div>
             }
 
             @if (!User.Identity.IsAuthenticated)
@@ -107,83 +109,84 @@
     </header>
 }
 
-
-<div class="home-page">
-    <div class="home-page-main">
-        <div class="video-background">
-            <div class="video-foreground">
-                <iframe src="https://www.youtube.com/embed/RcmrbNRK-jY?autoplay=1&controls=0&showinfo=0&autohide=1&loop=1&mute=1" frameborder="0"></iframe>
+<div class="container main_block">
+    <h1 class="main_block-header1">WeGo</h1>
+    <form class="form_tickets-wrapper tickets" method="post" action="/Ticket/Search">
+        <div class="form_tickets-block">
+            <div class="form_tickets-group">
+                <input type="text"
+                       class="form_tickets-group-input"
+                       name="cityFrom"
+                       placeholder="From">
             </div>
+            <button class="form_tickets-group-change">
+                <img src="~/img/icon/repeat.svg" />
+            </button>
+            <div class="form_tickets-group">
+                <input type="text"
+                       class="form_tickets-group-input"
+                       name="cityTo"
+                       placeholder="To">
+            </div>
+
+            <div class="form_tickets-group">
+                <input type="date"
+                       class="form_tickets-group-input"
+                       name="dateTime"
+                       placeholder="Date">
+            </div>
+
+            @*
+                <div class="form_tickets-group validation ">
+                    <input type="number"
+                           class="form_tickets-group-input"
+                           name="count"
+                           placeholder="Tickets count">
+                </div>*@
+            <button class="form_tickets-group-button">Search now</button>
         </div>
-        <div class="container main_block">
-            <h1 class="main_block-header1">WeGo</h1>
-            <h2 class="main_block-header2">Unleash the traveler inside you</h2>
-
-            <form class="form_tickets-wrapper tickets" method="post" action="/Ticket/Search">
-                <div class="form_tickets-block">
-                    <div class="form_tickets-group">
-                        <input type="text"
-                               class="form_tickets-group-input"
-                               name="cityFrom"
-                               placeholder="From">
-                    </div>
-                    <button class="form_tickets-group-change">
-                        <img src="img/icon/repeat.svg" />
-                    </button>
-                    <div class="form_tickets-group">
-                        <input type="text"
-                               class="form_tickets-group-input"
-                               name="cityTo"
-                               placeholder="To">
-                    </div>
-
-                    <div class="form_tickets-group">
-                        <input type="date"
-                               class="form_tickets-group-input"
-                               name="dateTime"
-                               placeholder="Date">
-                    </div>
-
-                    @*<div class="form_tickets-group validation ">
-                            <input type="number"
-                                   class="form_tickets-group-input"
-                                   name="count"
-                                   placeholder="Tickets count">
-                        </div>*@
-                    <input class="form_tickets-group-button" value="Search now" type="submit" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="home-page-destination container">
-        <p class="main_block-header2">Discover our top destination</p>
-        <div class="destination-block">
-            <div class="destination-block-item">
-                <div class="destination-block-item-info">
-                    <p class="destination-block-item-city">Las Vegas</p>
-                    <a href="#" class="destination-block-item-link">Find tickets</a>
-                </div>
-                <img class="destination-block-item-image" src="img/LasVegas.jpg" />
-            </div>
-            <div class="destination-block-item">
-                <div class="destination-block-item-info">
-                    <p class="destination-block-item-city">New York</p>
-                    <a href="#" class="destination-block-item-link">Find tickets</a>
-                </div>
-                <img class="destination-block-item-image" src="img/NewYork.jpg" />
-            </div>
-            <div class="destination-block-item">
-                <div class="destination-block-item-info">
-                    <p class="destination-block-item-city">Paris</p>
-                    <a href="#" class="destination-block-item-link">Find tickets</a>
-                </div>
-                <img class="destination-block-item-image" src="img/Paris.jpg" />
-            </div>
-        </div>
-    </div>
-
+    </form>
 </div>
+<hr />
+
+<h2 class="main_block-header2">We find for you:</h2>
+
+@if (ViewBag.listTickets != null)
+{
+    @foreach (var item in ViewBag.listTickets)
+    {
+        <div class="ticket">
+            <div class="ticket-id">
+                <p>ID:<span>@item.Id</span></p>
+            </div>
+            <div class="ticket-main_info">
+                <div class="duration">
+                    <div class="time">
+                        <p>@item.FlightDepartmentDate.Hour</p>
+                        <p>@item.LocationFrom</p>
+                        <span>@item.FlightDepartmentDate</span>
+                    </div>
+                    <div class="time">
+                        <p>@item.FlightArrivingDate.Hour</p>
+                        <p>@item.LocationTo</p>
+                        <span>@item.FlightArrivingDate</span>
+                    </div>
+                    <span class="lnr lnr-arrow-right"></span>
+                </div>
+                <div class="price">
+                    <p>@item.Price $</p>
+                </div>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="buttons">
+                    <button onclick="window.location.href = '@Url.Action("AddToCart", "Ticket" , new { id = item.Id }, null)'">To order</button>
+                </div>
+            }
+        </div>
+    }
+    @Html.PagedListPager((IPagedList)ViewBag.listTickets, pg => Url.Action("GetAllTickets", new { pg }))
+}
 
 <footer class="footer">
     <div class="container footer-wrapper">
@@ -200,7 +203,7 @@
                     <li>
                         <a href="#">Special</a>
                     </li>
-                    
+
                     <li>
                         <a href="#">About</a>
                     </li>
