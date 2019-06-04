@@ -10,6 +10,7 @@ namespace TicketsBooking.DAL.Interfaces
         IRepository<Basket> BasketRepository { get; }
         IRepository<TicketType> TicketTypeRepository { get; }
         IRepository<BoughtTicket> BoughtTicketRepository { get; }
+        IRepository<Like> LikeRepository { get; set; }
         void SaveChanges();
     }
 }

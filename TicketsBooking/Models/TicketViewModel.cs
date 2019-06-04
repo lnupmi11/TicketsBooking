@@ -17,5 +17,6 @@ namespace TicketsBooking.Models
         public double Price { get; set; }
         public TicketTypeDTO Type { get; set; }
         public int FlightId { get; set; }
+        public int CollLike { get; set; }
     }
 }

@@ -4,14 +4,12 @@ using System.Text;
 
 namespace TicketsBooking.DAL.Entities
 {
-    public class Flight
+    public class Like
     {
         public int Id { get; set; }
-        public string LocationFrom { get; set; }
-        public string LocationTo { get; set; }
-        public int NumberOfSeats { get; set; }
-        public DateTime FlightDepartmentDate { get; set; }
-        public DateTime FlightArrivingDate { get; set; }
-        public ICollection<Ticket> Tickets { get; set; }
+        
+        public string UserEmail { get; set; }
+
+        public int FlightId { get; set; }
     }
 }

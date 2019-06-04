@@ -175,9 +175,12 @@
             </div>
             @if (User.Identity.IsAuthenticated)
             {
-                <div class="buttons">
-                    <button onclick="window.location.href = '@Url.Action("AddToCart", "Ticket" , new { id = item.Id }, null)'">To order</button>
-                </div>
+        <div class="buttons">
+            <button onclick="window.location.href = '@Url.Action("AddToCart", "Ticket" , new { id = item.Id }, null)'">To order</button>
+            <div class="buttons">
+                <button onclick="window.location.href = '@Url.Action("AddLike", "Ticket" , new { id = item.Id }, null)'">Likes @item.CollLike</button>
+            </div>
+        </div>
             }
         </div>
     }

@@ -18,12 +18,29 @@ namespace TicketsBooking.DAL.UnitOfWork
         IRepository<Ticket> _ticketRepository;
         IRepository<User> _userRepository;
         IRepository<BoughtTicket> _boughtTicketRepository;
+        IRepository<Like> _likeRepository;
 
         //IRepository<User> _userRepository;
 
         public TicketsBookingUnitOfWork(TicketsBookingContext context)
         {
             _context = context;
+        }
+
+        public IRepository<Like> LikeRepository
+        {
+            get
+            {
+                if (_likeRepository == null)
+                {
+                    _likeRepository = new GenericRepository<Like>(_context);
+                }
+                return _likeRepository;
+            }
+            set
+            {
+                this._likeRepository = value ?? new GenericRepository<Like>(_context);
+            }
         }
 
         public IRepository<Ticket> TicketRepository

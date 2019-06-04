@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TicketsBooking.BLL.Interfaces;
+using TicketsBooking.DAL.Entities;
 using TicketsBooking.DAL.Interfaces;
 using TicketsBooking.DTO.Ticket;
 using TicketsBooking.Models;
@@ -45,6 +46,8 @@ namespace TicketsBooking.Controllers
             var tickets = new List<TicketViewModel>();
             foreach (var iteam in flights)
             {
+                var likes = _unitOfWork.LikeRepository.GetAll().Where(t => t.FlightId == iteam.Id);
+
                 var listTicket = _unitOfWork.TicketRepository.GetQuery().Include(t => t.Basket).Where(t => t.Basket == null).Where(t => t.FlightId == iteam.Id);
 
                 foreach (var ticket in listTicket)
@@ -58,7 +61,8 @@ namespace TicketsBooking.Controllers
                             FlightArrivingDate = iteam.FlightArrivingDate,
                             FlightDepartmentDate = iteam.FlightDepartmentDate,
                             LocationFrom = iteam.LocationFrom,
-                            LocationTo = iteam.LocationTo
+                            LocationTo = iteam.LocationTo,
+                            CollLike = likes.Count()
                         };
                         tickets.Add(viewTicket);
                     }
@@ -144,6 +148,23 @@ namespace TicketsBooking.Controllers
 
             return View();
         }
+
+        public IActionResult AddLike(int id)
+        {
+            var tiket = _unitOfWork.TicketRepository.GetAll().Where(t => t.Id == id).FirstOrDefault();
+            var like = _unitOfWork.LikeRepository.GetAll().Where(t => t.UserEmail == User.Identity.Name).Where(k=>k.FlightId == tiket.FlightId).FirstOrDefault();
+            if (like == null)
+            {
+                Like likeDTO = new Like
+                {
+                    UserEmail = User.Identity.Name,
+                    FlightId = tiket.FlightId
+                };
+                _unitOfWork.LikeRepository.Create(likeDTO);
+            }
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

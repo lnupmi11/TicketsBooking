@@ -15,6 +15,7 @@ namespace TicketsBooking.DAL.EntityFramework
         public DbSet<BoughtTicket> BoughtTickets { get; set; }
         public DbSet<Flight> Flights { get; set; }
 
+        public DbSet<Like> Likes { get; set; }
 
         public TicketsBookingContext() { }
         public TicketsBookingContext(DbContextOptions options) : base(options)
