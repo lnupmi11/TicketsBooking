@@ -36,6 +36,10 @@ namespace TicketsBooking.DAL.UnitOfWork
                 }
                 return _ticketRepository;
             }
+            set
+            {
+                this._ticketRepository = value ?? new GenericRepository<Ticket>(_context);
+            }
         }
 
         public IRepository<Flight> FlightRepository
@@ -47,6 +51,10 @@ namespace TicketsBooking.DAL.UnitOfWork
                     _flightRepository = new GenericRepository<Flight>(_context);
                 }
                 return _flightRepository;
+            }
+            set
+            {
+                this._flightRepository = value ?? new GenericRepository<Flight>(_context);
             }
         }
         public IRepository<Basket> BasketRepository
@@ -85,7 +93,7 @@ namespace TicketsBooking.DAL.UnitOfWork
             }
             set
             {
-                this.UserRepository =  new GenericRepository<User>(_context);
+                this._userRepository =  value ?? new GenericRepository<User>(_context);
             }
         }
 
@@ -98,6 +106,10 @@ namespace TicketsBooking.DAL.UnitOfWork
                     _boughtTicketRepository = new GenericRepository<BoughtTicket>(_context);
                 }
                 return _boughtTicketRepository;
+            }
+            set
+            {
+                this._boughtTicketRepository = value ?? new GenericRepository<BoughtTicket>(_context);
             }
         }
 

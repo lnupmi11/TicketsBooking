@@ -1,4 +1,8 @@
-﻿@model IEnumerable<TicketsBooking.Models.TicketViewModel>
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+@model IEnumerable<TicketsBooking.Models.TicketViewModel>
+
 @{
     ViewData["Title"] = "Search";
 }
@@ -147,9 +151,9 @@
 
 <h2 class="main_block-header2">We find for you:</h2>
 
-@if (Model != null)
+@if (ViewBag.listTickets != null)
 {
-    @foreach (var item in Model)
+    @foreach (var item in ViewBag.listTickets)
     {
         <div class="ticket">
             <div class="ticket-id">
@@ -181,12 +185,7 @@
             }
         </div>
     }
-}
-
-
-@if (Model == null)
-{
-    <h3 style="text-align:center;">Sorry, but there are no tickets for the given parameters :( </h3>
+    @Html.PagedListPager((IPagedList)ViewBag.listTickets, pg => Url.Action("GetAllTickets", new { pg }))
 }
 
 <footer class="footer">

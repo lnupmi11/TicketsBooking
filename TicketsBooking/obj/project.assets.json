@@ -3762,17 +3762,17 @@
           "lib/netstandard1.3/System.Linq.Parallel.dll": {}
         }
       },
-      "System.Linq.Queryable/4.0.1": {
+      "System.Linq.Queryable/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Linq": "4.1.0",
-          "System.Linq.Expressions": "4.1.0",
-          "System.Reflection": "4.1.0",
-          "System.Reflection.Extensions": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0"
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Linq.Expressions": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.0/System.Linq.Queryable.dll": {}
@@ -4763,6 +4763,33 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
+        }
+      },
+      "X.PagedList/7.6.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Linq.Expressions": "4.3.0",
+          "System.Linq.Queryable": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/X.PagedList.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/X.PagedList.dll": {}
+        }
+      },
+      "X.PagedList.Mvc.Core/7.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Core": "2.1.2",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.1.2",
+          "X.PagedList": "7.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/X.PagedList.Mvc.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/X.PagedList.Mvc.Core.dll": {}
         }
       },
       "TicketsBooking.BLL/1.0.0": {
@@ -10219,12 +10246,13 @@
         "system.linq.parallel.nuspec"
       ]
     },
-    "System.Linq.Queryable/4.0.1": {
-      "sha512": "Yn/WfYe9RoRfmSLvUt2JerP0BTGGykCZkQPgojaxgzF2N0oPo+/AhB8TXOpdCcNlrG3VRtsamtK2uzsp3cqRVw==",
+    "System.Linq.Queryable/4.3.0": {
+      "sha512": "In1Bmmvl/j52yPu3xgakQSI0YIckPUr870w4K5+Lak3JCCa8hl+my65lABOuKfYs4ugmZy25ScFerC4nz8+b6g==",
       "type": "package",
-      "path": "system.linq.queryable/4.0.1",
+      "path": "system.linq.queryable/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/monoandroid10/_._",
@@ -10273,7 +10301,7 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.linq.queryable.4.0.1.nupkg.sha512",
+        "system.linq.queryable.4.3.0.nupkg.sha512",
         "system.linq.queryable.nuspec"
       ]
     },
@@ -13059,6 +13087,33 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "X.PagedList/7.6.0": {
+      "sha512": "T6uZsHSixuE1dZj9Dtl9RXAH8Okigu+Kr327XEBbAKYt5cYpv+NRU70cGvqKmkg5qYN0VAb+9YbZtjz9p0onXg==",
+      "type": "package",
+      "path": "x.pagedlist/7.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/X.PagedList.dll",
+        "lib/net461/X.PagedList.dll",
+        "lib/netstandard1.1/X.PagedList.dll",
+        "lib/netstandard2.0/X.PagedList.dll",
+        "x.pagedlist.7.6.0.nupkg.sha512",
+        "x.pagedlist.nuspec"
+      ]
+    },
+    "X.PagedList.Mvc.Core/7.6.0": {
+      "sha512": "5fmLfdbnoIlitMdrXQ+a99xQinKNTq6HYo2GrML9MnM8dd99QqDWLzPWG7nBlki1dZIp4vO0f5JjVS1/JB2bJw==",
+      "type": "package",
+      "path": "x.pagedlist.mvc.core/7.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/X.PagedList.Mvc.Core.dll",
+        "x.pagedlist.mvc.core.7.6.0.nupkg.sha512",
+        "x.pagedlist.mvc.core.nuspec"
+      ]
+    },
     "TicketsBooking.BLL/1.0.0": {
       "type": "project",
       "path": "../TicketsBooking.BLL/TicketsBooking.BLL.csproj",
@@ -13086,7 +13141,8 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.3",
       "TicketsBooking.BLL >= 1.0.0",
       "TicketsBooking.DAL >= 1.0.0",
-      "TicketsBooking.DTO >= 1.0.0"
+      "TicketsBooking.DTO >= 1.0.0",
+      "X.PagedList.Mvc.Core >= 7.6.0"
     ]
   },
   "packageFolders": {
@@ -13172,6 +13228,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[2.2.3, )"
+          },
+          "X.PagedList.Mvc.Core": {
+            "target": "Package",
+            "version": "[7.6.0, )"
           }
         },
         "imports": [
