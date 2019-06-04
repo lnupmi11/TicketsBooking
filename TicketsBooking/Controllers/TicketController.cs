@@ -162,6 +162,10 @@ namespace TicketsBooking.Controllers
                 };
                 _unitOfWork.LikeRepository.Create(likeDTO);
             }
+            else
+            {
+                _unitOfWork.LikeRepository.Delete(like.Id.ToString());
+            }
             return RedirectToAction("Index");
         }
 
